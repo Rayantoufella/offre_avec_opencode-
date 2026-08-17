@@ -111,6 +111,20 @@ async function runWorkflow(options = {}) {
   }
 
   try {
+    if (cvPath && excelPath) {
+      const envContent = `CV_PATH=${cvPath}
+EXCEL_PATH=${excelPath}
+DRY_RUN=true
+UPLOAD_SERVER_URL=http://localhost:9011
+UPLOAD_SERVER_PORT=9011
+UPLOAD_WS_PORT=9010
+CV_MAX_SIZE_MB=10
+LOG_LEVEL=info
+`;
+      fs.writeFileSync(path.join(process.cwd(), '.env'), envContent, 'utf-8');
+      console.log('   Fichier .env cree avec les chemins fournis\n');
+    }
+
     console.log('1. Verification du CV...');
     const cvValidation = validateCV(cvPath || process.env.CV_PATH);
     if (!cvValidation.valid) {
@@ -185,7 +199,9 @@ async function runWorkflow(options = {}) {
 
 if (process.argv[1] && process.argv[1].endsWith('orchestrator.js')) {
   const dryRun = process.env.DRY_RUN !== 'false';
-  runWorkflow({ dryRun }).catch(err => {
+  const excelArg = process.argv[2];
+  const cvArg = process.argv[3];
+  runWorkflow({ dryRun, excelPath: excelArg, cvPath: cvArg }).catch(err => {
     console.error('Erreur:', err.message);
     process.exit(1);
   });

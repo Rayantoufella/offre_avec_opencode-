@@ -4,7 +4,7 @@ Systeme d'automatisation des candidatures via OpenCode + Browser MCP.
 
 ## Premiere utilisation (apres le clone)
 
-Voici exactement ce qu'il faut faire, etape par etape :
+Voici exactement ce qu'il faut faire :
 
 ### 1. Installer les dependances
 
@@ -19,7 +19,6 @@ npm install
 3. Activez **Mode Developpeur** (en haut a droite)
 4. Cliquez sur **Charger l'extension non empaquetee**
 5. Selectionnez le dossier `extension/mcp-file-upload/`
-6. L'extension "MCP File Upload Helper" apparait dans la liste
 
 ### 3. Installer Browser MCP
 
@@ -31,58 +30,22 @@ npm install
 
 1. Dans Chrome, allez sur https://mail.google.com
 2. Connectez-vous a votre compte Gmail
-3. Verifiez que vous voyez votre boite de reception
 
-### 5. Placer votre CV
-
-1. Copiez votre CV PDF dans le dossier `data/cv/`
-2. Le nom du fichier ne doit pas contenir d'espace
-
-### 6. Placer votre Excel
-
-1. Copiez votre fichier Excel dans le dossier `data/`
-2. Le fichier doit contenir au minimum une colonne "Email" et une colonne "Entreprise"
-
-### 7. Configurer le fichier .env
-
-```powershell
-copy .env.example .env
-notepad .env
-```
-
-Remplissez les lignes :
-```
-CV_PATH=data/cv/votre_cv.pdf
-EXCEL_PATH=data/votre_fichier.xlsx
-DRY_RUN=true
-```
-
-### 8. Verifier que tout marche
-
-```powershell
-npm run check
-```
-
-Vous devez voir [OK] partout.
-
-### 9. Generer les candidatures
-
-```powershell
-npm start
-```
-
-Le fichier `data/emails/emails-prepared.json` est cree.
-
-### 10. Envoyer via OpenCode
+### 5. Lancer OpenCode
 
 1. Ouvrez OpenCode dans le dossier du projet
 2. Donnez ce prompt :
    ```
-   Lance la campagne de candidatures avec le fichier data/emails/emails-prepared.json
+   Je veux automatiser mes candidatures. Voici mon fichier Excel : C:\Users\...\offres.xlsx et mon CV : C:\Users\...\Cv.pdf
    ```
-3. OpenCode va ouvrir Gmail, remplir les emails, attacher le CV
+3. OpenCode va :
+   - Creer automatiquement le fichier `.env`
+   - Verifier le CV
+   - Analyser l'Excel
+   - Generer les candidatures
+   - Vous demander pour envoyer
 
-**Par defaut, AUCUN email n'est envoye** (mode simulation). Pour envoyer vraiment, changez `DRY_RUN=false` dans `.env`.
+**Par defaut, AUCUN email n'est envoye** (mode simulation).
 
 ---
 

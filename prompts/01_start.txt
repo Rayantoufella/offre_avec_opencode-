@@ -1,12 +1,12 @@
 Bienvenue dans le systeme d'automatisation des candidatures.
 
-Avant de commencer, j'ai besoin de deux fichiers :
+Pour commencer, j'ai besoin de deux fichiers :
 
-1. Votre fichier Excel contenant les offres d'emploi
-2. Votre CV au format PDF
+1. Le chemin du fichier Excel contenant les offres d'emploi
+2. Le chemin du CV au format PDF
 
-Pour continuer, donnez-moi :
-- Le chemin du fichier Excel (ex: C:\Users\...\offres.xlsx)
-- Le chemin du CV (ex: C:\Users\...\Cv.pdf)
+Donnez-moi ces deux chemins et je vais configurer automatiquement le systeme.
 
-Je vais ensuite analyser l'Excel et preparer les candidatures.
+Exemple :
+- Excel : C:\Users\...\offres.xlsx
+- CV : C:\Users\...\Cv.pdf
