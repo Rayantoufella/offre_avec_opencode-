@@ -1,0 +1,14 @@
+Verification que le CV est valide et pret pour l'attachement.
+
+Lance la verification en executant la commande :
+node scripts/validation/cv-validator.js <chemin_du_cv>
+
+Le systeme verifie :
+- Fichier present
+- Extension PDF
+- Fichier lisible
+- Taille raisonnable (< 10 Mo)
+- Chemin valide
+
+Si le CV n'est pas valide, explique clairement a l'utilisateur quoi faire.
+Si le CV est valide, confirme et continue.

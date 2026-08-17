@@ -1,0 +1,14 @@
+Verification que le MCP File Upload Helper est operationnel.
+
+1. Lance le serveur upload en arriere-plan :
+   Execute la commande : node scripts/upload/server.js
+
+2. Verifie que le serveur repond :
+   Execute : powershell -Command "Invoke-RestMethod -Uri 'http://localhost:9011/status'"
+
+3. Verifie que l'extension Chrome est connectee (extensionConnected: true).
+
+Si l'extension n'est pas connectee, demande a l'utilisateur :
+"Ouvrez chrome://extensions/, activez le mode Developpeur, et chargez le dossier extension/mcp-file-upload/."
+
+Le serveur doit tourner en arriere-plan pendant tout le processus.

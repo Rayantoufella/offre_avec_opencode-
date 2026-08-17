@@ -1,0 +1,17 @@
+﻿{
+    "plugin":  [
+                   "opencode-browser"
+               ],
+    "$schema":  "https://opencode.ai/config.json",
+    "mcp":  {
+                "browsermcp":  {
+                                   "command":  [
+                                                   "npx",
+                                                   "-y",
+                                                   "@browsermcp/mcp@latest"
+                                               ],
+                                   "type":  "local",
+                                   "enabled":  true
+                               }
+            }
+}

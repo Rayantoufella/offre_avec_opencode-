@@ -1,0 +1,24 @@
+Test d'une seule candidature (sans envoi).
+
+Lit le fichier data/emails/emails-prepared.json et prends la premiere offre.
+
+Pour cette offre, fais ceci :
+
+1. Ouvre Gmail compose en naviguant vers (remplace EMAIL et SUJET) :
+   browsermcp_browser_navigate vers https://mail.google.com/mail/u/0/?view=cm&fs=1&to=EMAIL&su=SUJET
+
+2. Attends 5 secondes puis capture un snapshot :
+   browsermcp_browser_wait time=5
+   browsermcp_browser_snapshot
+
+3. Remplir le corps du message :
+   - Cherche le champ texte (textbox) dans le snapshot
+   - Utilise browsermcp_browser_type avec le ref du champ et le corps du message
+
+4. Attacher le CV :
+   - Execute : powershell -Command "Invoke-RestMethod -Uri 'http://localhost:9011/upload' -Method Post -ContentType 'application/json' -Body '{\"filePath\":\"CHEMIN_CV\"}'"
+   - Remplace CHEMIN_CV par le chemin reel du CV
+
+5. Verifie la piece jointe avec un browsermcp_browser_snapshot
+
+6. STOP — N'ENVOIE PAS. L'utilisateur doit verifier le resultat dans Gmail.

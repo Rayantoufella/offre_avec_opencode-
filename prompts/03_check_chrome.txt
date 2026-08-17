@@ -1,0 +1,8 @@
+Verification que Chrome est correctement controle par Browser MCP.
+
+IMPORTANT : Nous utilisons UNIQUEMENT le Chrome EXISTANT.
+NE JAMAIS lancer un nouveau Chrome.
+NE JAMAIS creer un nouveau profil.
+
+Utilise l'outil browsermcp_browser_navigate pour aller sur chrome://version.
+Verifie que la page se charge correctement.

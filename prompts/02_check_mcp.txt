@@ -1,0 +1,6 @@
+Verification que Browser MCP est connecte.
+
+Fais un snapshot de la page actuelle avec l'outil browsermcp_browser_snapshot.
+
+Si le snapshot reussit, Browser MCP est operationnel.
+Si le snapshot echoue, verifie que le serveur MCP tourne et que Chrome est ouvert.

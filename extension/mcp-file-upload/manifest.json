@@ -1,0 +1,12 @@
+﻿{
+  "name": "MCP File Upload Helper",
+  "version": "1.0.0",
+  "manifest_version": 3,
+  "description": "Adds file upload capability to Browser MCP via chrome.scripting + DataTransfer API",
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "permissions": ["tabs", "scripting", "alarms"],
+  "host_permissions": ["<all_urls>"]
+}

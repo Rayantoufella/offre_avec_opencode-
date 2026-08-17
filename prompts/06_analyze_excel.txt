@@ -1,0 +1,19 @@
+Analyse du fichier Excel fourni par l'utilisateur.
+
+Lance l'analyse en executant la commande :
+node scripts/excel/analyzer.js <chemin_du_fichier>
+
+Le systeme va :
+1. Detecter automatiquement les colonnes
+2. Mapper les informations (entreprise, email, poste, etc.)
+3. Valider chaque ligne
+4. Generer un rapport complet
+
+Presente le rapport a l'utilisateur :
+- Nombre total d'offres
+- Offres valides
+- Offres incompletes
+- Offres ignorees (pas d'email)
+- Doublons detectes
+
+Pour chaque probleme, explique clairement la cause.

@@ -1,0 +1,11 @@
+Verification que Gmail est connecte dans Chrome.
+
+Utilise l'outil browsermcp_browser_navigate pour aller sur :
+https://mail.google.com/mail/u/0/
+
+Verifie que la page Gmail se charge correctement en faisant un browsermcp_browser_snapshot.
+
+Si Gmail demande une connexion, demande a l'utilisateur :
+"Connectez-vous a Gmail dans Chrome, puis dites-moi quand c'est termine."
+
+NE PAS lancer un autre Chrome. NE PAS ouvrir un navigateur separe.

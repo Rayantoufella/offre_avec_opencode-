@@ -1,0 +1,30 @@
+{
+  "name": "offre-automation",
+  "version": "1.0.0",
+  "description": "Automatisation des candidatures via OpenCode + Browser MCP",
+  "type": "module",
+  "main": "scripts/workflow/orchestrator.js",
+  "scripts": {
+    "upload-server": "node scripts/upload/server.js",
+    "test-upload": "node scripts/upload/test-upload.js",
+    "analyze-excel": "node scripts/excel/analyzer.js",
+    "dry-run": "node scripts/workflow/dry-run.js",
+    "test-one": "node scripts/workflow/test-one.js",
+    "start": "node scripts/workflow/orchestrator.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "check": "node scripts/diagnostic/check-all.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "exceljs": "^4.4.0",
+    "pino": "^9.6.0",
+    "ws": "^8.18.1",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "vitest": "^3.1.1"
+  },
+  "keywords": ["automation", "candidature", "gmail", "browser-mcp", "opencode"],
+  "license": "MIT"
+}
