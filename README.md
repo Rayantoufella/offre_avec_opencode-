@@ -2,6 +2,90 @@
 
 Systeme d'automatisation des candidatures via OpenCode + Browser MCP.
 
+## Premiere utilisation (apres le clone)
+
+Voici exactement ce qu'il faut faire, etape par etape :
+
+### 1. Installer les dependances
+
+```powershell
+npm install
+```
+
+### 2. Installer l'extension Chrome
+
+1. Ouvrez Chrome
+2. Allez sur `chrome://extensions/`
+3. Activez **Mode Developpeur** (en haut a droite)
+4. Cliquez sur **Charger l'extension non empaquetee**
+5. Selectionnez le dossier `extension/mcp-file-upload/`
+6. L'extension "MCP File Upload Helper" apparait dans la liste
+
+### 3. Installer Browser MCP
+
+1. Installez l'extension Browser MCP dans Chrome
+2. Activez-la
+3. Verifiez qu'elle est connectee (icone dans la barre d'outils)
+
+### 4. Connecter Gmail
+
+1. Dans Chrome, allez sur https://mail.google.com
+2. Connectez-vous a votre compte Gmail
+3. Verifiez que vous voyez votre boite de reception
+
+### 5. Placer votre CV
+
+1. Copiez votre CV PDF dans le dossier `data/cv/`
+2. Le nom du fichier ne doit pas contenir d'espace
+
+### 6. Placer votre Excel
+
+1. Copiez votre fichier Excel dans le dossier `data/`
+2. Le fichier doit contenir au minimum une colonne "Email" et une colonne "Entreprise"
+
+### 7. Configurer le fichier .env
+
+```powershell
+copy .env.example .env
+notepad .env
+```
+
+Remplissez les lignes :
+```
+CV_PATH=data/cv/votre_cv.pdf
+EXCEL_PATH=data/votre_fichier.xlsx
+DRY_RUN=true
+```
+
+### 8. Verifier que tout marche
+
+```powershell
+npm run check
+```
+
+Vous devez voir [OK] partout.
+
+### 9. Generer les candidatures
+
+```powershell
+npm start
+```
+
+Le fichier `data/emails/emails-prepared.json` est cree.
+
+### 10. Envoyer via OpenCode
+
+1. Ouvrez OpenCode dans le dossier du projet
+2. Donnez ce prompt :
+   ```
+   Lance la campagne de candidatures avec le fichier data/emails/emails-prepared.json
+   ```
+3. OpenCode va ouvrir Gmail, remplir les emails, attacher le CV
+
+**Par defaut, AUCUN email n'est envoye** (mode simulation). Pour envoyer vraiment, changez `DRY_RUN=false` dans `.env`.
+
+---
+
 ## Architecture
 
 ```
@@ -17,104 +101,6 @@ OpenCode (agent IA)
 
 **Regle absolue** : On utilise UNIQUEMENT le Chrome existant via Browser MCP.
 Jamais de nouveau Chrome, jamais de Playwright pour Gmail.
-
-## Prérequis
-
-- Node.js v18+ installe
-- npm installe
-- Chrome avec Browser MCP connecte
-- Extension Chrome MCP File Upload Helper installee
-- Fichier Excel avec les offres
-- CV au format PDF
-
-## Installation
-
-### 1. Installer Node.js
-
-```powershell
-# Verifier si Node.js est installe
-node --version
-
-# Si non installe, telechargez sur https://nodejs.org
-```
-
-### 2. Installer les dependances
-
-```powershell
-npm install
-```
-
-### 3. Configurer l'environnement
-
-```powershell
-# Copier le fichier de configuration
-copy .env.example .env
-
-# Modifier le fichier .env avec vos chemins
-notepad .env
-```
-
-Remplissez :
-- `CV_PATH` : chemin vers votre CV PDF
-- `EXCEL_PATH` : chemin vers votre fichier Excel
-
-### 4. Installer l'extension Chrome
-
-1. Ouvrez `chrome://extensions/`
-2. Activez "Mode Developpeur"
-3. Cliquez sur "Charger l'extension non emballee"
-4. Selectionnez le dossier `extension/mcp-file-upload/`
-
-### 5. Connecter Browser MCP
-
-Assurez-vous que Browser MCP est connecte a Chrome.
-
-## Utilisation
-
-### Diagnostic complet
-
-```powershell
-npm run check
-```
-
-### Analyser l'Excel
-
-```powershell
-npm run analyze-excel
-```
-
-### Dry run (simulation)
-
-```powershell
-npm run dry-run
-```
-
-### Tester une seule candidature
-
-```powershell
-npm run test-one
-```
-
-### Lancer la campagne
-
-```powershell
-npm start
-```
-
-### Utiliser OpenCode
-
-1. Ouvrez OpenCode dans le dossier du projet
-2. Donnez ce prompt :
-   ```
-   Lance la campagne de candidatures avec le fichier data/emails/emails-prepared.json
-   ```
-3. OpenCode va :
-   - Lire le fichier JSON généré par l'orchestrateur
-   - Pour chaque offre, ouvrir Gmail via Browser MCP
-   - Remplir destinataire, objet, corps
-   - Attacher le CV
-   - Si DRY_RUN=true : ne pas envoyer (simulation)
-   - Si DRY_RUN=false : envoyer l'email
 
 ## Structure du projet
 
@@ -169,33 +155,34 @@ npm start
     +-- .gitkeep
 ```
 
+## Commandes disponibles
+
+| Commande | Description |
+|----------|-------------|
+| `npm run check` | Diagnostic complet du systeme |
+| `npm run analyze-excel` | Analyser le fichier Excel |
+| `npm run dry-run` | Simulation (aucun email envoye) |
+| `npm run test-one` | Tester une seule candidature |
+| `npm start` | Generer les candidatures (JSON) |
+| `npm test` | Lancer les tests |
+
 ## Securite
 
 - **DRY_RUN=true** par defaut : aucun email n'est envoye
 - Le CV n'est jamais envoye sans verification
 - Aucun email n'est envoye sans confirmation explicite
-- Les tokens et mots de passe ne sont jamais logges
 - Le fichier `.env` est ignore par git
 
 ## Erreurs frequentes
 
-### "Node.js non installe"
-Installez Node.js depuis https://nodejs.org
-
-### "CV introuvable"
-Placez votre CV dans `data/cv/` et configurez `CV_PATH` dans `.env`
-
 ### "Extension non connectee"
-Installez l'extension via `chrome://extensions/` et rechargez la page
+Reinstallez l'extension via `chrome://extensions/` et rechargez la page.
 
 ### "Gmail non connecte"
-Connectez-vous a Gmail dans le Chrome controle par Browser MCP
+Connectez-vous a Gmail dans le Chrome controle par Browser MCP.
 
-## Tests
-
-```powershell
-npm test
-```
+### "CV introuvable"
+Placez votre CV dans `data/cv/` et verifiez le nom dans `.env`.
 
 ## License
 
