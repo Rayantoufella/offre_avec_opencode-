@@ -1,0 +1,192 @@
+[
+  {
+    "query": "PHP Developer Casablanca",
+    "source": "all",
+    "priority": 1
+  },
+  {
+    "query": "PHP Casablanca",
+    "source": "all",
+    "priority": 1
+  },
+  {
+    "query": "Laravel Developer Casablanca",
+    "source": "all",
+    "priority": 1
+  },
+  {
+    "query": "Laravel Casablanca",
+    "source": "all",
+    "priority": 1
+  },
+  {
+    "query": "Spring Developer Casablanca",
+    "source": "all",
+    "priority": 1
+  },
+  {
+    "query": "Spring Casablanca",
+    "source": "all",
+    "priority": 1
+  },
+  {
+    "query": "Spring Boot Developer Casablanca",
+    "source": "all",
+    "priority": 1
+  },
+  {
+    "query": "Spring Boot Casablanca",
+    "source": "all",
+    "priority": 1
+  },
+  {
+    "query": "Backend Developer Casablanca",
+    "source": "all",
+    "priority": 1
+  },
+  {
+    "query": "Frontend Developer Casablanca",
+    "source": "all",
+    "priority": 1
+  },
+  {
+    "query": "PHP Developer Maroc",
+    "source": "all",
+    "priority": 1
+  },
+  {
+    "query": "PHP Maroc",
+    "source": "all",
+    "priority": 1
+  },
+  {
+    "query": "Laravel Developer Maroc",
+    "source": "all",
+    "priority": 1
+  },
+  {
+    "query": "Laravel Maroc",
+    "source": "all",
+    "priority": 1
+  },
+  {
+    "query": "Spring Developer Maroc",
+    "source": "all",
+    "priority": 1
+  },
+  {
+    "query": "Spring Maroc",
+    "source": "all",
+    "priority": 1
+  },
+  {
+    "query": "Spring Boot Developer Maroc",
+    "source": "all",
+    "priority": 1
+  },
+  {
+    "query": "Spring Boot Maroc",
+    "source": "all",
+    "priority": 1
+  },
+  {
+    "query": "Backend Developer Maroc",
+    "source": "all",
+    "priority": 1
+  },
+  {
+    "query": "Frontend Developer Maroc",
+    "source": "all",
+    "priority": 1
+  },
+  {
+    "query": "PHP Casa",
+    "source": "all",
+    "priority": 3
+  },
+  {
+    "query": "PHP Morocco",
+    "source": "all",
+    "priority": 3
+  },
+  {
+    "query": "Laravel Casa",
+    "source": "all",
+    "priority": 3
+  },
+  {
+    "query": "Laravel Morocco",
+    "source": "all",
+    "priority": 3
+  },
+  {
+    "query": "Spring Casa",
+    "source": "all",
+    "priority": 3
+  },
+  {
+    "query": "Spring Morocco",
+    "source": "all",
+    "priority": 3
+  },
+  {
+    "query": "Spring Boot Casa",
+    "source": "all",
+    "priority": 3
+  },
+  {
+    "query": "Spring Boot Morocco",
+    "source": "all",
+    "priority": 3
+  },
+  {
+    "query": "Java Casablanca",
+    "source": "all",
+    "priority": 2
+  },
+  {
+    "query": "Java Casa",
+    "source": "all",
+    "priority": 3
+  },
+  {
+    "query": "Java Maroc",
+    "source": "all",
+    "priority": 2
+  },
+  {
+    "query": "Java Morocco",
+    "source": "all",
+    "priority": 3
+  },
+  {
+    "query": "Junior PHP Developer",
+    "source": "linkedin",
+    "priority": 2
+  },
+  {
+    "query": "Junior Laravel Developer",
+    "source": "linkedin",
+    "priority": 2
+  },
+  {
+    "query": "Junior Spring Developer",
+    "source": "linkedin",
+    "priority": 2
+  },
+  {
+    "query": "Entry Level PHP Developer",
+    "source": "linkedin",
+    "priority": 2
+  },
+  {
+    "query": "Entry Level Laravel Developer",
+    "source": "linkedin",
+    "priority": 2
+  },
+  {
+    "query": "Entry Level Spring Developer",
+    "source": "linkedin",
+    "priority": 2
+  }
+]

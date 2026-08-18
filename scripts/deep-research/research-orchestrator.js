@@ -51,10 +51,10 @@ async function analyzeUserProfile(cvPath, userRequest = '') {
   const profile = analyzeProfile(cvData, userRequest);
   saveJSON(profile, 'profile.json');
 
-  console.log(`   Nom: ${profile.prenom} ${profile.nom}`);
-  console.log(`   Competences: ${profile.competences.slice(0, 5).join(', ')}...`);
-  console.log(`   Categories: ${profile.categories.join(', ')}`);
-  console.log(`   Seniority: ${profile.experience || 'Non determinee'}`);
+  console.log('   Nom: ' + profile.prenom + ' ' + profile.nom);
+  console.log('   Competences: ' + profile.competences.slice(0, 5).join(', ') + '...');
+  console.log('   Categories: ' + profile.categories.join(', '));
+  console.log('   Seniority: ' + (profile.experience || 'Non determinee'));
   console.log('');
 
   return profile;
@@ -78,9 +78,9 @@ function generateQueries(plan) {
   const queries = generateSearchQueries(plan);
   saveJSON(queries, 'search_queries.json');
 
-  console.log(`   ${queries.length} requetes generees`);
-  queries.slice(0, 5).forEach(q => console.log(`   - ${q.query}`));
-  if (queries.length > 5) console.log(`   ... et ${queries.length - 5} autres`);
+  console.log('   ' + queries.length + ' requetes generees');
+  queries.slice(0, 5).forEach(q => console.log('   - ' + q.query));
+  if (queries.length > 5) console.log('   ... et ' + (queries.length - 5) + ' autres');
   console.log('');
 
   return queries;
@@ -96,8 +96,8 @@ function processCollectedJobs(rawJobs) {
   const { processed, rejected, stats } = processRawJobs(rawJobs);
   saveJSON({ processed, rejected, stats }, 'processed_jobs.json');
 
-  console.log(`   Valides: ${stats.valid}/${stats.total}`);
-  console.log(`   Rejetees: ${stats.invalid}`);
+  console.log('   Valides: ' + stats.valid + '/' + stats.total);
+  console.log('   Rejetees: ' + stats.invalid);
   console.log('');
 
   return { processed, rejected, stats };
@@ -109,8 +109,8 @@ function removeDuplicates(jobs) {
   const { unique, duplicates, stats } = deduplicateJobs(jobs);
   saveJSON({ unique, duplicates, stats }, 'deduplicated_jobs.json');
 
-  console.log(`   Uniques: ${stats.unique}/${stats.total}`);
-  console.log(`   Doublons: ${stats.duplicates}`);
+  console.log('   Uniques: ' + stats.unique + '/' + stats.total);
+  console.log('   Doublons: ' + stats.duplicates);
   console.log('');
 
   return { unique, duplicates, stats };
@@ -123,12 +123,12 @@ function matchAndRank(jobs, profile, preferences = {}) {
   const summary = getMatchSummary(matched);
   saveJSON({ matched, summary }, 'matched_jobs.json');
 
-  console.log(`   Total: ${summary.total}`);
-  console.log(`   Excellent: ${summary.excellent}`);
-  console.log(`   Tres bon: ${summary.veryGood}`);
-  console.log(`   Bon: ${summary.good}`);
-  console.log(`   Moyen: ${summary.medium}`);
-  console.log(`   Faible: ${summary.low}`);
+  console.log('   Total: ' + summary.total);
+  console.log('   Excellent: ' + summary.excellent);
+  console.log('   Tres bon: ' + summary.veryGood);
+  console.log('   Bon: ' + summary.good);
+  console.log('   Moyen: ' + summary.medium);
+  console.log('   Faible: ' + summary.low);
   console.log('');
 
   return { matched, summary };
@@ -143,7 +143,7 @@ async function generateExcel(matched, rejected = [], options = {}) {
     ...options
   });
 
-  console.log(`   Fichier: ${filePath}`);
+  console.log('   Fichier: ' + filePath);
   console.log('');
 
   return filePath;
@@ -154,19 +154,19 @@ function printSummary(summary, sources = []) {
   console.log('');
   console.log('=== RECHERCHE TERMINEE ===');
   console.log('');
-  console.log(`Sources recherchees: ${sources.length}`);
-  console.log(`Offres decouvertes: ${summary.total}`);
-  console.log(`Excellent match: ${summary.excellent}`);
-  console.log(`Tres bon match: ${summary.veryGood}`);
-  console.log(`Bon match: ${summary.good}`);
+  console.log('Sources recherchees: ' + sources.length);
+  console.log('Offres decouvertes: ' + summary.total);
+  console.log('Excellent match: ' + summary.excellent);
+  console.log('Tres bon match: ' + summary.veryGood);
+  console.log('Bon match: ' + summary.good);
   console.log('');
 
   if (summary.topMatches.length > 0) {
     console.log('Top matches:');
     summary.topMatches.slice(0, 5).forEach((m, i) => {
-      console.log(`  ${i + 1}. ${m.company} — ${m.title} — ${m.score}/100 (${m.label})`);
+      console.log('  ' + (i + 1) + '. ' + m.company + ' - ' + m.title + ' - ' + m.score + '/100 (' + m.label + ')');
       if (m.reasons.length > 0) {
-        console.log(`     Raison: ${m.reasons[0]}`);
+        console.log('     Raison: ' + m.reasons[0]);
       }
     });
   }
@@ -185,7 +185,8 @@ async function runDeepResearch(options = {}) {
 
   console.log('========================================');
   console.log('  DEEP RECHERCHE D\'OFFRES D\'EMPLOI');
-  console.log('========================================\n');
+  console.log('========================================');
+  console.log('');
 
   ensureDataDir();
 
@@ -222,7 +223,8 @@ async function runDeepResearch(options = {}) {
 async function processCollectedData() {
   console.log('========================================');
   console.log('  TRAITEMENT DES DONNEES COLLECTEES');
-  console.log('========================================\n');
+  console.log('========================================');
+  console.log('');
 
   const rawJobs = loadJSON('raw_jobs.json');
   if (!rawJobs || !Array.isArray(rawJobs) || rawJobs.length === 0) {
@@ -244,6 +246,13 @@ async function processCollectedData() {
 }
 
 const args = process.argv.slice(2);
+
+function getArg(name) {
+  const idx = args.indexOf('--' + name);
+  if (idx === -1) return null;
+  return args[idx + 1] || null;
+}
+
 if (args.includes('--process')) {
   processCollectedData().catch(err => {
     console.error('Erreur:', err.message);
@@ -258,6 +267,15 @@ if (args.includes('--process')) {
   console.log('  --cv <path>           Chemin vers le CV');
   console.log('  --request <text>      Demande de recherche');
   console.log('  --max <number>        Nombre max de resultats');
+} else {
+  const cvPath = getArg('cv') || process.env.CV_PATH;
+  const request = getArg('request') || '';
+  const max = parseInt(getArg('max') || '50');
+
+  runDeepResearch({ cvPath, userRequest: request, maxResults: max }).catch(err => {
+    console.error('Erreur:', err.message);
+    process.exit(1);
+  });
 }
 
 export { runDeepResearch, processCollectedData, analyzeUserProfile, createPlan, generateQueries, processCollectedJobs, removeDuplicates, matchAndRank, generateExcel, saveJSON, loadJSON };

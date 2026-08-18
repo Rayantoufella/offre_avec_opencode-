@@ -1,0 +1,47 @@
+{
+  "profile": {
+    "nom": "Rayan Toufella",
+    "prenom": "Toufella",
+    "competences": [
+      "PHP",
+      "Laravel",
+      "Spring",
+      "Spring Boot",
+      "Java"
+    ]
+  },
+  "plan": {
+    "keywords": [
+      "PHP",
+      "Laravel",
+      "Spring",
+      "Spring Boot",
+      "Java",
+      "JavaScript",
+      "React",
+      "React.js",
+      "engineer",
+      "architect",
+      "devops",
+      "Backend Developer",
+      "Frontend Developer",
+      "Mobile Developer",
+      "backend",
+      "laravel",
+      "php",
+      "maroc"
+    ],
+    "locations": [
+      "Casablanca",
+      "Maroc"
+    ],
+    "sources": [
+      "LinkedIn",
+      "Indeed",
+      "Company Career Pages",
+      "Rekrute"
+    ]
+  },
+  "queriesCount": 38,
+  "timestamp": "2026-08-18T18:18:22.218Z"
+}

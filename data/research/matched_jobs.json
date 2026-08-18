@@ -1,0 +1,221 @@
+{
+  "matched": [
+    {
+      "title": "Backend PHP Developer",
+      "company": "TechCorp",
+      "location": "Casablanca",
+      "contractType": "CDI",
+      "workMode": "",
+      "technologies": [
+        "PHP",
+        "Laravel",
+        "MySQL",
+        "Docker"
+      ],
+      "experience": "",
+      "description": "Nous recherchons un developpeur Backend PHP Laravel avec experience sur MySQL et Docker",
+      "requirements": "",
+      "source": "LinkedIn",
+      "sourceUrl": "",
+      "applicationUrl": "",
+      "applicationType": "LINKEDIN",
+      "applicationEmail": "",
+      "dateFound": "2026-08-18T18:20:02.326Z",
+      "jobStatus": "UNKNOWN",
+      "salary": "",
+      "postedTime": "",
+      "companyUrl": "",
+      "rawData": {
+        "title": "Backend PHP Developer",
+        "company": "TechCorp",
+        "location": "Casablanca",
+        "contractType": "CDI",
+        "technologies": [
+          "PHP",
+          "Laravel",
+          "MySQL"
+        ],
+        "description": "Nous recherchons un developpeur Backend PHP Laravel avec experience sur MySQL et Docker",
+        "source": "LinkedIn",
+        "sourceUrl": "https://linkedin.com/jobs/123",
+        "applicationEmail": "",
+        "applicationType": "LINKEDIN"
+      },
+      "matchScore": 80,
+      "matchLabel": "Tres bon",
+      "matchEmoji": "★★☆",
+      "matchReasons": [
+        "Certaines competences correspondantes",
+        "Stack technique tres compatible",
+        "Localisation ideale",
+        "Technologies matching: PHP, Laravel, MySQL"
+      ],
+      "matchDetails": {
+        "skills": 60,
+        "technologies": 100,
+        "experience": 80,
+        "location": 100,
+        "contract": 70,
+        "workMode": 70
+      }
+    },
+    {
+      "title": "Laravel Developer",
+      "company": "WebInc",
+      "location": "Rabat",
+      "contractType": "CDI",
+      "workMode": "",
+      "technologies": [
+        "PHP",
+        "Laravel",
+        "Vue.js"
+      ],
+      "experience": "",
+      "description": "Developer Laravel pour projet e-commerce",
+      "requirements": "",
+      "source": "Indeed",
+      "sourceUrl": "",
+      "applicationUrl": "",
+      "applicationType": "EMAIL",
+      "applicationEmail": "hr@webinc.com",
+      "dateFound": "2026-08-18T18:20:02.328Z",
+      "jobStatus": "UNKNOWN",
+      "salary": "",
+      "postedTime": "",
+      "companyUrl": "",
+      "rawData": {
+        "title": "Laravel Developer",
+        "company": "WebInc",
+        "location": "Rabat",
+        "contractType": "CDI",
+        "technologies": [
+          "PHP",
+          "Laravel",
+          "Vue.js"
+        ],
+        "description": "Developer Laravel pour projet e-commerce",
+        "source": "Indeed",
+        "sourceUrl": "https://indeed.com/jobs/456",
+        "applicationEmail": "hr@webinc.com",
+        "applicationType": "EMAIL"
+      },
+      "matchScore": 59,
+      "matchLabel": "Moyen",
+      "matchEmoji": "★☆☆",
+      "matchReasons": [
+        "Peu de competences correspondantes",
+        "Stack technique tres compatible",
+        "Localisation eloignee",
+        "Technologies matching: PHP, Laravel, Vue.js"
+      ],
+      "matchDetails": {
+        "skills": 20,
+        "technologies": 100,
+        "experience": 80,
+        "location": 30,
+        "contract": 70,
+        "workMode": 70
+      }
+    },
+    {
+      "title": "Frontend React Developer",
+      "company": "StartupX",
+      "location": "Remote",
+      "contractType": "Freelance",
+      "workMode": "",
+      "technologies": [
+        "React",
+        "TypeScript",
+        "Node.js"
+      ],
+      "experience": "",
+      "description": "React developer for international project",
+      "requirements": "",
+      "source": "LinkedIn",
+      "sourceUrl": "",
+      "applicationUrl": "",
+      "applicationType": "LINKEDIN",
+      "applicationEmail": "",
+      "dateFound": "2026-08-18T18:20:02.328Z",
+      "jobStatus": "UNKNOWN",
+      "salary": "",
+      "postedTime": "",
+      "companyUrl": "",
+      "rawData": {
+        "title": "Frontend React Developer",
+        "company": "StartupX",
+        "location": "Remote",
+        "contractType": "Freelance",
+        "technologies": [
+          "React",
+          "TypeScript",
+          "Node.js"
+        ],
+        "description": "React developer for international project",
+        "source": "LinkedIn",
+        "sourceUrl": "https://linkedin.com/jobs/101"
+      },
+      "matchScore": 35,
+      "matchLabel": "Faible",
+      "matchEmoji": "☆☆☆",
+      "matchReasons": [
+        "Peu de competences correspondantes",
+        "Localisation ideale",
+        "Technologies matching: React, TypeScript"
+      ],
+      "matchDetails": {
+        "skills": 20,
+        "technologies": 0,
+        "experience": 80,
+        "location": 90,
+        "contract": 70,
+        "workMode": 70
+      }
+    }
+  ],
+  "summary": {
+    "total": 3,
+    "excellent": 0,
+    "veryGood": 1,
+    "good": 0,
+    "medium": 1,
+    "low": 1,
+    "topMatches": [
+      {
+        "company": "TechCorp",
+        "title": "Backend PHP Developer",
+        "score": 80,
+        "label": "Tres bon",
+        "reasons": [
+          "Certaines competences correspondantes",
+          "Stack technique tres compatible",
+          "Localisation ideale",
+          "Technologies matching: PHP, Laravel, MySQL"
+        ]
+      },
+      {
+        "company": "WebInc",
+        "title": "Laravel Developer",
+        "score": 59,
+        "label": "Moyen",
+        "reasons": [
+          "Peu de competences correspondantes",
+          "Stack technique tres compatible",
+          "Localisation eloignee",
+          "Technologies matching: PHP, Laravel, Vue.js"
+        ]
+      },
+      {
+        "company": "StartupX",
+        "title": "Frontend React Developer",
+        "score": 35,
+        "label": "Faible",
+        "reasons": [
+          "Peu de competences correspondantes",
+          "Localisation ideale",
+          "Technologies matching: React, TypeScript"
+        ]
+      }
+    ]
+  }
+}

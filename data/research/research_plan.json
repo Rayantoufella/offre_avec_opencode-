@@ -1,0 +1,79 @@
+{
+  "keywords": [
+    "PHP",
+    "Laravel",
+    "Spring",
+    "Spring Boot",
+    "Java",
+    "JavaScript",
+    "React",
+    "React.js",
+    "engineer",
+    "architect",
+    "devops",
+    "Backend Developer",
+    "Frontend Developer",
+    "Mobile Developer",
+    "backend",
+    "laravel",
+    "php",
+    "maroc"
+  ],
+  "locations": [
+    "Casablanca",
+    "Maroc"
+  ],
+  "sources": [
+    {
+      "name": "LinkedIn",
+      "requiresAuth": true,
+      "priority": 1,
+      "reason": "Source principale d'offres d'emploi"
+    },
+    {
+      "name": "Indeed",
+      "requiresAuth": false,
+      "priority": 2,
+      "reason": "Base de donnees large d'offres"
+    },
+    {
+      "name": "Company Career Pages",
+      "requiresAuth": false,
+      "priority": 3,
+      "reason": "Pages carriere des entreprises"
+    },
+    {
+      "name": "Rekrute",
+      "requiresAuth": false,
+      "priority": 6,
+      "reason": "Plateforme marocaine d'offres"
+    }
+  ],
+  "queries": [
+    "PHP Developer Casablanca",
+    "PHP Casablanca",
+    "Laravel Developer Casablanca",
+    "Laravel Casablanca",
+    "Spring Developer Casablanca",
+    "Spring Casablanca",
+    "Spring Boot Developer Casablanca",
+    "Spring Boot Casablanca",
+    "Backend Developer Casablanca",
+    "Frontend Developer Casablanca",
+    "PHP Developer Maroc",
+    "PHP Maroc",
+    "Laravel Developer Maroc",
+    "Laravel Maroc",
+    "Spring Developer Maroc",
+    "Spring Maroc",
+    "Spring Boot Developer Maroc",
+    "Spring Boot Maroc",
+    "Backend Developer Maroc",
+    "Frontend Developer Maroc"
+  ],
+  "strategy": "tech_focused",
+  "maxResults": 50,
+  "searchGroups": true,
+  "searchCompanyPages": true,
+  "timestamp": "2026-08-18T18:18:22.214Z"
+}
