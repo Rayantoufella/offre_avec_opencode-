@@ -97,8 +97,16 @@ Jamais de nouveau Chrome, jamais de Playwright pour Gmail.
 |   |   +-- orchestrator.js
 |   |   +-- dry-run.js
 |   |   +-- test-one.js
+|   +-- research/
+|   |   +-- browser-research.js
+|   |   +-- excel-generator.js
+|   |   +-- research-orchestrator.js
 |   +-- diagnostic/
 |       +-- check-all.js
++-- sites/
+|   +-- linkedin.js
+|   +-- indeed.js
+|   +-- rekrute.js
 +-- extension/
 |   +-- mcp-file-upload/
 |       +-- manifest.json
@@ -127,7 +135,29 @@ Jamais de nouveau Chrome, jamais de Playwright pour Gmail.
 | `npm run dry-run` | Simulation (aucun email envoye) |
 | `npm run test-one` | Tester une seule candidature |
 | `npm start` | Generer les candidatures (JSON) |
+| `npm run research` | Lancer la recherche d'offres |
 | `npm test` | Lancer les tests |
+
+## Recherche d'offres
+
+Le module de recherche permet de :
+
+1. **Scraper LinkedIn** : rechercher des offres, scroller, extraire les informations
+2. **Chercher dans les groupes LinkedIn** : trouver des opportunités dans des groupes spécialisés
+3. **Générer un fichier Excel** : avec toutes les offres trouvées
+
+### Via OpenCode
+
+Donnez ce prompt :
+```
+Recherche des offres de Développeur Backend PHP sur LinkedIn au Maroc, génère un fichier Excel
+```
+
+### Via la ligne de commande
+
+```powershell
+npm run research
+```
 
 ## Securite
 
