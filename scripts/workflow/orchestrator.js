@@ -1,6 +1,7 @@
 ﻿import { analyzeExcel, printReport } from '../excel/analyzer.js';
 import { writeExcelStatus, prepareWriteData } from '../excel/writer.js';
 import { validateCV } from '../validation/cv-validator.js';
+import { parseCV } from '../validation/cv-parser.js';
 import { generateEmail } from '../gmail/email-generator.js';
 import { checkStatus } from '../upload/client.js';
 import { spawn } from 'child_process';
@@ -134,6 +135,19 @@ LOG_LEVEL=info
     }
     console.log(`   OK: ${cvValidation.path}\n`);
 
+    console.log('1b. Lecture du CV...');
+    const cvParsed = await parseCV(cvPath || process.env.CV_PATH);
+    let cvData = null;
+    if (cvParsed.success) {
+      cvData = cvParsed.data;
+      console.log(`   Nom: ${cvData.nom}`);
+      console.log(`   Competences: ${cvData.competences.slice(0, 5).join(', ')}...`);
+      console.log(`   Email: ${cvData.email || 'non trouve'}`);
+      console.log('');
+    } else {
+      console.log('   Lecture echouee, emails generiques utilises\n');
+    }
+
     console.log('2. Analyse du fichier Excel...');
     const excelFile = excelPath || process.env.EXCEL_PATH;
     if (!excelFile) {
@@ -160,7 +174,7 @@ LOG_LEVEL=info
     const validOffers = analysis.results.filter(r => r.status === 'VALID');
     const emails = validOffers.map(offer => ({
       ...offer,
-      email: generateEmail(offer.data)
+      email: generateEmail(offer.data, cvData)
     }));
 
     console.log(`   ${emails.length} email(s) prepares\n`);
