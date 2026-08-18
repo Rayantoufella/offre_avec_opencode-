@@ -83,6 +83,39 @@ describe('matcher', () => {
     const result = matchSingleJob(mockJob, null);
     expect(result.matchScore).toBeDefined();
   });
+
+  it('should return missingSkills array', () => {
+    const result = matchSingleJob(mockJob, mockProfile);
+    expect(result.missingSkills).toBeDefined();
+    expect(Array.isArray(result.missingSkills)).toBe(true);
+  });
+
+  it('should detect missing technologies', () => {
+    const jobWithExtraTech = {
+      ...mockJob,
+      technologies: ['PHP', 'Laravel', 'MySQL', 'Rust', 'Go', 'Kubernetes']
+    };
+    const result = matchSingleJob(jobWithExtraTech, mockProfile);
+    expect(result.missingSkills.length).toBeGreaterThan(0);
+  });
+
+  it('should detect seniority mismatch', () => {
+    const seniorJob = {
+      ...mockJob,
+      experience: 'Senior'
+    };
+    const result = matchSingleJob(seniorJob, mockProfile);
+    const hasSeniorityReason = result.matchReasons.some(r => r.includes('Niveau requis'));
+    expect(hasSeniorityReason).toBe(true);
+  });
+
+  it('should return all reasons in summary', () => {
+    const jobs = [mockJob];
+    const matched = matchJobs(jobs, mockProfile);
+    const summary = getMatchSummary(matched);
+    expect(summary.topMatches[0].reasons.length).toBeGreaterThan(0);
+    expect(summary.topMatches[0].missingSkills).toBeDefined();
+  });
 });
 
 describe('SCORE_LABELS', () => {

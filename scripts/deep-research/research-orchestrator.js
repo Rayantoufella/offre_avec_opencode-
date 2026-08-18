@@ -35,8 +35,22 @@ function loadJSON(filename) {
   return JSON.parse(fs.readFileSync(filePath, 'utf-8'));
 }
 
+function timer() {
+  const start = Date.now();
+  return () => ((Date.now() - start) / 1000).toFixed(1);
+}
+
+function validateProfile(profile) {
+  const issues = [];
+  if (!profile.nom && !profile.prenom) issues.push('Nom/prenom manquant');
+  if (!profile.competences || profile.competences.length < 2) issues.push('Moins de 2 competences extraites');
+  if (!profile.localisation) issues.push('Localisation manquante');
+  return issues;
+}
+
 async function analyzeUserProfile(cvPath, userRequest = '') {
-  console.log('[1/10] Profil analyse');
+  const elapsed = timer();
+  console.log('[1/3] Analyse du profil CV');
 
   let cvData = null;
   if (cvPath) {
@@ -49,38 +63,60 @@ async function analyzeUserProfile(cvPath, userRequest = '') {
   }
 
   const profile = analyzeProfile(cvData, userRequest);
+  const issues = validateProfile(profile);
+
+  if (issues.length >= 2) {
+    console.log('');
+    console.log('   PROFIL INSUFFISANT');
+    issues.forEach(i => console.log('     - ' + i));
+    console.log('');
+    console.log('   Le profil genere sera de mauvaise qualite.');
+    console.log('   Solutions possibles:');
+    console.log('     1. Verifiez que votre CV est dans data/cv/ (PDF valide)');
+    console.log('     2. Precisez vos competences via --request "Backend Laravel PHP"');
+    console.log('     3. Le systeme continue avec le profil partiel...');
+    console.log('');
+  }
+
   saveJSON(profile, 'profile.json');
 
-  console.log('   Nom: ' + profile.prenom + ' ' + profile.nom);
-  console.log('   Competences: ' + profile.competences.slice(0, 5).join(', ') + '...');
-  console.log('   Categories: ' + profile.categories.join(', '));
+  console.log('   Nom: ' + (profile.prenom || '(vide)') + ' ' + (profile.nom || '(vide)'));
+  console.log('   Competences: ' + (profile.competences || []).slice(0, 5).join(', ') + ((profile.competences || []).length > 5 ? '...' : ''));
+  console.log('   Categories: ' + (profile.categories || []).join(', '));
   console.log('   Seniority: ' + (profile.experience || 'Non determinee'));
+  console.log('   Termine en ' + elapsed() + 's');
   console.log('');
 
   return profile;
 }
 
 function createPlan(profile, userRequest, options = {}) {
-  console.log('[2/10] Strategie de recherche creee');
+  const elapsed = timer();
+  console.log('[2/3] Strategie de recherche');
 
   const plan = createResearchPlan(profile, userRequest, options);
   saveJSON(plan, 'research_plan.json');
 
-  console.log(formatPlanForDisplay(plan));
+  console.log('   Mots-cles: ' + plan.keywords.length);
+  console.log('   Localisations: ' + plan.locations.join(', '));
+  console.log('   Sources: ' + plan.sources.map(s => s.name).join(', '));
+  console.log('   Termine en ' + elapsed() + 's');
   console.log('');
 
   return plan;
 }
 
 function generateQueries(plan) {
-  console.log('[3/10] Requetes generees');
+  const elapsed = timer();
+  console.log('[3/3] Requetes generees');
 
   const queries = generateSearchQueries(plan);
   saveJSON(queries, 'search_queries.json');
 
   console.log('   ' + queries.length + ' requetes generees');
-  queries.slice(0, 5).forEach(q => console.log('   - ' + q.query));
-  if (queries.length > 5) console.log('   ... et ' + (queries.length - 5) + ' autres');
+  queries.slice(0, 5).forEach(q => console.log('     - ' + q.query));
+  if (queries.length > 5) console.log('     ... et ' + (queries.length - 5) + ' autres');
+  console.log('   Termine en ' + elapsed() + 's');
   console.log('');
 
   return queries;
@@ -91,51 +127,58 @@ function getLinkedInQueries(plan) {
 }
 
 function processCollectedJobs(rawJobs) {
-  console.log('[4/10] Offres collectees traitees');
+  const elapsed = timer();
+  console.log('[1/4] Traitement des donnees brutes');
 
   const { processed, rejected, stats } = processRawJobs(rawJobs);
   saveJSON({ processed, rejected, stats }, 'processed_jobs.json');
 
   console.log('   Valides: ' + stats.valid + '/' + stats.total);
   console.log('   Rejetees: ' + stats.invalid);
+  console.log('   Termine en ' + elapsed() + 's');
   console.log('');
 
   return { processed, rejected, stats };
 }
 
 function removeDuplicates(jobs) {
-  console.log('[5/10] Doublons supprimes');
+  const elapsed = timer();
+  console.log('[2/4] Deduplication');
 
   const { unique, duplicates, stats } = deduplicateJobs(jobs);
   saveJSON({ unique, duplicates, stats }, 'deduplicated_jobs.json');
 
   console.log('   Uniques: ' + stats.unique + '/' + stats.total);
-  console.log('   Doublons: ' + stats.duplicates);
+  console.log('   Doublons supprimes: ' + stats.duplicates);
+  console.log('   Termine en ' + elapsed() + 's');
   console.log('');
 
   return { unique, duplicates, stats };
 }
 
 function matchAndRank(jobs, profile, preferences = {}) {
-  console.log('[6/10] Matching et classement');
+  const elapsed = timer();
+  console.log('[3/4] Matching et classement');
 
   const matched = matchJobs(jobs, profile, preferences);
   const summary = getMatchSummary(matched);
   saveJSON({ matched, summary }, 'matched_jobs.json');
 
   console.log('   Total: ' + summary.total);
-  console.log('   Excellent: ' + summary.excellent);
-  console.log('   Tres bon: ' + summary.veryGood);
-  console.log('   Bon: ' + summary.good);
-  console.log('   Moyen: ' + summary.medium);
-  console.log('   Faible: ' + summary.low);
+  console.log('   Excellent (90-100): ' + summary.excellent);
+  console.log('   Tres bon (80-89): ' + summary.veryGood);
+  console.log('   Bon (65-79): ' + summary.good);
+  console.log('   Moyen (50-64): ' + summary.medium);
+  console.log('   Faible (<50): ' + summary.low);
+  console.log('   Termine en ' + elapsed() + 's');
   console.log('');
 
   return { matched, summary };
 }
 
 async function generateExcel(matched, rejected = [], options = {}) {
-  console.log('[7/10] Excel genere');
+  const elapsed = timer();
+  console.log('[4/4] Export Excel');
 
   const filePath = await exportResearchExcel(matched, null, {
     includeRejected: true,
@@ -144,33 +187,39 @@ async function generateExcel(matched, rejected = [], options = {}) {
   });
 
   console.log('   Fichier: ' + filePath);
+  console.log('   Termine en ' + elapsed() + 's');
   console.log('');
 
   return filePath;
 }
 
 function printSummary(summary, sources = []) {
-  console.log('[8/10] Resume de recherche');
+  console.log('========================================');
+  console.log('  RECHERCHE TERMINEE');
+  console.log('========================================');
   console.log('');
-  console.log('=== RECHERCHE TERMINEE ===');
-  console.log('');
-  console.log('Sources recherchees: ' + sources.length);
-  console.log('Offres decouvertes: ' + summary.total);
+  console.log('Offres totales: ' + summary.total);
   console.log('Excellent match: ' + summary.excellent);
   console.log('Tres bon match: ' + summary.veryGood);
   console.log('Bon match: ' + summary.good);
   console.log('');
 
   if (summary.topMatches.length > 0) {
-    console.log('Top matches:');
+    console.log('TOP MATCHES:');
     summary.topMatches.slice(0, 5).forEach((m, i) => {
-      console.log('  ' + (i + 1) + '. ' + m.company + ' - ' + m.title + ' - ' + m.score + '/100 (' + m.label + ')');
+      console.log('  ' + (i + 1) + '. ' + m.company + ' — ' + m.title);
+      console.log('     Score: ' + m.score + '/100 (' + m.label + ')');
       if (m.reasons.length > 0) {
-        console.log('     Raison: ' + m.reasons[0]);
+        m.reasons.forEach(r => console.log('     + ' + r));
       }
+      if (m.missingSkills && m.missingSkills.length > 0) {
+        console.log('     - Manquant: ' + m.missingSkills.join(', '));
+      }
+      console.log('');
     });
   }
 
+  console.log('Excel: data/research/deep_research_results.xlsx');
   console.log('');
 }
 
@@ -189,6 +238,7 @@ async function runDeepResearch(options = {}) {
   console.log('');
 
   ensureDataDir();
+  const totalElapsed = timer();
 
   try {
     const profile = await analyzeUserProfile(cvPath, userRequest);
@@ -196,7 +246,7 @@ async function runDeepResearch(options = {}) {
     const queries = generateQueries(plan);
 
     const report = {
-      profile: { nom: profile.nom, prenom: profile.prenom, competences: profile.competences.slice(0, 5) },
+      profile: { nom: profile.nom, prenom: profile.prenom, competences: (profile.competences || []).slice(0, 5) },
       plan: { keywords: plan.keywords, locations: plan.locations, sources: plan.sources.map(s => s.name) },
       queriesCount: queries.length,
       timestamp: new Date().toISOString()
@@ -204,13 +254,23 @@ async function runDeepResearch(options = {}) {
 
     saveJSON(report, 'research_report.json');
 
-    console.log('[9/10] Donnees sauvegardees');
+    console.log('========================================');
+    console.log('  PHASE AUTOMATIQUE TERMINEE');
+    console.log('========================================');
     console.log('');
-    console.log('Prochaines etapes:');
-    console.log('  1. OpenCode utilise Browser MCP pour rechercher chaque source');
-    console.log('  2. Les resultats sont sauvegardes dans data/research/raw_jobs.json');
-    console.log('  3. Relancez le traitement avec: node scripts/deep-research/research-orchestrator.js --process');
+    console.log('Fichiers generes dans data/research/:');
+    console.log('  - profile.json           (profil candidat)');
+    console.log('  - research_plan.json     (strategie)');
+    console.log('  - search_queries.json    (' + queries.length + ' requetes)');
     console.log('');
+    console.log('PHASE SUIVANTE (Manuelle — OpenCode + Browser MCP):');
+    console.log('');
+    console.log('  1. Ouvrez LinkedIn/Indeed dans Chrome (connecte)');
+    console.log('  2. Demandez a OpenCode de rechercher les offres');
+    console.log('  3. Sauvegardez les resultats dans data/research/raw_jobs.json');
+    console.log('  4. Lancez: npm run deep-research:process');
+    console.log('');
+    console.log('Total: ' + totalElapsed() + 's');
 
     return { success: true, profile, plan, queries, report };
 
@@ -220,7 +280,9 @@ async function runDeepResearch(options = {}) {
   }
 }
 
-async function processCollectedData() {
+async function processCollectedData(options = {}) {
+  const totalElapsed = timer();
+
   console.log('========================================');
   console.log('  TRAITEMENT DES DONNEES COLLECTEES');
   console.log('========================================');
@@ -228,19 +290,31 @@ async function processCollectedData() {
 
   const rawJobs = loadJSON('raw_jobs.json');
   if (!rawJobs || !Array.isArray(rawJobs) || rawJobs.length === 0) {
-    console.error('Aucune donnee brute trouvee dans data/research/raw_jobs.json');
-    console.error('Utilisez d\'abord Browser MCP pour collecter des offres.');
+    console.error('Fichier data/research/raw_jobs.json introuvable ou vide.');
+    console.error('');
+    console.error('Comment resoudre :');
+    console.error('  1. Lancez: npm run deep-research -- --cv "data/cv/CV.pdf" --request "Backend Laravel"');
+    console.error('  2. Ouvrez LinkedIn dans Chrome (connecte)');
+    console.error('  3. Demandez a OpenCode de chercher les offres');
+    console.error('  4. Sauvegardez les resultats dans data/research/raw_jobs.json');
+    console.error('  5. Relancez: npm run deep-research:process');
     return { success: false, error: 'No raw data' };
   }
 
+  console.log('Offres collectees: ' + rawJobs.length);
+  console.log('');
+
   const profile = loadJSON('profile.json') || {};
-  const preferences = loadJSON('preferences.json') || {};
+  const savedPrefs = loadJSON('preferences.json') || {};
+  const preferences = { ...savedPrefs, ...options };
 
   const { processed, rejected, stats: processStats } = processCollectedJobs(rawJobs);
   const { unique, duplicates, stats: dedupStats } = removeDuplicates(processed);
   const { matched, summary } = matchAndRank(unique, profile, preferences);
   const excelPath = await generateExcel(matched, rejected);
   printSummary(summary, profile.sources || []);
+
+  console.log('Termine en ' + totalElapsed() + 's');
 
   return { success: true, excelPath, summary };
 }
@@ -253,8 +327,18 @@ function getArg(name) {
   return args[idx + 1] || null;
 }
 
+function getFlag(name) {
+  return args.includes('--' + name);
+}
+
 if (args.includes('--process')) {
-  processCollectedData().catch(err => {
+  const filterOptions = {};
+  if (getArg('min-score')) filterOptions.minScore = parseInt(getArg('min-score'));
+  if (getArg('location')) filterOptions.location = getArg('location');
+  if (getArg('contract')) filterOptions.contract = getArg('contract');
+  if (getArg('tech')) filterOptions.tech = getArg('tech').split(',');
+
+  processCollectedData(filterOptions).catch(err => {
     console.error('Erreur:', err.message);
     process.exit(1);
   });
@@ -263,10 +347,16 @@ if (args.includes('--process')) {
   console.log('  node research-orchestrator.js                    Lancer la recherche');
   console.log('  node research-orchestrator.js --process          Traiter les donnees collectees');
   console.log('');
-  console.log('Options:');
+  console.log('Options (recherche):');
   console.log('  --cv <path>           Chemin vers le CV');
   console.log('  --request <text>      Demande de recherche');
   console.log('  --max <number>        Nombre max de resultats');
+  console.log('');
+  console.log('Options (traitement):');
+  console.log('  --min-score <n>       Score minimum (0-100)');
+  console.log('  --location <city>     Filtrer par ville');
+  console.log('  --contract <type>     Filtrer par contrat (CDI/CDD/Stage)');
+  console.log('  --tech <list>         Filtrer par technologies (separees par virgule)');
 } else {
   const cvPath = getArg('cv') || process.env.CV_PATH;
   const request = getArg('request') || '';

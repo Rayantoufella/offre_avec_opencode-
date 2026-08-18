@@ -1,5 +1,5 @@
 ﻿DEEP RECHERCHE D'OFFRES D'EMPLOI
-================================
+=================================
 
 Tu es un agent de recherche intelligent. Tu dois trouver les meilleures offres d'emploi qui correspondent au profil du candidat.
 
@@ -37,6 +37,18 @@ ETAPES A SUIVRE:
    - Lance: node scripts/deep-research/research-orchestrator.js --process
    - Le script traite, deduplique, match et genere l'Excel
 
+DETECTION DE BLOCAGE:
+- Image CAPTCHA visible -> LinkedIn est bloque, passe a Indeed
+- Page de connexion LinkedIn -> Session expiree, reconnecte-toi
+- "Access denied" ou page vide -> Rate limit, attends 30s ou change de source
+- Ne reessaie PAS LinkedIn immadiatement apres un blocage
+
+RATE LIMITING:
+- Attends 2-3 secondes entre chaque navigation sur LinkedIn
+- Ne charge pas plus de 20 pages LinkedIn par session
+- Si tu reçois un 429 ou CAPTCHA, arrete LinkedIn et passe a Indeed
+- Espace les recherches sur Indeed aussi (1-2 secondes)
+
 IMPORTANT:
 - N'INVENTE JAMAIS d'informations
 - Si une information n'est pas disponible, laisse vide
@@ -51,15 +63,23 @@ FORMAT DE SAUVEGARDE (raw_jobs.json):
     "company": "Nom de l'entreprise",
     "location": "Localisation",
     "contractType": "CDI/CDD/Stage",
+    "workMode": "Remote/Hybride/Presentielle",
     "technologies": ["PHP", "Laravel"],
     "description": "Description du poste",
+    "requirements": "Pre-requis",
+    "experience": "Junior/Mid/Senior",
     "source": "LinkedIn",
     "sourceUrl": "https://...",
     "applicationEmail": "email@example.com ou vide",
-    "applicationType": "EMAIL/WEB_FORM/LINKEDIN"
+    "applicationUrl": "https://... ou vide",
+    "applicationType": "EMAIL/WEB_FORM/LINKEDIN",
+    "postedTime": "Il y a 2 jours",
+    "salary": "20000-30000 MAD/an ou vide"
   }
 ]
 
 COMMANDES UtILES:
 - node scripts/deep-research/research-orchestrator.js --cv "data/cv/CV.pdf" --request "Backend Laravel Maroc"
 - node scripts/deep-research/research-orchestrator.js --process
+- node scripts/deep-research/research-orchestrator.js --process --min-score 65 --location Casablanca
+- node scripts/deep-research/research-orchestrator.js --process --tech PHP,Laravel --contract CDI

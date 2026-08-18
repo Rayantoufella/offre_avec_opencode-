@@ -26,9 +26,12 @@ const RESEARCH_COLUMNS = [
   { header: 'Match Score', key: 'match_score', width: 12 },
   { header: 'Niveau pertinence', key: 'niveau_pertinence', width: 18 },
   { header: 'Raisons du match', key: 'raisons_match', width: 45 },
+  { header: 'Competences manquantes', key: 'missing_skills', width: 30 },
   { header: 'Commentaires', key: 'commentaires', width: 30 },
   { header: 'Statut candidature', key: 'statut_candidature', width: 18 }
 ];
+
+const STATUS_OPTIONS = ['A ENVOYER', 'Envoyee', 'En attente', 'Refusee', 'Entretien', 'Retiree'];
 
 async function exportResearchExcel(matchedJobs, outputPath, options = {}) {
   const { filename = 'deep_research_results.xlsx', includeRejected = false, rejected = [] } = options;
@@ -51,6 +54,12 @@ async function exportResearchExcel(matchedJobs, outputPath, options = {}) {
   styleHeaderRow(mainSheet.getRow(1));
 
   matchedJobs.forEach((job, index) => {
+    const reasons = (job.matchReasons || []).join('; ');
+    const missing = (job.missingSkills || []).join(', ');
+    const comment = job.matchScore >= 80
+      ? 'Score ' + job.matchScore + '/100 — ' + (job.matchReasons || []).slice(0, 2).join(', ')
+      : '';
+
     const row = mainSheet.addRow({
       numero: index + 1,
       entreprise: job.company || '',
@@ -69,15 +78,37 @@ async function exportResearchExcel(matchedJobs, outputPath, options = {}) {
       statut_offre: job.jobStatus || '',
       match_score: job.matchScore || 0,
       niveau_pertinence: job.matchLabel || '',
-      raisons_match: (job.matchReasons || []).join('; '),
-      commentaires: '',
+      raisons_match: reasons,
+      missing_skills: missing,
+      commentaires: comment,
       statut_candidature: 'A ENVOYER'
     });
 
     colorMatchScore(row, job.matchScore);
+
+    const urlOffreCell = row.getCell('url_offre');
+    if (job.sourceUrl) {
+      urlOffreCell.value = { text: job.sourceUrl, hyperlink: job.sourceUrl };
+      urlOffreCell.font = { color: { argb: 'FF0563C1' }, underline: true };
+    }
+
+    const urlCandidatureCell = row.getCell('url_candidature');
+    if (job.applicationUrl) {
+      urlCandidatureCell.value = { text: job.applicationUrl, hyperlink: job.applicationUrl };
+      urlCandidatureCell.font = { color: { argb: 'FF0563C1' }, underline: true };
+    }
   });
 
-  mainSheet.autoFilter = { from: 'A1', to: 'T1' };
+  const statusColLetter = 'U';
+  for (let r = 2; r <= matchedJobs.length + 1; r++) {
+    mainSheet.getCell(statusColLetter + r).dataValidation = {
+      type: 'list',
+      allowBlank: false,
+      formulae: ['"' + STATUS_OPTIONS.join(',') + '"']
+    };
+  }
+
+  mainSheet.autoFilter = { from: 'A1', to: 'U1' };
   mainSheet.views = [{ state: 'frozen', xSplit: 0, ySplit: 1 }];
 
   if (includeRejected && rejected.length > 0) {
@@ -86,6 +117,8 @@ async function exportResearchExcel(matchedJobs, outputPath, options = {}) {
       { header: 'N°', key: 'numero', width: 6 },
       { header: 'Entreprise', key: 'entreprise', width: 25 },
       { header: 'Poste', key: 'poste', width: 35 },
+      { header: 'Technologies', key: 'technologies', width: 35 },
+      { header: 'URL offre', key: 'url_offre', width: 40 },
       { header: 'Raison rejet', key: 'raison', width: 50 },
       { header: 'Source', key: 'source', width: 15 }
     ];
@@ -93,13 +126,21 @@ async function exportResearchExcel(matchedJobs, outputPath, options = {}) {
     styleHeaderRow(rejectedSheet.getRow(1));
 
     rejected.forEach((r, index) => {
-      rejectedSheet.addRow({
+      const rejRow = rejectedSheet.addRow({
         numero: index + 1,
         entreprise: r.job?.company || '',
         poste: r.job?.title || '',
+        technologies: (r.job?.technologies || []).join(', '),
+        url_offre: r.job?.sourceUrl || '',
         raison: (r.reasons || []).join('; '),
         source: r.job?.source || ''
       });
+
+      const urlCell = rejRow.getCell('url_offre');
+      if (r.job?.sourceUrl) {
+        urlCell.value = { text: r.job.sourceUrl, hyperlink: r.job.sourceUrl };
+        urlCell.font = { color: { argb: 'FF0563C1' }, underline: true };
+      }
     });
   }
 
@@ -170,4 +211,4 @@ function calculateStats(matched) {
   };
 }
 
-export { exportResearchExcel, calculateStats, RESEARCH_COLUMNS };
+export { exportResearchExcel, calculateStats, RESEARCH_COLUMNS, STATUS_OPTIONS };

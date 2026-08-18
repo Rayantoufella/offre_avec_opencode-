@@ -52,7 +52,7 @@ function matchSingleJob(job, profile, preferences = {}) {
   totalScore = Math.round(Math.min(100, Math.max(0, totalScore)));
 
   const label = SCORE_LABELS.find(l => totalScore >= l.min && totalScore <= l.max);
-  const reasons = generateMatchReasons(job, profile, scores);
+  const { reasons, missingSkills } = generateMatchReasons(job, profile, scores);
 
   return {
     ...job,
@@ -60,6 +60,7 @@ function matchSingleJob(job, profile, preferences = {}) {
     matchLabel: label?.label || 'Inconnu',
     matchEmoji: label?.emoji || '',
     matchReasons: reasons,
+    missingSkills,
     matchDetails: scores
   };
 }
@@ -176,6 +177,7 @@ function scoreWorkMode(job, preferences) {
 
 function generateMatchReasons(job, profile, scores) {
   const reasons = [];
+  const missingSkills = [];
 
   if (scores.skills >= 80) {
     reasons.push('Competences correspondantes');
@@ -199,16 +201,42 @@ function generateMatchReasons(job, profile, scores) {
     reasons.push('Localisation eloignee');
   }
 
-  if (job.technologies && job.technologies.length > 0) {
+  if (job.technologies && job.technologies.length > 0 && profile?.competences) {
     const matchingTechs = job.technologies.filter(t =>
-      profile?.competences?.some(c => similarity(t, c) > 0.6)
+      profile.competences.some(c => similarity(t, c) > 0.6)
     );
     if (matchingTechs.length > 0) {
-      reasons.push(`Technologies matching: ${matchingTechs.slice(0, 3).join(', ')}`);
+      reasons.push('Technologies matching: ' + matchingTechs.slice(0, 3).join(', '));
+    }
+
+    const unmatchedTechs = job.technologies.filter(t =>
+      !profile.competences.some(c => similarity(t, c) > 0.6)
+    );
+    if (unmatchedTechs.length > 0 && unmatchedTechs.length <= 4) {
+      missingSkills.push(...unmatchedTechs);
     }
   }
 
-  return reasons;
+  if (scores.experience < 60) {
+    const jobExp = (job.experience || '').toLowerCase();
+    const profileExp = (profile?.experience || '').toLowerCase();
+    if (jobExp.includes('senior') && (profileExp.includes('junior') || profileExp.includes('mid'))) {
+      reasons.push('Niveau requis: ' + job.experience + ' (vous: ' + (profile.experience || 'Non determine') + ')');
+      missingSkills.push('Experience ' + job.experience);
+    }
+  }
+
+  if (scores.location < 50) {
+    const jobLoc = job.location || 'Non precise';
+    const profileLoc = profile?.localisation || 'Non precise';
+    reasons.push('Localisation: ' + jobLoc + ' (vous cherchez: ' + profileLoc + ')');
+  }
+
+  if (scores.contract < 60 && job.contractType) {
+    reasons.push('Type contrat: ' + job.contractType);
+  }
+
+  return { reasons, missingSkills };
 }
 
 function getMatchSummary(matched) {
@@ -230,7 +258,8 @@ function getMatchSummary(matched) {
       title: m.title,
       score: m.matchScore,
       label: m.matchLabel,
-      reasons: m.matchReasons
+      reasons: m.matchReasons,
+      missingSkills: m.missingSkills || []
     }))
   };
 }
