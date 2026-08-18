@@ -2,84 +2,132 @@ import pino from 'pino';
 
 const log = pino({ level: process.env.LOG_LEVEL || 'info' });
 
+const CANDIDAT = {
+  nom: 'Toufella',
+  prenom: 'Rayan',
+  titre: 'Développeur Backend — PHP / Laravel & IA',
+  email: 'rayan.toufella.05@gmail.com',
+  telephone: '+212 602 231 594',
+  competences: [
+    'PHP', 'Laravel', 'JavaScript', 'Vue.js 3', 'React',
+    'MySQL', 'API REST', 'Docker', 'Git', 'IA / LLM'
+  ],
+  projets: [
+    'Allo Delivery — plateforme de livraison (Vue 3, Laravel, Sanctum, MySQL, Docker)',
+    'TalentMatch — présélection de candidats par IA (Laravel, API LLM, MySQL)',
+    'Aji L3bo Café Manager — système de gestion (PHP MVC, Composer, MySQL)'
+  ],
+  formation: 'Formation Développeur Backend — PHP / Laravel augmenté par l\'IA (Simplon Maghreb × JobInTech, 2026)',
+  experience: 'Projets concrets d\'intégration d\'API LLM en production (sorties structurées, garde-fous, tests)'
+};
+
 const TEMPLATES = {
-  stage: {
-    prefix: 'Candidature au poste de',
-    formulaire: (cv) => `Madame, Monsieur,
-
-${cv ? `${cv.prenom || 'Candidat'}, ` : ''}Je me permets de vous adresser ma candidature pour le poste de {poste} au sein de votre entreprise {entreprise}.
-${cv && cv.competences.length > 0 ? `\nMes competences principales — ${cv.competences.slice(0, 4).join(', ')} — me permettront de contribuer rapidement a votre equipe.\n` : ''}
-Vivement interesse par cette opportunite, je souhaite mettre mes competences et ma motivation au service de votre equipe.
-
-Je vous prie de trouver ci-joint mon curriculum vitae pour votre consideration.
-
-Dans l'attente de votre retour, je vous prie d'agreer, Madame, Monsieur, l'expression de mes salutations distinguees.`
-  },
-  alternance: {
-    prefix: 'Candidature en alternance pour',
-    formulaire: (cv) => `Madame, Monsieur,
-
-${cv ? `${cv.prenom || 'Candidat'}, ` : ''}Actuellement en formation, je suis a la recherche d'un contrat en alternance pour le poste de {poste} chez {entreprise}.
-${cv && cv.formation ? `\nMa formation actuelle : ${cv.formation}\n` : ''}
-Cette opportunite correspond parfaitement a mon projet professionnel et je suis convaincu de pouvoir contribuer activement a votre structure.
-
-Vous trouverez ci-joint mon curriculum vitae detailant mon parcours.
-
-Je reste a votre entiere disposition pour un entretien.
-
-Veuillez recevoir, Madame, Monsieur, mes salutations les meilleures.`
-  },
   cdi: {
-    prefix: 'Candidature pour le poste de',
-    formulaire: (cv) => `Madame, Monsieur,
+    prefix: 'Candidature —',
+    formulaire: (poste, entreprise) => {
+      const projets = CANDIDAT.projets.slice(0, 2).map(p => `  • ${p}`).join('\n');
+      return `Madame, Monsieur,
 
-${cv ? `${cv.prenom || 'Candidat'}, ` : ''}Fort de mon experience dans le domaine, je souhaite vous proposer ma candidature pour le poste de {poste} au sein de {entreprise}.
-${cv && cv.competences.length > 0 ? `\nJe possede des competences solides en ${cv.competences.slice(0, 5).join(', ')}.\n` : ''}
-Mon profil correspond aux exigences decrites dans votre offre et je suis persuade de pouvoir apporter une reelle valeur ajoutee a votre equipe.
+Je me permets de vous adresser ma candidature pour le poste de ${poste} au sein de ${entreprise}.
 
-Je vous prie de trouver ci-joint mon curriculum vitae.
+Développeur Backend formé au PHP / Laravel et à l'intégration d'IA en production, je maîtrise la conception d'API REST sécurisées, la modélisation de bases de données (MySQL, MCD/MLD) ainsi que le déploiement conteneurisé (Docker, GitHub Actions). Mes projets récents m'ont permis de développer une expertise concrète sur des applications web complexes :
 
-Je me tiens a votre disposition pour un entretien a votre convenance.
+${projets}
 
-En vous remerciant de l'attention que vous porterez a ma candidature, je vous prie d'agreer, Madame, Monsieur, l'expression de mes sentiments distingues.`
+Ce parcours technique, allié à ma rigueur et à ma capacité d'autonomie, me permet d'apporter une contribution efficace dès les premières semaines.
+
+Vous trouverez ci-joint mon curriculum vitae détaillant mon profil complet.
+
+Je reste à votre entière disposition pour un entretien afin d'échanger sur la valeur que je pourrais apporter à votre équipe.
+
+Dans l'attente de votre retour, je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées.`;
+    }
   },
+
+  stage: {
+    prefix: 'Candidature stage —',
+    formulaire: (poste, entreprise) => {
+      const projets = CANDIDAT.projets.slice(0, 2).map(p => `  • ${p}`).join('\n');
+      return `Madame, Monsieur,
+
+Actuellement titulaire d'une formation en Développeur Backend — PHP / Laravel augmenté par l'IA (Simplon Maghreb × JobInTech), je suis à la recherche d'un stage pour mettre en pratique mes compétences au sein de ${entreprise}, pour le poste de ${poste}.
+
+Au cours de ma formation, j'ai réalisé des projets concrets m'amenant à concevoir des API REST, gérer des bases de données relationnelles et intégrer des modèles d'IA :
+
+${projets}
+
+Motivé et curieux, je souhaite contribuer activement à vos projets tout en enrichissant mon expérience professionnelle.
+
+Vous trouverez ci-joint mon curriculum vitae pour votre examen.
+
+Je me tiens à votre disposition pour un entretien à votre convenance.
+
+En vous remerciant de l'attention que vous porterez à ma candidature, je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées.`;
+    }
+  },
+
+  alternance: {
+    prefix: 'Candidature alternance —',
+    formulaire: (poste, entreprise) => `Madame, Monsieur,
+
+En formation en Développeur Backend — PHP / Laravel augmenté par l'IA (Simplon Maghreb × JobInTech), je recherche un contrat en alternance pour le poste de ${poste} au sein de ${entreprise}.
+
+Mes compétences en PHP, Laravel, JavaScript et bases de données, acquises à travers des projets professionnels (API REST, Docker, intégration IA), me permettront de m'intégrer rapidement dans votre équipe technique.
+
+Cette alternance correspond parfaitement à mon projet professionnel et je suis engagé à apporter une contribution durable à votre structure.
+
+Vous trouverez ci-joint mon curriculum vitae.
+
+Je reste disponible pour un entretien à votre convenance.
+
+Veuillez recevoir, Madame, Monsieur, mes salutations distinguées.`,
+
+  },
+
   cdd: {
-    prefix: 'Candidature pour le poste de',
-    formulaire: (cv) => `Madame, Monsieur,
+    prefix: 'Candidature —',
+    formulaire: (poste, entreprise) => `Madame, Monsieur,
 
-${cv ? `${cv.prenom || 'Candidat'}, ` : ''}Je me permets de vous adresser ma candidature pour le poste de {poste} propose par {entreprise}.
+Développeur Backend spécialisé en PHP / Laravel et en intégration d'IA, je vous propose ma candidature pour le poste de ${poste} proposé par ${entreprise}.
 
-Ce contrat correspond a mes attentes et je suis pret a m'investir pleinement durant cette mission.
+Maîtrisant la conception d'API REST sécurisées, le développement frontend (Vue.js 3, React) et le déploiement Docker, je suis en mesure de contribuer efficacement à cette mission technique.
 
-Vous trouverez mon curriculum vitae en piece jointe.
+Vous trouverez ci-joint mon curriculum vitae pour votre considération.
 
-Dans l'attente de votre reponse, je vous prie d'agreer, Madame, Monsieur, mes salutations distinguees.`
+Dans l'attente de votre retour, je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées.`,
+
   },
+
   freelance: {
-    prefix: 'Proposition de collaboration pour',
-    formulaire: (cv) => `Madame, Monsieur,
+    prefix: 'Proposition —',
+    formulaire: (poste, entreprise) => `Madame, Monsieur,
 
-${cv ? `${cv.prenom || 'Candidat'}, ` : ''}En tant que freelance, je vous propose mes services pour le poste de {poste} au sein de {entreprise}.
-${cv && cv.competences.length > 0 ? `\nMes competences : ${cv.competences.slice(0, 6).join(', ')}\n` : ''}
-Je suis capable d'intervenir rapidement et de fournir des resultats de qualite dans les delais convenus.
+En tant que développeur backend freelance, je vous propose mes services pour le poste de ${poste} au sein de ${entreprise}.
 
-Mon portfolio et mon curriculum vitae sont joints a ce message.
+Spécialisé en PHP / Laravel et en intégration d'API LLM, je suis capable d'intervenir rapidement sur des missions techniques complexes — conception d'API, conteneurisation Docker, ou développement full-stack.
 
-Je serais ravi d'echanger avec vous sur cette opportunite.
+Mon portfolio et mon curriculum vitae sont joints à ce message.
 
-Cordialement.`
+Je serais ravi d'échanger avec vous sur cette opportunité.
+
+Cordialement.`,
+
   },
+
   default: {
-    prefix: 'Candidature pour',
-    formulaire: (cv) => `Madame, Monsieur,
+    prefix: 'Candidature —',
+    formulaire: (poste, entreprise) => `Madame, Monsieur,
 
-${cv ? `${cv.prenom || 'Candidat'}, ` : ''}Je vous soumets ma candidature pour le poste de {poste} chez {entreprise}.
-${cv && cv.competences.length > 0 ? `\nMes competences en ${cv.competences.slice(0, 4).join(', ')} seraient un atout pour votre equipe.\n` : ''}
-Motive et enthousiaste, je souhaite integrer votre equipe et contribuer a vos projets.
+Je me permets de vous adresser ma candidature pour le poste de ${poste} au sein de ${entreprise}.
 
-Veuillez trouver ci-joint mon curriculum vitae.
+Développeur Backend formé au PHP / Laravel et à l'intégration d'IA, je maîtrise la conception d'API REST, les bases de données MySQL et le déploiement Docker. Mes projets récents témoignent de ma capacité à livrer des applications web robustes et maintenables.
 
-Dans l'attente de votre retour, je vous prie d'agreer, Madame, Monsieur, mes salutations respectueuses.`
+Vous trouverez ci-joint mon curriculum vitae.
+
+Je reste à votre disposition pour un entretien à votre convenance.
+
+Dans l'attente de votre retour, je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées.`,
+
   }
 };
 
@@ -106,24 +154,20 @@ function detectType(offer) {
   return 'default';
 }
 
+function generateSubject(type, poste) {
+  const prefix = TEMPLATES[type]?.prefix || 'Candidature —';
+  return `${prefix} ${poste}`;
+}
+
 export function generateEmail(offer, cvData = null) {
   const n = normalizeKeys(offer);
   const type = detectType(offer);
-  const template = TEMPLATES[type];
   const entreprise = n.entreprise || 'votre entreprise';
   const poste = n.poste || 'ce poste';
 
-  let subject = '';
-  if (n.objet) {
-    subject = n.objet;
-  } else {
-    subject = `${template.prefix} ${poste}`;
-  }
-
-  const bodyFn = template.formulaire;
-  let body = bodyFn(cvData)
-    .replace(/{entreprise}/g, entreprise)
-    .replace(/{poste}/g, poste);
+  const subject = n.objet || generateSubject(type, poste);
+  const template = TEMPLATES[type];
+  const body = template.formulaire(poste, entreprise);
 
   const result = {
     to: n.email,
@@ -131,11 +175,10 @@ export function generateEmail(offer, cvData = null) {
     body,
     type,
     entreprise,
-    poste,
-    cvNom: cvData?.nom || null
+    poste
   };
 
-  log.debug({ to: result.to, subject: result.subject, type, cvNom: result.cvNom }, 'Email genere');
+  log.debug({ to: result.to, subject: result.subject, type }, 'Email généré');
   return result;
 }
 
@@ -146,4 +189,4 @@ export function generateBatchEmails(offers, cvData = null) {
   }));
 }
 
-export { TEMPLATES };
+export { TEMPLATES, CANDIDAT };
