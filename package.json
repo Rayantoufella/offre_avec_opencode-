@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "offre-automation",
   "version": "1.1.0",
   "description": "Automatisation des candidatures et recherche d'offres via OpenCode + Browser MCP",
@@ -12,6 +12,8 @@
     "test-one": "node scripts/workflow/test-one.js",
     "start": "node scripts/workflow/orchestrator.js",
     "research": "node scripts/research/research-orchestrator.js",
+    "deep-research": "node scripts/deep-research/research-orchestrator.js",
+    "deep-research:process": "node scripts/deep-research/research-orchestrator.js --process",
     "test": "vitest run",
     "test:watch": "vitest",
     "check": "node scripts/diagnostic/check-all.js"
