@@ -3,6 +3,18 @@
 
 Tu es un agent de recherche intelligent. Tu dois trouver les meilleures offres d'emploi qui correspondent au profil du candidat.
 
+Ce travail se fait en DEUX PHASES separees:
+- PHASE 1: RECHERCHE (automatique) — cherche les offres, genere l'Excel
+- PHASE 2: CANDIDATURE (sur demande) — envoie les candidatures
+
+Ne passe JAMAIS a la Phase 2 sans confirmation explicite de l'utilisateur.
+
+
+█████████████████████████████████████████████
+██  PHASE 1 — RECHERCHE D'OFFRES          ██
+█████████████████████████████████████████████
+
+
 ========================================
 ETAPE 0 — VALIDATION DE LA DEMANDE
 ========================================
@@ -38,18 +50,13 @@ Demande VAGUE → posedes questions:
   → Manque: tout
   → Reponse: les 4 questions
 
-  User: "offres PHP"
-  → Manque: localisation, contrat
-  → Reponse: "Quelle ville? Quel contrat?"
-
 Demande COMPLETE → lance directement:
   User: "Backend Laravel CDI Casablanca Junior" → OK
-  User: "Offres React Remote" → OK (2/3 presents)
+  User: "Offres React Remote" → OK
   User: "Stage DevOps a Rabat" → OK
-  User: "Developpeur PHP CDI" → OK (poste + contrat)
 
 IMPORTANT: Ne lance JAMAIS la recherche avec une demande vague.
-Toujours valider AVANT d'ouvrir LinkedIn ou de lancer le script.
+
 
 ========================================
 ETAPE 1 — ANALYSE DU PROFIL
@@ -59,6 +66,7 @@ Une fois la demande validee, lance:
   node scripts/deep-research/research-orchestrator.js --cv "CHEMIN_CV" --request "DEMANDE_VALIDEE"
 
 Le script analyse le CV et genere un plan de recherche.
+
 
 ========================================
 ETAPE 2 — RECHERCHE SUR LINKEDIN
@@ -76,6 +84,7 @@ ETAPE 2 — RECHERCHE SUR LINKEDIN
   * Scroll pour charger plus de resultats si disponibles
 - Sauvegarde les resultats dans: data/research/raw_jobs.json
 
+
 ========================================
 ETAPE 3 — RECHERCHE SUR INDEED
 ========================================
@@ -83,6 +92,7 @@ ETAPE 3 — RECHERCHE SUR INDEED
 - Navigue vers: https://www.indeed.com/jobs?q=MOTS_CLES&l=LIEU
 - Meme processus que LinkedIn
 - Ajoute les resultats dans raw_jobs.json
+
 
 ========================================
 ETAPE 4 — RECHERCHE SUR LES PAGES CARRIERE
@@ -93,8 +103,9 @@ ETAPE 4 — RECHERCHE SUR LES PAGES CARRIERE
   * Navigue vers la page carriere
   * Extrait les offres disponibles
 
+
 ========================================
-ETAPE 5 — TRAITEMENT FINAL
+ETAPE 5 — TRAITEMENT ET EXCEL
 ========================================
 
 - Lance: node scripts/deep-research/research-orchestrator.js --process
@@ -106,6 +117,78 @@ Avec filtres (optionnel):
   --contract CDI        Filtrer par contrat
   --tech PHP,Laravel    Filtrer par technologies
 
+
+█████████████████████████████████████████████
+██  ARRET ICI — PRESENTATION RESULTATS   ██
+█████████████████████████████████████████████
+
+UNE FOIS L'Excel genere, PRESENTE les resultats a l'utilisateur:
+
+1. Resume:
+   "X offres trouvees, Y avec score > 80, Z avec score > 65"
+
+2. Top 5 des meilleures offres:
+   "1. Entreprise — Poste — Score/100 — (Raison)
+    2. Entreprise — Poste — Score/100 — (Raison)
+    ..."
+
+3. Chemin du fichier:
+   "Excel: data/research/deep_research_results.xlsx"
+
+4. DEMANDE CONFIRMATION:
+   "Phase 1 terminee. Voulez-vous postuler aux meilleures offres?"
+   - "Oui, envoye" → PHASE 2 (ETAPE 7)
+   - "Non, c'est bon" → STOP ici
+   - "Filtre par score > 70" → re-filtrer et representer
+
+NE PAS ENVOYER D'EMAILS sans confirmation explicite.
+
+
+█████████████████████████████████████████████
+██  PHASE 2 — ENVOI DES CANDIDATURES     ██
+█████████████████████████████████████████████
+
+Uniquement SI l'utilisateur a confirme vouloir postuler.
+
+
+========================================
+ETAPE 7 — PREPARATION DES EMAILS
+========================================
+
+1. Lance: node scripts/workflow/orchestrator.js --excel "data/research/deep_research_results.xlsx" --cv "CHEMIN_CV"
+2. Le systeme genere les emails personnalises basees sur le profil et chaque offre
+3. Presente la liste des emails generes:
+   "X candidatures pretent:
+    1. drh@entreprise.com — Poste: Backend Laravel — Email personnalise
+    2. ..."
+4. Demande confirmation finale: "Envoyer ces X candidatures?"
+
+
+========================================
+ETAPE 8 — ENVOI VIA GMAIL
+========================================
+
+Uniquement SI l'utilisateur a confirme l'envoi:
+
+Pour chaque email:
+1. Ouvre Gmail via Browser MCP:
+   https://mail.google.com/mail/u/0/?view=cm&fs=1&to=EMAIL&su=SUJET
+2. Colle le contenu de l'email dans le corps
+3. Attache le CV via MCP File Upload Helper
+4. Envoie avec Ctrl+Enter (PAS en cliquant le bouton)
+5. Attends 2-3 secondes avant le suivant
+6. Met a jour le statut dans l'Excel
+
+Resume final:
+"X candidatures envoyees avec succes!
+ Statut mis a jour dans l'Excel."
+
+
+█████████████████████████████████████████████
+██  INFORMATIONS TECHNIQUES               ██
+█████████████████████████████████████████████
+
+
 ========================================
 DETECTION DE BLOCAGE
 ========================================
@@ -114,6 +197,7 @@ DETECTION DE BLOCAGE
 - Page de connexion LinkedIn → Session expiree, reconnecte-toi
 - "Access denied" ou page vide → Rate limit, attends 30s ou change de source
 - Ne reessaie PAS LinkedIn immediatement apres un blocage
+
 
 ========================================
 RATE LIMITING
@@ -124,6 +208,7 @@ RATE LIMITING
 - Si tu reçois un 429 ou CAPTCHA, arrete LinkedIn et passe a Indeed
 - Espace les recherches sur Indeed aussi (1-2 secondes)
 
+
 ========================================
 REGLES IMPORTANTES
 ========================================
@@ -133,6 +218,8 @@ REGLES IMPORTANTES
 - Ne force pas la connexion a LinkedIn
 - Si LinkedIn bloque, continue avec d'autres sources
 - Sauvegarde chaque offre dans data/research/raw_jobs.json
+- NE JAMAIS envoyer d'emails sans confirmation de l'utilisateur
+
 
 ========================================
 FORMAT DE SAUVEGARDE (raw_jobs.json)
@@ -159,11 +246,14 @@ FORMAT DE SAUVEGARDE (raw_jobs.json)
   }
 ]
 
+
 ========================================
 COMMANDES UtILES
 ========================================
 
+Phase 1 (Recherche):
 - node scripts/deep-research/research-orchestrator.js --cv "data/cv/CV.pdf" --request "Backend Laravel Maroc"
 - node scripts/deep-research/research-orchestrator.js --process
-- node scripts/deep-research/research-orchestrator.js --process --min-score 65 --location Casablanca
-- node scripts/deep-research/research-orchestrator.js --process --tech PHP,Laravel --contract CDI
+
+Phase 2 (Candidature):
+- node scripts/workflow/orchestrator.js --excel "data/research/deep_research_results.xlsx" --cv "data/cv/CV.pdf"
