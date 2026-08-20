@@ -3,6 +3,9 @@
                    "opencode-browser"
                ],
     "$schema":  "https://opencode.ai/config.json",
+    "instructions": [
+        "prompts/00_greeting.txt"
+    ],
     "mcp":  {
                 "browsermcp":  {
                                    "command":  [

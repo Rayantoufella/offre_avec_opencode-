@@ -34,16 +34,22 @@ npm install
 ### 5. Lancer OpenCode
 
 1. Ouvrez OpenCode dans le dossier du projet
-2. Donnez ce prompt :
-   ```
-   Je veux automatiser mes candidatures. Voici mon fichier Excel : C:\Users\...\offres.xlsx et mon CV : C:\Users\...\Cv.pdf
-   ```
-3. OpenCode va :
-   - Creer automatiquement le fichier `.env`
-   - Verifier le CV
-   - Analyser l'Excel
-   - Generer les candidatures
-   - Vous demander pour envoyer
+2. OpenCode vous saluera et vous demandera ce que vous voulez faire:
+
+```
+Bonjour! Je suis votre assistant de recherche d'emploi.
+
+Que souhaitez-vous faire aujourd'hui?
+
+  1. Rechercher de nouvelles offres d'emploi
+  2. Envoyer des candidatures depuis un fichier Excel
+  3. Configurer le systeme
+  4. Verifier que tout fonctionne
+
+Tapez le numero de votre choix.
+```
+
+3. Suivez les instructions guidees selon votre choix
 
 **Par defaut, AUCUN email n'est envoye** (mode simulation).
 
@@ -77,6 +83,7 @@ Jamais de nouveau Chrome, jamais de Playwright pour Gmail.
 +-- docs/
 |   +-- USER_GUIDE.md
 +-- prompts/
+|   +-- 00_greeting.txt      # Guide conversationnel (point d'entree)
 |   +-- 01_start.txt ... 20_deep_research.txt
 +-- scripts/
 |   +-- excel/
