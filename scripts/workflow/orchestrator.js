@@ -1,5 +1,4 @@
 ﻿import { analyzeExcel, printReport } from '../excel/analyzer.js';
-import { writeExcelStatus, prepareWriteData } from '../excel/writer.js';
 import { validateCV } from '../validation/cv-validator.js';
 import { parseCV } from '../validation/cv-parser.js';
 import { generateEmail } from '../gmail/email-generator.js';

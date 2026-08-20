@@ -1,6 +1,4 @@
-﻿import fs from 'fs';
-import { parseCV } from '../validation/cv-parser.js';
-import pino from 'pino';
+﻿import pino from 'pino';
 
 const log = pino({ level: process.env.LOG_LEVEL || 'info' });
 
