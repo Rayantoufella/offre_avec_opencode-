@@ -156,12 +156,21 @@ ETAPE 7 — PREPARATION DES EMAILS
 ========================================
 
 1. Lance: node scripts/workflow/orchestrator.js --excel "data/research/deep_research_results.xlsx" --cv "CHEMIN_CV"
-2. Le systeme genere les emails personnalises basees sur le profil et chaque offre
-3. Presente la liste des emails generes:
+2. Le systeme genere des BROUILLONS d'emails (pas les emails finaux)
+3. Pour chaque brouillon, tu DOIS:
+   a. Lire le brouillon genere par le script
+   b. Lire l'offre d'emploi correspondante
+   c. PERSONNALISER le brouillon:
+      - Adapte le ton au secteur de l'entreprise
+      - Vérifie la cohérence avec le poste exact
+      - Ajoute un détail spécifique à l'offre si pertinent
+      - Supprime les répétitions
+      - Garde un ton professionnel mais humain
+4. Presente la liste des emails personnalises:
    "X candidatures pretent:
-    1. drh@entreprise.com — Poste: Backend Laravel — Email personnalise
+    1. drh@entreprise.com — Poste: Backend Laravel — [Resume de l'email personnalise]
     2. ..."
-4. Demande confirmation finale: "Envoyer ces X candidatures?"
+5. Demande confirmation finale: "Envoyer ces X candidatures?"
 
 
 ========================================

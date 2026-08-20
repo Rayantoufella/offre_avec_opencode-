@@ -11,25 +11,34 @@ Pour CHAQUE offre du fichier, fais ceci :
    browsermcp_browser_wait time=5
    browsermcp_browser_snapshot
 
-3. Remplir le corps du message :
-   - Cherche le champ texte (textbox) dans le snapshot
-   - Utilise browsermcp_browser_type avec le ref du champ et le corps du message
+3. Avant de remplir le corps, Lis l'offre correspondante et PERSONNALISE l'email :
+   - Adapte le ton au secteur de l'entreprise
+   - Vérifie la cohérence avec le poste exact
+   - Ajoute un détail spécifique à l'offre si pertinent
+   - Garde un ton professionnel mais humain
+   - Ne copie JAMAIS le CV directement
 
-4. Attacher le CV :
+4. Remplir le corps du message :
+   - Cherche le champ texte (textbox) dans le snapshot
+   - Utilise browsermcp_browser_type avec le ref du champ et le corps personnalise
+
+5. Attacher le CV :
    - Execute : powershell -Command "Invoke-RestMethod -Uri 'http://localhost:9011/upload' -Method Post -ContentType 'application/json' -Body '{\"filePath\":\"CHEMIN_CV\"}'"
 
-5. Verifie la piece jointe avec un browsermcp_browser_snapshot
+6. Verifie la piece jointe avec un browsermcp_browser_snapshot
 
-6. Si DRY_RUN=true (defaut) : STOP pour cette offre. Passe a la suivante.
+7. Si DRY_RUN=true (defaut) : STOP pour cette offre. Passe a la suivante.
 
-7. Si DRY_RUN=false : Clique sur le bouton Envoyer :
+8. Si DRY_RUN=false : Clique sur le bouton Envoyer :
    - Cherche le bouton "Send" ou "Envoyer" dans le snapshot
    - Utilise browsermcp_browser_click avec le ref du bouton
 
-8. Attends 3 secondes avant de passer a l'offre suivante :
+9. Attends 3 secondes avant de passer a l'offre suivante :
    browsermcp_browser_wait time=3
 
 IMPORTANT :
 - Si DRY_RUN=true (defaut), AUCUN email n'est envoye. Tu preparles juste.
 - Pour l'envoi reel, l'utilisateur doit definir DRY_RUN=false dans .env
 - Jamais d'envoi sans confirmation explicite de l'utilisateur
+- Chaque email doit etre UNIQUE et personnalise pour l'offre
+- Ne JAMAIS copier-coller le CV dans l'email

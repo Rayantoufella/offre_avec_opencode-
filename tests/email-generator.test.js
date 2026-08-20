@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { generateEmail, TEMPLATES } from '../scripts/gmail/email-generator.js';
+import { generateEmail, detectDomain, detectContractType } from '../scripts/gmail/email-generator.js';
 
 describe('email-generator', () => {
   const baseOffer = {
@@ -76,12 +76,23 @@ describe('email-generator', () => {
     expect(email.body).toContain('ce poste');
   });
 
-  it('should have all template types defined', () => {
-    expect(TEMPLATES.stage).toBeDefined();
-    expect(TEMPLATES.alternance).toBeDefined();
-    expect(TEMPLATES.cdi).toBeDefined();
-    expect(TEMPLATES.cdd).toBeDefined();
-    expect(TEMPLATES.freelance).toBeDefined();
-    expect(TEMPLATES.default).toBeDefined();
+  it('should detect backend domain from Laravel job', () => {
+    const offer = { ...baseOffer, poste: 'Backend Laravel PHP', description: 'API REST MySQL' };
+    const domain = detectDomain(offer);
+    expect(domain).toBe('backend');
+  });
+
+  it('should detect frontend domain from React job', () => {
+    const offer = { ...baseOffer, poste: 'Frontend React', description: 'UI CSS JavaScript' };
+    const domain = detectDomain(offer);
+    expect(domain).toBe('frontend');
+  });
+
+  it('should include draft metadata', () => {
+    const email = generateEmail(baseOffer);
+    expect(email.draft).toBeDefined();
+    expect(email.draft.metadata).toBeDefined();
+    expect(email.draft.metadata.domain).toBeDefined();
+    expect(email.draft.metadata.contract).toBeDefined();
   });
 });
