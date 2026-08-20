@@ -1,14 +1,17 @@
-import fs from 'fs';
-import { PDFParse } from 'pdf-parse';
+﻿import fs from 'fs';
+import { createRequire } from 'module';
+import pino from 'pino';
+
+const log = pino({ level: process.env.LOG_LEVEL || 'info' });
+const require = createRequire(import.meta.url);
+const pdfParse = require('pdf-parse');
 
 async function parseCV(cvPath) {
   try {
     const buffer = fs.readFileSync(cvPath);
-    const parser = new PDFParse({ data: buffer });
-    const result = await parser.getText();
-    await parser.destroy();
+    const data = await pdfParse(buffer);
 
-    const text = result.text || '';
+    const text = data.text || '';
     const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
 
     const parsed = {

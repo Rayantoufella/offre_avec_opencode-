@@ -1,0 +1,13 @@
+Je veux rechercher des offres d'emploi.
+
+Donnez-moi :
+1. Les mots-clés de recherche (ex: Développeur Backend, PHP, Laravel)
+2. Le lieu (ex: Maroc, Casablanca, Remote)
+3. Les sites à rechercher (LinkedIn, Indeed, Rekrute)
+4. Le nombre maximum de résultats
+
+Exemple :
+- Mots-clés : Développeur Backend PHP Laravel
+- Lieu : Maroc
+- Sites : LinkedIn, Rekrute
+- Max : 50 offres

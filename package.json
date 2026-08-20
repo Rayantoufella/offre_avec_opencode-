@@ -1,7 +1,7 @@
-{
+﻿{
   "name": "offre-automation",
-  "version": "1.0.0",
-  "description": "Automatisation des candidatures via OpenCode + Browser MCP",
+  "version": "1.1.0",
+  "description": "Automatisation des candidatures et recherche d'offres via OpenCode + Browser MCP",
   "type": "module",
   "main": "scripts/workflow/orchestrator.js",
   "scripts": {
@@ -11,6 +11,9 @@
     "dry-run": "node scripts/workflow/dry-run.js",
     "test-one": "node scripts/workflow/test-one.js",
     "start": "node scripts/workflow/orchestrator.js",
+    "research": "node scripts/research/research-orchestrator.js",
+    "deep-research": "node scripts/deep-research/research-orchestrator.js",
+    "deep-research:process": "node scripts/deep-research/research-orchestrator.js --process",
     "test": "vitest run",
     "test:watch": "vitest",
     "check": "node scripts/diagnostic/check-all.js"
@@ -18,7 +21,7 @@
   "dependencies": {
     "dotenv": "^16.4.7",
     "exceljs": "^4.4.0",
-    "pdf-parse": "^2.4.5",
+    "pdf-parse": "^1.1.1",
     "pino": "^9.6.0",
     "ws": "^8.18.1",
     "xlsx": "^0.18.5"

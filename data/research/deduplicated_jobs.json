@@ -1,0 +1,215 @@
+{
+  "unique": [
+    {
+      "title": "Backend PHP Developer",
+      "company": "TechCorp",
+      "location": "Casablanca",
+      "contractType": "CDI",
+      "workMode": "",
+      "technologies": [
+        "PHP",
+        "Laravel",
+        "MySQL",
+        "Docker"
+      ],
+      "experience": "",
+      "description": "Nous recherchons un developpeur Backend PHP Laravel avec experience sur MySQL et Docker",
+      "requirements": "",
+      "source": "LinkedIn",
+      "sourceUrl": "",
+      "applicationUrl": "",
+      "applicationType": "LINKEDIN",
+      "applicationEmail": "",
+      "dateFound": "2026-08-18T18:20:02.326Z",
+      "jobStatus": "UNKNOWN",
+      "salary": "",
+      "postedTime": "",
+      "companyUrl": "",
+      "rawData": {
+        "title": "Backend PHP Developer",
+        "company": "TechCorp",
+        "location": "Casablanca",
+        "contractType": "CDI",
+        "technologies": [
+          "PHP",
+          "Laravel",
+          "MySQL"
+        ],
+        "description": "Nous recherchons un developpeur Backend PHP Laravel avec experience sur MySQL et Docker",
+        "source": "LinkedIn",
+        "sourceUrl": "https://linkedin.com/jobs/123",
+        "applicationEmail": "",
+        "applicationType": "LINKEDIN"
+      }
+    },
+    {
+      "title": "Laravel Developer",
+      "company": "WebInc",
+      "location": "Rabat",
+      "contractType": "CDI",
+      "workMode": "",
+      "technologies": [
+        "PHP",
+        "Laravel",
+        "Vue.js"
+      ],
+      "experience": "",
+      "description": "Developer Laravel pour projet e-commerce",
+      "requirements": "",
+      "source": "Indeed",
+      "sourceUrl": "",
+      "applicationUrl": "",
+      "applicationType": "EMAIL",
+      "applicationEmail": "hr@webinc.com",
+      "dateFound": "2026-08-18T18:20:02.328Z",
+      "jobStatus": "UNKNOWN",
+      "salary": "",
+      "postedTime": "",
+      "companyUrl": "",
+      "rawData": {
+        "title": "Laravel Developer",
+        "company": "WebInc",
+        "location": "Rabat",
+        "contractType": "CDI",
+        "technologies": [
+          "PHP",
+          "Laravel",
+          "Vue.js"
+        ],
+        "description": "Developer Laravel pour projet e-commerce",
+        "source": "Indeed",
+        "sourceUrl": "https://indeed.com/jobs/456",
+        "applicationEmail": "hr@webinc.com",
+        "applicationType": "EMAIL"
+      }
+    },
+    {
+      "title": "Frontend React Developer",
+      "company": "StartupX",
+      "location": "Remote",
+      "contractType": "Freelance",
+      "workMode": "",
+      "technologies": [
+        "React",
+        "TypeScript",
+        "Node.js"
+      ],
+      "experience": "",
+      "description": "React developer for international project",
+      "requirements": "",
+      "source": "LinkedIn",
+      "sourceUrl": "",
+      "applicationUrl": "",
+      "applicationType": "LINKEDIN",
+      "applicationEmail": "",
+      "dateFound": "2026-08-18T18:20:02.328Z",
+      "jobStatus": "UNKNOWN",
+      "salary": "",
+      "postedTime": "",
+      "companyUrl": "",
+      "rawData": {
+        "title": "Frontend React Developer",
+        "company": "StartupX",
+        "location": "Remote",
+        "contractType": "Freelance",
+        "technologies": [
+          "React",
+          "TypeScript",
+          "Node.js"
+        ],
+        "description": "React developer for international project",
+        "source": "LinkedIn",
+        "sourceUrl": "https://linkedin.com/jobs/101"
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "duplicate": {
+        "title": "Backend PHP Developer",
+        "company": "TechCorp",
+        "location": "Casablanca",
+        "contractType": "CDI",
+        "workMode": "",
+        "technologies": [
+          "PHP",
+          "Laravel"
+        ],
+        "experience": "",
+        "description": "Same job as above",
+        "requirements": "",
+        "source": "Indeed",
+        "sourceUrl": "",
+        "applicationUrl": "",
+        "applicationType": "EXTERNAL_PLATFORM",
+        "applicationEmail": "",
+        "dateFound": "2026-08-18T18:20:02.328Z",
+        "jobStatus": "UNKNOWN",
+        "salary": "",
+        "postedTime": "",
+        "companyUrl": "",
+        "rawData": {
+          "title": "Backend PHP Developer",
+          "company": "TechCorp",
+          "location": "Casablanca",
+          "contractType": "CDI",
+          "technologies": [
+            "PHP",
+            "Laravel"
+          ],
+          "description": "Same job as above",
+          "source": "Indeed",
+          "sourceUrl": "https://indeed.com/jobs/789"
+        }
+      },
+      "canonical": {
+        "title": "Backend PHP Developer",
+        "company": "TechCorp",
+        "location": "Casablanca",
+        "contractType": "CDI",
+        "workMode": "",
+        "technologies": [
+          "PHP",
+          "Laravel",
+          "MySQL",
+          "Docker"
+        ],
+        "experience": "",
+        "description": "Nous recherchons un developpeur Backend PHP Laravel avec experience sur MySQL et Docker",
+        "requirements": "",
+        "source": "LinkedIn",
+        "sourceUrl": "",
+        "applicationUrl": "",
+        "applicationType": "LINKEDIN",
+        "applicationEmail": "",
+        "dateFound": "2026-08-18T18:20:02.326Z",
+        "jobStatus": "UNKNOWN",
+        "salary": "",
+        "postedTime": "",
+        "companyUrl": "",
+        "rawData": {
+          "title": "Backend PHP Developer",
+          "company": "TechCorp",
+          "location": "Casablanca",
+          "contractType": "CDI",
+          "technologies": [
+            "PHP",
+            "Laravel",
+            "MySQL"
+          ],
+          "description": "Nous recherchons un developpeur Backend PHP Laravel avec experience sur MySQL et Docker",
+          "source": "LinkedIn",
+          "sourceUrl": "https://linkedin.com/jobs/123",
+          "applicationEmail": "",
+          "applicationType": "LINKEDIN"
+        }
+      },
+      "similarity": 1
+    }
+  ],
+  "stats": {
+    "total": 4,
+    "unique": 3,
+    "duplicates": 1
+  }
+}

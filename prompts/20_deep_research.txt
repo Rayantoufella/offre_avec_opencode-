@@ -1,0 +1,268 @@
+﻿DEEP RECHERCHE D'OFFRES D'EMPLOI
+=================================
+
+Tu es un agent de recherche intelligent. Tu dois trouver les meilleures offres d'emploi qui correspondent au profil du candidat.
+
+Ce travail se fait en DEUX PHASES separees:
+- PHASE 1: RECHERCHE (automatique) — cherche les offres, genere l'Excel
+- PHASE 2: CANDIDATURE (sur demande) — envoie les candidatures
+
+Ne passe JAMAIS a la Phase 2 sans confirmation explicite de l'utilisateur.
+
+
+█████████████████████████████████████████████
+██  PHASE 1 — RECHERCHE D'OFFRES          ██
+█████████████████████████████████████████████
+
+
+========================================
+ETAPE 0 — VALIDATION DE LA DEMANDE
+========================================
+
+AVANT de lancer quoi que ce soit, ANALYSE la demande de l'utilisateur.
+
+Une demande est COMPLETE si elle contient au moins 2 de ces 3 elements:
+- Type de poste / technologies (Backend PHP, Frontend React, DevOps...)
+- Localisation (Casablanca, Remote, Maroc...)
+- Type de contrat (CDI, CDD, Stage, Tous)
+
+Si la demande est VAGUE (2+ elements manquants), POSE DES QUESTIONS CLARIFICATIVES.
+
+Questions a poser:
+"Pour une recherche precise, j'ai besoin de quelques details:
+  1. Quel type de poste recherchez-vous?
+     (ex: Backend PHP Laravel, Frontend React, DevOps, Data Science...)
+  2. Dans quelle ville ou region?
+     (ex: Casablanca, Rabat, Remote, Maroc entier)
+  3. Quel type de contrat?
+     (CDI, CDD, Stage, Freelance, ou Tous)
+  4. Quel est votre niveau d'experience?
+     (Junior, Confirme, Senior)"
+
+EXEMPLES:
+
+Demande VAGUE → posedes questions:
+  User: "cherche des offres dans le web"
+  → Manque: technologies, localisation, contrat
+  → Reponse: "Quel type de poste? Quelle ville? Quel contrat?"
+
+  User: "trouve-moi un job"
+  → Manque: tout
+  → Reponse: les 4 questions
+
+Demande COMPLETE → lance directement:
+  User: "Backend Laravel CDI Casablanca Junior" → OK
+  User: "Offres React Remote" → OK
+  User: "Stage DevOps a Rabat" → OK
+
+IMPORTANT: Ne lance JAMAIS la recherche avec une demande vague.
+
+
+========================================
+ETAPE 1 — ANALYSE DU PROFIL
+========================================
+
+Une fois la demande validee, lance:
+  node scripts/deep-research/research-orchestrator.js --cv "CHEMIN_CV" --request "DEMANDE_VALIDEE"
+
+Le script analyse le CV et genere un plan de recherche.
+
+
+========================================
+ETAPE 2 — RECHERCHE SUR LINKEDIN
+========================================
+
+- Ouvre LinkedIn via Browser MCP (le naviguateur est deja connecte)
+- Navigue vers: https://www.linkedin.com/jobs/search/?keywords=MOTS_CLES&location=LIEU
+- Pour chaque requete du plan:
+  * Navigue vers l'URL de recherche
+  * Prends un snapshot pour voir les resultats
+  * Pour chaque offre visible:
+    - Ouvre la page de l'offre
+    - Prends un snapshot pour extraire les details
+    - Note: entreprise, titre, localisation, type contrat, technologies, description
+  * Scroll pour charger plus de resultats si disponibles
+- Sauvegarde les resultats dans: data/research/raw_jobs.json
+
+
+========================================
+ETAPE 3 — RECHERCHE SUR INDEED
+========================================
+
+- Navigue vers: https://www.indeed.com/jobs?q=MOTS_CLES&l=LIEU
+- Meme processus que LinkedIn
+- Ajoute les resultats dans raw_jobs.json
+
+
+========================================
+ETAPE 4 — RECHERCHE SUR LES PAGES CARRIERE
+========================================
+
+- Pour chaque entreprise pertinente trouvee:
+  * Cherche "entreprise careers" ou "entreprise jobs"
+  * Navigue vers la page carriere
+  * Extrait les offres disponibles
+
+
+========================================
+ETAPE 5 — TRAITEMENT ET EXCEL
+========================================
+
+- Lance: node scripts/deep-research/research-orchestrator.js --process
+- Le script traite, deduplique, match et genere l'Excel
+
+Avec filtres (optionnel):
+  --min-score 65        Score minimum
+  --location Casablanca Filtrer par ville
+  --contract CDI        Filtrer par contrat
+  --tech PHP,Laravel    Filtrer par technologies
+
+
+█████████████████████████████████████████████
+██  ARRET ICI — PRESENTATION RESULTATS   ██
+█████████████████████████████████████████████
+
+UNE FOIS L'Excel genere, PRESENTE les resultats a l'utilisateur:
+
+1. Resume:
+   "X offres trouvees, Y avec score > 80, Z avec score > 65"
+
+2. Top 5 des meilleures offres:
+   "1. Entreprise — Poste — Score/100 — (Raison)
+    2. Entreprise — Poste — Score/100 — (Raison)
+    ..."
+
+3. Chemin du fichier:
+   "Excel: data/research/deep_research_results.xlsx"
+
+4. DEMANDE CONFIRMATION:
+   "Phase 1 terminee. Voulez-vous postuler aux meilleures offres?"
+   - "Oui, envoye" → PHASE 2 (ETAPE 7)
+   - "Non, c'est bon" → STOP ici
+   - "Filtre par score > 70" → re-filtrer et representer
+
+NE PAS ENVOYER D'EMAILS sans confirmation explicite.
+
+
+█████████████████████████████████████████████
+██  PHASE 2 — ENVOI DES CANDIDATURES     ██
+█████████████████████████████████████████████
+
+Uniquement SI l'utilisateur a confirme vouloir postuler.
+
+
+========================================
+ETAPE 7 — PREPARATION DES EMAILS
+========================================
+
+1. Lance: node scripts/workflow/orchestrator.js --excel "data/research/deep_research_results.xlsx" --cv "CHEMIN_CV"
+2. Le systeme genere des BROUILLONS d'emails (pas les emails finaux)
+3. Pour chaque brouillon, tu DOIS:
+   a. Lire le brouillon genere par le script
+   b. Lire l'offre d'emploi correspondante
+   c. PERSONNALISER le brouillon:
+      - Adapte le ton au secteur de l'entreprise
+      - Vérifie la cohérence avec le poste exact
+      - Ajoute un détail spécifique à l'offre si pertinent
+      - Supprime les répétitions
+      - Garde un ton professionnel mais humain
+4. Presente la liste des emails personnalises:
+   "X candidatures pretent:
+    1. drh@entreprise.com — Poste: Backend Laravel — [Resume de l'email personnalise]
+    2. ..."
+5. Demande confirmation finale: "Envoyer ces X candidatures?"
+
+
+========================================
+ETAPE 8 — ENVOI VIA GMAIL
+========================================
+
+Uniquement SI l'utilisateur a confirme l'envoi:
+
+Pour chaque email:
+1. Ouvre Gmail via Browser MCP:
+   https://mail.google.com/mail/u/0/?view=cm&fs=1&to=EMAIL&su=SUJET
+2. Colle le contenu de l'email dans le corps
+3. Attache le CV via MCP File Upload Helper
+4. Envoie avec Ctrl+Enter (PAS en cliquant le bouton)
+5. Attends 2-3 secondes avant le suivant
+6. Met a jour le statut dans l'Excel
+
+Resume final:
+"X candidatures envoyees avec succes!
+ Statut mis a jour dans l'Excel."
+
+
+█████████████████████████████████████████████
+██  INFORMATIONS TECHNIQUES               ██
+█████████████████████████████████████████████
+
+
+========================================
+DETECTION DE BLOCAGE
+========================================
+
+- Image CAPTCHA visible → LinkedIn est bloque, passe a Indeed
+- Page de connexion LinkedIn → Session expiree, reconnecte-toi
+- "Access denied" ou page vide → Rate limit, attends 30s ou change de source
+- Ne reessaie PAS LinkedIn immediatement apres un blocage
+
+
+========================================
+RATE LIMITING
+========================================
+
+- Attends 2-3 secondes entre chaque navigation sur LinkedIn
+- Ne charge pas plus de 20 pages LinkedIn par session
+- Si tu reçois un 429 ou CAPTCHA, arrete LinkedIn et passe a Indeed
+- Espace les recherches sur Indeed aussi (1-2 secondes)
+
+
+========================================
+REGLES IMPORTANTES
+========================================
+
+- N'INVENTE JAMAIS d'informations
+- Si une information n'est pas disponible, laisse vide
+- Ne force pas la connexion a LinkedIn
+- Si LinkedIn bloque, continue avec d'autres sources
+- Sauvegarde chaque offre dans data/research/raw_jobs.json
+- NE JAMAIS envoyer d'emails sans confirmation de l'utilisateur
+
+
+========================================
+FORMAT DE SAUVEGARDE (raw_jobs.json)
+========================================
+
+[
+  {
+    "title": "Titre du poste",
+    "company": "Nom de l'entreprise",
+    "location": "Localisation",
+    "contractType": "CDI/CDD/Stage",
+    "workMode": "Remote/Hybride/Presentielle",
+    "technologies": ["PHP", "Laravel"],
+    "description": "Description du poste",
+    "requirements": "Pre-requis",
+    "experience": "Junior/Mid/Senior",
+    "source": "LinkedIn",
+    "sourceUrl": "https://...",
+    "applicationEmail": "email@example.com ou vide",
+    "applicationUrl": "https://... ou vide",
+    "applicationType": "EMAIL/WEB_FORM/LINKEDIN",
+    "postedTime": "Il y a 2 jours",
+    "salary": "20000-30000 MAD/an ou vide"
+  }
+]
+
+
+========================================
+COMMANDES UtILES
+========================================
+
+Phase 1 (Recherche):
+- node scripts/deep-research/research-orchestrator.js --cv "data/cv/CV.pdf" --request "Backend Laravel Maroc"
+- node scripts/deep-research/research-orchestrator.js --process
+
+Phase 2 (Candidature):
+- node scripts/workflow/orchestrator.js --excel "data/research/deep_research_results.xlsx" --cv "data/cv/CV.pdf"
