@@ -10,6 +10,7 @@ const log = pino({ level: process.env.LOG_LEVEL || 'info' });
 
 async function runResearch(options = {}) {
   const {
+    page,
     keywords = 'Développeur Backend',
     location = 'Maroc',
     sites = ['linkedin'],
@@ -17,6 +18,10 @@ async function runResearch(options = {}) {
     searchGroups = false,
     outputPath = null
   } = options;
+
+  if (!page) {
+    throw new Error('Un objet page (Puppeteer/Playwright) est requis. Fournissez options.page.');
+  }
 
   console.log('========================================');
   console.log('  RECHERCHE D\'OFFRES D\'EMPLOI');
@@ -30,7 +35,7 @@ async function runResearch(options = {}) {
   if (sites.includes('linkedin')) {
     console.log('1. Recherche sur LinkedIn...');
     try {
-      const linkedinJobs = await browseLinkedIn(null, keywords, location);
+      const linkedinJobs = await browseLinkedIn(page, keywords, location);
       allJobs.push(...linkedinJobs);
       console.log(`   ${linkedinJobs.length} offres trouvées\n`);
     } catch (err) {
@@ -40,7 +45,7 @@ async function runResearch(options = {}) {
     if (searchGroups) {
       console.log('2. Recherche dans les groupes LinkedIn...');
       try {
-        const groups = await browseLinkedInGroups(null, keywords);
+        const groups = await browseLinkedInGroups(page, keywords);
         console.log(`   ${groups.length} groupes trouvés\n`);
       } catch (err) {
         console.error(`   Erreur groupes: ${err.message}\n`);

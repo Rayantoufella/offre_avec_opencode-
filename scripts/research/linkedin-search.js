@@ -1,5 +1,6 @@
 import pino from 'pino';
-import { QUERIES, FEED_KEYWORDS, getQueriesForProfile, getRecruiterSearches } from './linkedin-queries.js';
+import { QUERIES, getQueriesForProfile, getRecruiterSearches } from './linkedin-queries.js';
+import { FEED_KEYWORDS } from '../shared/constants.js';
 
 const log = pino({ level: process.env.LOG_LEVEL || 'info' });
 
@@ -318,36 +319,10 @@ function extractJobTitleFromPost(text) {
   return lines[0]?.substring(0, 100) || '';
 }
 
-function deduplicateJobs(jobs) {
-  const seen = new Set();
-  const unique = [];
-
-  for (const job of jobs) {
-    const key = `${(job.title || '').toLowerCase()}|${(job.company || '').toLowerCase()}|${(job.link || '').substring(0, 50)}`;
-    if (!seen.has(key)) {
-      seen.add(key);
-      unique.push(job);
-    }
-  }
-
-  log.info({ before: jobs.length, after: unique.length }, 'Déduplication jobs');
-  return unique;
-}
-
-function prioritizeJobs(jobs) {
-  const withEmail = jobs.filter(j => j.applicationEmail);
-  const withLink = jobs.filter(j => !j.applicationEmail && j.link);
-  const others = jobs.filter(j => !j.applicationEmail && !j.link);
-
-  const prioritized = [...withEmail, ...withLink, ...others];
-  log.info({ withEmail: withEmail.length, withLink: withLink.length, others: others.length }, 'Priorisation jobs');
-  return prioritized;
-}
-
 export {
   SITE_CONFIG,
   searchJobs, extractJobFromCard, extractJobDetails, scrollAndLoad,
   searchPeople, scrollFeed, scrollGroupMessages,
   extractEmailFromProfile, findRecruiterEmail,
-  searchAll, deduplicateJobs, prioritizeJobs, extractJobTitleFromPost
+  searchAll, extractJobTitleFromPost
 };

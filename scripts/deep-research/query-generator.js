@@ -1,32 +1,13 @@
 ﻿import pino from 'pino';
+import { LOCATION_VARIANTS, CONTRACT_KEYWORDS, SENIORITY_KEYWORDS } from '../shared/constants.js';
 
 const log = pino({ level: process.env.LOG_LEVEL || 'info' });
 
-const SENIORITY_VARIATIONS = {
-  'Junior': ['Junior', 'Entry Level', 'Junior Developer', 'Junior Engineer', 'Debutant'],
-  'Mid': ['Mid-Level', 'Intermediate', 'Experienced', 'Confirme'],
-  'Senior': ['Senior', 'Expert', 'Lead', 'Principal', 'Staff'],
-  'Lead': ['Lead', 'Tech Lead', 'Team Lead', 'Manager', 'Responsable']
-};
+const SENIORITY_VARIATIONS = SENIORITY_KEYWORDS;
 
-const CONTRACT_VARIATIONS = {
-  'CDI': ['CDI', 'Full-Time', 'Permanent', 'Temps plein'],
-  'CDD': ['CDD', 'Contract', 'Temporary', 'Temporaire'],
-  'Stage': ['Stage', 'Intern', 'Internship', 'Stagiare'],
-  'Alternance': ['Alternance', 'Apprentissage', 'Apprentice', 'Work-Study'],
-  'Freelance': ['Freelance', 'Independent', 'Consultant', 'Contractor']
-};
+const CONTRACT_VARIATIONS = CONTRACT_KEYWORDS;
 
-const LOCATION_SYNONYMS = {
-  'Casablanca': ['Casa', 'Casablanca', 'Grand Casablanca'],
-  'Rabat': ['Rabat', 'Sale', 'Temara'],
-  'Marrakech': ['Marrakech', 'Marrakesh'],
-  'Agadir': ['Agadir', 'Inezgane'],
-  'Tangier': ['Tanger', 'Tangier', 'Tangiers'],
-  'Fes': ['Fes', 'Fez'],
-  'Maroc': ['Morocco', 'Maroc', 'MA'],
-  'Remote': ['Remote', 'Teletravail', 'Distanciel', 'Work from home', 'WFH', 'Anywhere']
-};
+const LOCATION_SYNONYMS = LOCATION_VARIANTS;
 
 function generateSearchQueries(plan) {
   const queries = [];
@@ -133,4 +114,7 @@ function generateCompanySearchQueries(profile, companies = []) {
   return queries;
 }
 
-export { generateSearchQueries, generateLinkedInQueries, generateIndeedQueries, generateCompanySearchQueries, SENIORITY_VARIATIONS, CONTRACT_VARIATIONS, LOCATION_SYNONYMS };
+export {
+  generateSearchQueries, generateLinkedInQueries, generateIndeedQueries, generateCompanySearchQueries,
+  SENIORITY_VARIATIONS, CONTRACT_VARIATIONS, LOCATION_SYNONYMS
+};

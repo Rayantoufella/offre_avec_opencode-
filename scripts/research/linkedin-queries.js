@@ -1,4 +1,5 @@
 import pino from 'pino';
+import { LOCATION_VARIANTS, CONTRACT_KEYWORDS, FEED_KEYWORDS, RECRUITER_ROLES, getContractKeywords as getContractKeywordsFromConstants } from '../shared/constants.js';
 
 const log = pino({ level: process.env.LOG_LEVEL || 'info' });
 
@@ -60,48 +61,6 @@ const QUERIES = {
   ]
 };
 
-const RECRUITER_SEARCHES = [
-  'Talent Acquisition',
-  'IT Recruiter',
-  'Hiring Manager',
-  'Recruteur IT',
-  'Responsable RH',
-  'HR Manager',
-  'IT Talent Acquisition'
-];
-
-const FEED_KEYWORDS = [
-  'on recrute',
-  'nous recrutons',
-  'rejoignez-nous',
-  'poste a pourvoir',
-  'offre d\'emploi',
-  'we are hiring',
-  'job opening',
-  'rejoindre notre equipe',
-  'nous cherchons',
-  'a pourvoir immediatement'
-];
-
-const LOCATION_VARIANTS = {
-  'Casablanca': ['Casablanca', 'Casablanca-Settat'],
-  'Rabat': ['Rabat', 'Rabat-Sale-Kenitra'],
-  'Marrakech': ['Marrakech', 'Marrakech-Safi'],
-  'Agadir': ['Agadir', 'Souss-Massa'],
-  'Tanger': ['Tanger', 'Tanger-Tetouan-Al Hoceima'],
-  'Fes': ['Fes', 'Fes-Meknes'],
-  'Maroc': ['Maroc', 'Morocco', 'All Morocco'],
-  'Remote': ['Remote', 'Teletravail', 'Distanciel', 'Anywhere']
-};
-
-const CONTRACT_KEYWORDS = {
-  'CDI': ['cdi', 'permanent', 'full-time', 'temps plein'],
-  'CDD': ['cdd', 'temporary', 'temporaire', 'contract'],
-  'Stage': ['stage', 'intern', 'internship', 'stagiare', 'pfe', 'pfm'],
-  'Alternance': ['alternance', 'apprentissage', 'apprentice', 'work-study'],
-  'Freelance': ['freelance', 'independant', 'consultant', 'auto-entrepreneur']
-};
-
 function getQueriesForProfile(profile) {
   const queries = [];
 
@@ -136,7 +95,7 @@ function getQueriesForProfile(profile) {
 }
 
 function getRecruiterSearches(company) {
-  return RECRUITER_SEARCHES.map(role => `${role} ${company}`);
+  return RECRUITER_ROLES.map(role => `${role} ${company}`);
 }
 
 function getFeedKeywords() {
@@ -144,17 +103,14 @@ function getFeedKeywords() {
 }
 
 function getContractKeywords(contractType) {
-  const type = (contractType || '').toLowerCase();
-  for (const [key, keywords] of Object.entries(CONTRACT_KEYWORDS)) {
-    if (keywords.some(kw => type.includes(kw))) {
-      return keywords;
-    }
-  }
-  return CONTRACT_KEYWORDS['CDI'];
+  return getContractKeywordsFromConstants(contractType);
+}
+
+function getLocationsForCity(city) {
+  return LOCATION_VARIANTS[city] || [city];
 }
 
 export {
-  QUERIES, RECRUITER_SEARCHES, FEED_KEYWORDS,
-  LOCATION_VARIANTS, CONTRACT_KEYWORDS,
-  getQueriesForProfile, getRecruiterSearches, getFeedKeywords, getContractKeywords
+  QUERIES, FEED_KEYWORDS, LOCATION_VARIANTS, CONTRACT_KEYWORDS,
+  getQueriesForProfile, getRecruiterSearches, getFeedKeywords, getContractKeywords, getLocationsForCity
 };
