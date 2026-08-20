@@ -7,5 +7,5 @@ Lance la recherche d'offres d'emploi avec les paramètres suivants :
 5. Générez un fichier Excel avec les résultats
 6. Présentez le rapport final
 
-Le fichier Excel sera créé dans data/offres_recherche.xlsx avec les colonnes :
+Le fichier Excel sera créé dans data/research/deep_research_results.xlsx avec les colonnes :
 - N°, Entreprise, Poste, Lieu, Contrat, Date publication, Email, Technologies, STATUT, Source, Lien

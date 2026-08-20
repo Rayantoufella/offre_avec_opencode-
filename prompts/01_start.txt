@@ -1,12 +1,7 @@
-Bienvenue dans le systeme d'automatisation des candidatures.
+CE PROMPT EST DEPRECATED.
+Utilisez prompts/00_greeting.txt comme point d'entree unifie.
 
-Pour commencer, j'ai besoin de deux fichiers :
-
-1. Le chemin du fichier Excel contenant les offres d'emploi
-2. Le chemin du CV au format PDF
-
-Donnez-moi ces deux chemins et je vais configurer automatiquement le systeme.
-
-Exemple :
-- Excel : C:\Users\...\offres.xlsx
-- CV : C:\Users\...\Cv.pdf
+Le guide conversationnel (00_greeting.txt) gere automatiquement :
+- La collecte des chemins Excel et CV
+- La configuration du .env
+- Le branchement par intention

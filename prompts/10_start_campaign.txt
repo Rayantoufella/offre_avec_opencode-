@@ -29,9 +29,10 @@ Pour CHAQUE offre du fichier, fais ceci :
 
 7. Si DRY_RUN=true (defaut) : STOP pour cette offre. Passe a la suivante.
 
-8. Si DRY_RUN=false : Clique sur le bouton Envoyer :
-   - Cherche le bouton "Send" ou "Envoyer" dans le snapshot
-   - Utilise browsermcp_browser_click avec le ref du bouton
+8. Si DRY_RUN=false : Envoie avec Ctrl+Enter :
+   - Utilise browsermcp_browser_type avec le ref du bouton "Send" et la touche Enter
+   - OU utilise browsermcp_browser_keyboard pour envoyer Ctrl+Enter
+   - IMPORTANT : Ne clique JAMAIS directement sur le bouton (timeout possible)
 
 9. Attends 3 secondes avant de passer a l'offre suivante :
    browsermcp_browser_wait time=3

@@ -1,14 +1,5 @@
-Verification finale avant le lancement de la campagne.
+CE PROMPT EST DEPRECATED.
+Utilisez prompts/00_greeting.txt comme point d'entree unifie.
 
-Avant de continuer, verifie :
-1. Le CV est valide (node scripts/validation/cv-validator.js CHEMIN_CV)
-2. Le serveur upload est actif (powershell -Command "Invoke-RestMethod -Uri 'http://localhost:9011/status'")
-3. L'extension Chrome est connectee (extensionConnected: true dans le status)
-4. Gmail est accessible (browsermcp_browser_navigate vers https://mail.google.com/mail/u/0/)
-
-Si tout est OK, resume le plan :
-- Nombre d'offres a traiter
-- Mode (dry-run ou envoi reel)
-- Prochaine etape
-
-Si un probleme est detecte, explique comment le resoudre.
+La verification finale est geree automatiquement par le portail de securite
+du guide conversationnel (ETAPE 3) avant chaque workflow.

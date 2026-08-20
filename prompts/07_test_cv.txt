@@ -1,14 +1,5 @@
-Verification que le CV est valide et pret pour l'attachement.
+CE PROMPT EST DEPRECATED.
+Utilisez prompts/00_greeting.txt comme point d'entree unifie.
 
-Lance la verification en executant la commande :
-node scripts/validation/cv-validator.js <chemin_du_cv>
-
-Le systeme verifie :
-- Fichier present
-- Extension PDF
-- Fichier lisible
-- Taille raisonnable (< 10 Mo)
-- Chemin valide
-
-Si le CV n'est pas valide, explique clairement a l'utilisateur quoi faire.
-Si le CV est valide, confirme et continue.
+La verification du CV est geree automatiquement par le guide conversationnel
+dans la branche Configuration (option 3) et avant chaque workflow.
