@@ -85,6 +85,9 @@
   ],
   "localisation": "Casablanca",
   "preferences": {
+    "workMode": "Remote",
+    "contract": "CDI",
+    "seniority": "Junior",
     "location": "Maroc"
   },
   "targetRoles": [

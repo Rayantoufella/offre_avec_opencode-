@@ -1,116 +1,102 @@
 {
   "matched": [
     {
-      "title": "Backend PHP Developer",
-      "company": "TechCorp",
-      "location": "Casablanca",
-      "contractType": "CDI",
+      "title": "Frontend Web Developer - HTML, CSS (Remote)",
+      "company": "Quik Hire Staffing",
+      "location": "Remote (Europe, Middle East & Africa)",
+      "contractType": "",
       "workMode": "",
-      "technologies": [
-        "PHP",
-        "Laravel",
-        "MySQL",
-        "Docker"
-      ],
+      "technologies": [],
       "experience": "",
-      "description": "Nous recherchons un developpeur Backend PHP Laravel avec experience sur MySQL et Docker",
+      "description": "Frontend web developer with HTML and CSS skills. Remote position.",
       "requirements": "",
-      "source": "LinkedIn",
-      "sourceUrl": "",
+      "source": "linkedin",
+      "sourceUrl": "https://www.linkedin.com/jobs/view/4456473106",
       "applicationUrl": "",
       "applicationType": "LINKEDIN",
       "applicationEmail": "",
-      "dateFound": "2026-08-18T18:20:02.326Z",
+      "dateFound": "2026-08-20T13:23:51.975Z",
       "jobStatus": "UNKNOWN",
       "salary": "",
       "postedTime": "",
       "companyUrl": "",
       "rawData": {
-        "title": "Backend PHP Developer",
-        "company": "TechCorp",
-        "location": "Casablanca",
-        "contractType": "CDI",
-        "technologies": [
-          "PHP",
-          "Laravel",
-          "MySQL"
-        ],
-        "description": "Nous recherchons un developpeur Backend PHP Laravel avec experience sur MySQL et Docker",
-        "source": "LinkedIn",
-        "sourceUrl": "https://linkedin.com/jobs/123",
-        "applicationEmail": "",
-        "applicationType": "LINKEDIN"
+        "title": "Frontend Web Developer - HTML, CSS (Remote)",
+        "company": "Quik Hire Staffing",
+        "location": "Remote (Europe, Middle East & Africa)",
+        "url": "https://www.linkedin.com/jobs/view/4456473106",
+        "source": "linkedin",
+        "datePosted": "2026-08-20",
+        "contract": "Remote",
+        "description": "Frontend web developer with HTML and CSS skills. Remote position."
       },
-      "matchScore": 80,
-      "matchLabel": "Tres bon",
-      "matchEmoji": "★★☆",
+      "matchScore": 54,
+      "matchLabel": "Moyen",
+      "matchEmoji": "★☆☆",
       "matchReasons": [
-        "Certaines competences correspondantes",
-        "Stack technique tres compatible",
-        "Localisation ideale",
-        "Technologies matching: PHP, Laravel, MySQL"
+        "Peu de competences correspondantes",
+        "Stack technique partiellement compatible",
+        "Localisation ideale"
       ],
+      "missingSkills": [],
       "matchDetails": {
-        "skills": 60,
-        "technologies": 100,
+        "skills": 30,
+        "technologies": 50,
         "experience": 80,
-        "location": 100,
+        "location": 90,
         "contract": 70,
         "workMode": 70
       }
     },
     {
-      "title": "Laravel Developer",
-      "company": "WebInc",
-      "location": "Rabat",
-      "contractType": "CDI",
+      "title": "Développeur Full Stack Node JS/Vue JS",
+      "company": "SQLI",
+      "location": "Oujda, Maroc (À distance)",
+      "contractType": "",
       "workMode": "",
       "technologies": [
-        "PHP",
-        "Laravel",
-        "Vue.js"
+        "Vue.js",
+        "Node.js"
       ],
       "experience": "",
-      "description": "Developer Laravel pour projet e-commerce",
+      "description": "Développeur Full Stack avec Node.js et Vue.js. Candidature simplifiée disponible.",
       "requirements": "",
-      "source": "Indeed",
-      "sourceUrl": "",
+      "source": "linkedin",
+      "sourceUrl": "https://www.linkedin.com/jobs/view/4341041659",
       "applicationUrl": "",
-      "applicationType": "EMAIL",
-      "applicationEmail": "hr@webinc.com",
-      "dateFound": "2026-08-18T18:20:02.328Z",
+      "applicationType": "LINKEDIN",
+      "applicationEmail": "",
+      "dateFound": "2026-08-20T13:23:51.975Z",
       "jobStatus": "UNKNOWN",
       "salary": "",
       "postedTime": "",
       "companyUrl": "",
       "rawData": {
-        "title": "Laravel Developer",
-        "company": "WebInc",
-        "location": "Rabat",
-        "contractType": "CDI",
-        "technologies": [
-          "PHP",
-          "Laravel",
-          "Vue.js"
-        ],
-        "description": "Developer Laravel pour projet e-commerce",
-        "source": "Indeed",
-        "sourceUrl": "https://indeed.com/jobs/456",
-        "applicationEmail": "hr@webinc.com",
-        "applicationType": "EMAIL"
+        "title": "Développeur Full Stack Node JS/Vue JS",
+        "company": "SQLI",
+        "location": "Oujda, Maroc (À distance)",
+        "url": "https://www.linkedin.com/jobs/view/4341041659",
+        "source": "linkedin",
+        "datePosted": "2026-08-15",
+        "contract": "CDI",
+        "description": "Développeur Full Stack avec Node.js et Vue.js. Candidature simplifiée disponible."
       },
-      "matchScore": 59,
+      "matchScore": 51,
       "matchLabel": "Moyen",
       "matchEmoji": "★☆☆",
       "matchReasons": [
         "Peu de competences correspondantes",
-        "Stack technique tres compatible",
+        "Stack technique partiellement compatible",
         "Localisation eloignee",
-        "Technologies matching: PHP, Laravel, Vue.js"
+        "Technologies matching: Vue.js",
+        "Localisation: Oujda, Maroc (À distance) (vous cherchez: Casablanca)"
+      ],
+      "missingSkills": [
+        "Node.js"
       ],
       "matchDetails": {
-        "skills": 20,
-        "technologies": 100,
+        "skills": 40,
+        "technologies": 50,
         "experience": 80,
         "location": 30,
         "contract": 70,
@@ -118,53 +104,903 @@
       }
     },
     {
-      "title": "Frontend React Developer",
-      "company": "StartupX",
-      "location": "Remote",
-      "contractType": "Freelance",
+      "title": "Software Engineer",
+      "company": "Conquer AI",
+      "location": "Remote (North Africa)",
+      "contractType": "",
       "workMode": "",
-      "technologies": [
-        "React",
-        "TypeScript",
-        "Node.js"
-      ],
+      "technologies": [],
       "experience": "",
-      "description": "React developer for international project",
+      "description": "Software Engineer at Conquer AI. Remote position for North Africa.",
       "requirements": "",
-      "source": "LinkedIn",
-      "sourceUrl": "",
+      "source": "linkedin",
+      "sourceUrl": "https://www.linkedin.com/jobs/view/4453889271",
       "applicationUrl": "",
       "applicationType": "LINKEDIN",
       "applicationEmail": "",
-      "dateFound": "2026-08-18T18:20:02.328Z",
+      "dateFound": "2026-08-20T13:23:51.975Z",
       "jobStatus": "UNKNOWN",
       "salary": "",
       "postedTime": "",
       "companyUrl": "",
       "rawData": {
-        "title": "Frontend React Developer",
-        "company": "StartupX",
-        "location": "Remote",
-        "contractType": "Freelance",
-        "technologies": [
-          "React",
-          "TypeScript",
-          "Node.js"
-        ],
-        "description": "React developer for international project",
-        "source": "LinkedIn",
-        "sourceUrl": "https://linkedin.com/jobs/101"
+        "title": "Software Engineer",
+        "company": "Conquer AI",
+        "location": "Remote (North Africa)",
+        "url": "https://www.linkedin.com/jobs/view/4453889271",
+        "source": "linkedin",
+        "datePosted": "2026-08-20",
+        "contract": "Remote",
+        "description": "Software Engineer at Conquer AI. Remote position for North Africa."
       },
-      "matchScore": 35,
+      "matchScore": 50,
+      "matchLabel": "Moyen",
+      "matchEmoji": "★☆☆",
+      "matchReasons": [
+        "Peu de competences correspondantes",
+        "Stack technique partiellement compatible",
+        "Localisation ideale"
+      ],
+      "missingSkills": [],
+      "matchDetails": {
+        "skills": 20,
+        "technologies": 50,
+        "experience": 80,
+        "location": 90,
+        "contract": 70,
+        "workMode": 70
+      }
+    },
+    {
+      "title": "Développeur senior",
+      "company": "Kazacube",
+      "location": "Casablanca, Maroc (Hybride)",
+      "contractType": "",
+      "workMode": "",
+      "technologies": [],
+      "experience": "",
+      "description": "Développeur senior pour projets hybrides à Casablanca.",
+      "requirements": "",
+      "source": "linkedin",
+      "sourceUrl": "https://www.linkedin.com/jobs/view/4454028605",
+      "applicationUrl": "",
+      "applicationType": "LINKEDIN",
+      "applicationEmail": "",
+      "dateFound": "2026-08-20T13:23:51.974Z",
+      "jobStatus": "UNKNOWN",
+      "salary": "",
+      "postedTime": "",
+      "companyUrl": "",
+      "rawData": {
+        "title": "Développeur senior",
+        "company": "Kazacube",
+        "location": "Casablanca, Maroc (Hybride)",
+        "url": "https://www.linkedin.com/jobs/view/4454028605",
+        "source": "linkedin",
+        "datePosted": "2026-08-17",
+        "contract": "CDI",
+        "description": "Développeur senior pour projets hybrides à Casablanca."
+      },
+      "matchScore": 48,
+      "matchLabel": "Faible",
+      "matchEmoji": "☆☆☆",
+      "matchReasons": [
+        "Peu de competences correspondantes",
+        "Stack technique partiellement compatible",
+        "Localisation ideale"
+      ],
+      "missingSkills": [],
+      "matchDetails": {
+        "skills": 10,
+        "technologies": 50,
+        "experience": 80,
+        "location": 100,
+        "contract": 70,
+        "workMode": 70
+      }
+    },
+    {
+      "title": "Développeur (H/F)",
+      "company": "Saham Bank",
+      "location": "Casablanca, Maroc (Sur site)",
+      "contractType": "",
+      "workMode": "",
+      "technologies": [],
+      "experience": "",
+      "description": "Développeur pour Saham Bank à Casablanca. Candidature simplifiée.",
+      "requirements": "",
+      "source": "linkedin",
+      "sourceUrl": "https://www.linkedin.com/jobs/view/4453416435",
+      "applicationUrl": "",
+      "applicationType": "LINKEDIN",
+      "applicationEmail": "",
+      "dateFound": "2026-08-20T13:23:51.975Z",
+      "jobStatus": "UNKNOWN",
+      "salary": "",
+      "postedTime": "",
+      "companyUrl": "",
+      "rawData": {
+        "title": "Développeur (H/F)",
+        "company": "Saham Bank",
+        "location": "Casablanca, Maroc (Sur site)",
+        "url": "https://www.linkedin.com/jobs/view/4453416435",
+        "source": "linkedin",
+        "datePosted": "2026-08-16",
+        "contract": "CDI",
+        "description": "Développeur pour Saham Bank à Casablanca. Candidature simplifiée."
+      },
+      "matchScore": 48,
+      "matchLabel": "Faible",
+      "matchEmoji": "☆☆☆",
+      "matchReasons": [
+        "Peu de competences correspondantes",
+        "Stack technique partiellement compatible",
+        "Localisation ideale"
+      ],
+      "missingSkills": [],
+      "matchDetails": {
+        "skills": 10,
+        "technologies": 50,
+        "experience": 80,
+        "location": 100,
+        "contract": 70,
+        "workMode": 70
+      }
+    },
+    {
+      "title": "Data Engineer (F/H)",
+      "company": "Sofrecom Maroc",
+      "location": "Casablanca, Maroc (Sur site)",
+      "contractType": "",
+      "workMode": "",
+      "technologies": [],
+      "experience": "",
+      "description": "Data Engineer chez Sofrecom Maroc à Casablanca.",
+      "requirements": "",
+      "source": "linkedin",
+      "sourceUrl": "https://www.linkedin.com/jobs/view/4455274187",
+      "applicationUrl": "",
+      "applicationType": "LINKEDIN",
+      "applicationEmail": "",
+      "dateFound": "2026-08-20T13:23:51.975Z",
+      "jobStatus": "UNKNOWN",
+      "salary": "",
+      "postedTime": "",
+      "companyUrl": "",
+      "rawData": {
+        "title": "Data Engineer (F/H)",
+        "company": "Sofrecom Maroc",
+        "location": "Casablanca, Maroc (Sur site)",
+        "url": "https://www.linkedin.com/jobs/view/4455274187",
+        "source": "linkedin",
+        "datePosted": "2026-08-18",
+        "contract": "CDI",
+        "description": "Data Engineer chez Sofrecom Maroc à Casablanca."
+      },
+      "matchScore": 48,
+      "matchLabel": "Faible",
+      "matchEmoji": "☆☆☆",
+      "matchReasons": [
+        "Peu de competences correspondantes",
+        "Stack technique partiellement compatible",
+        "Localisation ideale"
+      ],
+      "missingSkills": [],
+      "matchDetails": {
+        "skills": 10,
+        "technologies": 50,
+        "experience": 80,
+        "location": 100,
+        "contract": 70,
+        "workMode": 70
+      }
+    },
+    {
+      "title": "Full Stack Engineer",
+      "company": "micro1",
+      "location": "Remote (Middle East & North Africa)",
+      "contractType": "",
+      "workMode": "",
+      "technologies": [],
+      "experience": "",
+      "description": "Full Stack Engineer position at micro1, remote.",
+      "requirements": "",
+      "source": "linkedin",
+      "sourceUrl": "https://www.linkedin.com/jobs/view/4456307945",
+      "applicationUrl": "",
+      "applicationType": "LINKEDIN",
+      "applicationEmail": "",
+      "dateFound": "2026-08-20T13:23:51.975Z",
+      "jobStatus": "UNKNOWN",
+      "salary": "",
+      "postedTime": "",
+      "companyUrl": "",
+      "rawData": {
+        "title": "Full Stack Engineer",
+        "company": "micro1",
+        "location": "Remote (Middle East & North Africa)",
+        "url": "https://www.linkedin.com/jobs/view/4456307945",
+        "source": "linkedin",
+        "datePosted": "2026-08-20",
+        "contract": "Full-time",
+        "description": "Full Stack Engineer position at micro1, remote."
+      },
+      "matchScore": 47,
+      "matchLabel": "Faible",
+      "matchEmoji": "☆☆☆",
+      "matchReasons": [
+        "Peu de competences correspondantes",
+        "Stack technique partiellement compatible",
+        "Localisation ideale"
+      ],
+      "missingSkills": [],
+      "matchDetails": {
+        "skills": 10,
+        "technologies": 50,
+        "experience": 80,
+        "location": 90,
+        "contract": 70,
+        "workMode": 70
+      }
+    },
+    {
+      "title": "Software Engineer - Backend (Remote)",
+      "company": "Quik Hire Staffing",
+      "location": "Remote (Europe, Middle East & Africa)",
+      "contractType": "",
+      "workMode": "",
+      "technologies": [],
+      "experience": "",
+      "description": "Backend Software Engineer remote position.",
+      "requirements": "",
+      "source": "linkedin",
+      "sourceUrl": "https://www.linkedin.com/jobs/view/4456459287",
+      "applicationUrl": "",
+      "applicationType": "LINKEDIN",
+      "applicationEmail": "",
+      "dateFound": "2026-08-20T13:23:51.975Z",
+      "jobStatus": "UNKNOWN",
+      "salary": "",
+      "postedTime": "",
+      "companyUrl": "",
+      "rawData": {
+        "title": "Software Engineer - Backend (Remote)",
+        "company": "Quik Hire Staffing",
+        "location": "Remote (Europe, Middle East & Africa)",
+        "url": "https://www.linkedin.com/jobs/view/4456459287",
+        "source": "linkedin",
+        "datePosted": "2026-08-20",
+        "contract": "Remote",
+        "description": "Backend Software Engineer remote position."
+      },
+      "matchScore": 47,
+      "matchLabel": "Faible",
+      "matchEmoji": "☆☆☆",
+      "matchReasons": [
+        "Peu de competences correspondantes",
+        "Stack technique partiellement compatible",
+        "Localisation ideale"
+      ],
+      "missingSkills": [],
+      "matchDetails": {
+        "skills": 10,
+        "technologies": 50,
+        "experience": 80,
+        "location": 90,
+        "contract": 70,
+        "workMode": 70
+      }
+    },
+    {
+      "title": "Software Engineer, Internal Platforms",
+      "company": "micro1",
+      "location": "Remote (Europe, Middle East & Africa)",
+      "contractType": "",
+      "workMode": "",
+      "technologies": [
+        "TypeScript",
+        "React",
+        "Node.js",
+        "PostgreSQL",
+        "AWS"
+      ],
+      "experience": "",
+      "description": "Fullstack role building internal platform systems. TypeScript, Node.js (NestJS), React, PostgreSQL, AWS. Salary: $120,000-$155,000 USD.",
+      "requirements": "",
+      "source": "linkedin",
+      "sourceUrl": "https://www.linkedin.com/jobs/view/4455596295",
+      "applicationUrl": "",
+      "applicationType": "LINKEDIN",
+      "applicationEmail": "",
+      "dateFound": "2026-08-20T13:23:51.973Z",
+      "jobStatus": "UNKNOWN",
+      "salary": "",
+      "postedTime": "",
+      "companyUrl": "",
+      "rawData": {
+        "title": "Software Engineer, Internal Platforms",
+        "company": "micro1",
+        "location": "Remote (Europe, Middle East & Africa)",
+        "url": "https://www.linkedin.com/jobs/view/4455596295",
+        "source": "linkedin",
+        "datePosted": "2026-08-18",
+        "contract": "Full-time",
+        "description": "Fullstack role building internal platform systems. TypeScript, Node.js (NestJS), React, PostgreSQL, AWS. Salary: $120,000-$155,000 USD."
+      },
+      "matchScore": 42,
       "matchLabel": "Faible",
       "matchEmoji": "☆☆☆",
       "matchReasons": [
         "Peu de competences correspondantes",
         "Localisation ideale",
-        "Technologies matching: React, TypeScript"
+        "Technologies matching: TypeScript, React, PostgreSQL"
+      ],
+      "missingSkills": [
+        "Node.js"
+      ],
+      "matchDetails": {
+        "skills": 40,
+        "technologies": 0,
+        "experience": 80,
+        "location": 90,
+        "contract": 70,
+        "workMode": 70
+      }
+    },
+    {
+      "title": "Développeur IT",
+      "company": "TotalEnergies",
+      "location": "Maroc (Sur site)",
+      "contractType": "",
+      "workMode": "",
+      "technologies": [],
+      "experience": "",
+      "description": "Développeur IT pour TotalEnergies au Maroc. Poste sur site.",
+      "requirements": "",
+      "source": "linkedin",
+      "sourceUrl": "https://www.linkedin.com/jobs/view/4445712167",
+      "applicationUrl": "",
+      "applicationType": "LINKEDIN",
+      "applicationEmail": "",
+      "dateFound": "2026-08-20T13:23:51.975Z",
+      "jobStatus": "UNKNOWN",
+      "salary": "",
+      "postedTime": "",
+      "companyUrl": "",
+      "rawData": {
+        "title": "Développeur IT",
+        "company": "TotalEnergies",
+        "location": "Maroc (Sur site)",
+        "url": "https://www.linkedin.com/jobs/view/4445712167",
+        "source": "linkedin",
+        "datePosted": "2026-08-10",
+        "contract": "CDI",
+        "description": "Développeur IT pour TotalEnergies au Maroc. Poste sur site."
+      },
+      "matchScore": 41,
+      "matchLabel": "Faible",
+      "matchEmoji": "☆☆☆",
+      "matchReasons": [
+        "Peu de competences correspondantes",
+        "Stack technique partiellement compatible",
+        "Localisation eloignee",
+        "Localisation: Maroc (Sur site) (vous cherchez: Casablanca)"
+      ],
+      "missingSkills": [],
+      "matchDetails": {
+        "skills": 10,
+        "technologies": 50,
+        "experience": 80,
+        "location": 30,
+        "contract": 70,
+        "workMode": 70
+      }
+    },
+    {
+      "title": "Data Engineer",
+      "company": "DXC Technology Morocco",
+      "location": "Rabat, Maroc (Hybride)",
+      "contractType": "",
+      "workMode": "",
+      "technologies": [],
+      "experience": "",
+      "description": "Data Engineer chez DXC Technology à Rabat. Mode hybride.",
+      "requirements": "",
+      "source": "linkedin",
+      "sourceUrl": "https://www.linkedin.com/jobs/view/4455771114",
+      "applicationUrl": "",
+      "applicationType": "LINKEDIN",
+      "applicationEmail": "",
+      "dateFound": "2026-08-20T13:23:51.975Z",
+      "jobStatus": "UNKNOWN",
+      "salary": "",
+      "postedTime": "",
+      "companyUrl": "",
+      "rawData": {
+        "title": "Data Engineer",
+        "company": "DXC Technology Morocco",
+        "location": "Rabat, Maroc (Hybride)",
+        "url": "https://www.linkedin.com/jobs/view/4455771114",
+        "source": "linkedin",
+        "datePosted": "2026-08-19",
+        "contract": "CDI",
+        "description": "Data Engineer chez DXC Technology à Rabat. Mode hybride."
+      },
+      "matchScore": 41,
+      "matchLabel": "Faible",
+      "matchEmoji": "☆☆☆",
+      "matchReasons": [
+        "Peu de competences correspondantes",
+        "Stack technique partiellement compatible",
+        "Localisation eloignee",
+        "Localisation: Rabat, Maroc (Hybride) (vous cherchez: Casablanca)"
+      ],
+      "missingSkills": [],
+      "matchDetails": {
+        "skills": 10,
+        "technologies": 50,
+        "experience": 80,
+        "location": 30,
+        "contract": 70,
+        "workMode": 70
+      }
+    },
+    {
+      "title": "Développeur Senior .NET",
+      "company": "Devoteam",
+      "location": "Skhirate, Maroc (Sur site)",
+      "contractType": "",
+      "workMode": "",
+      "technologies": [],
+      "experience": "",
+      "description": "Développeur Senior .NET chez Devoteam à Skhirate.",
+      "requirements": "",
+      "source": "linkedin",
+      "sourceUrl": "https://www.linkedin.com/jobs/view/4318729105",
+      "applicationUrl": "",
+      "applicationType": "LINKEDIN",
+      "applicationEmail": "",
+      "dateFound": "2026-08-20T13:23:51.975Z",
+      "jobStatus": "UNKNOWN",
+      "salary": "",
+      "postedTime": "",
+      "companyUrl": "",
+      "rawData": {
+        "title": "Développeur Senior .NET",
+        "company": "Devoteam",
+        "location": "Skhirate, Maroc (Sur site)",
+        "url": "https://www.linkedin.com/jobs/view/4318729105",
+        "source": "linkedin",
+        "datePosted": "2026-08-01",
+        "contract": "CDI",
+        "description": "Développeur Senior .NET chez Devoteam à Skhirate."
+      },
+      "matchScore": 41,
+      "matchLabel": "Faible",
+      "matchEmoji": "☆☆☆",
+      "matchReasons": [
+        "Peu de competences correspondantes",
+        "Stack technique partiellement compatible",
+        "Localisation eloignee",
+        "Localisation: Skhirate, Maroc (Sur site) (vous cherchez: Casablanca)"
+      ],
+      "missingSkills": [],
+      "matchDetails": {
+        "skills": 10,
+        "technologies": 50,
+        "experience": 80,
+        "location": 30,
+        "contract": 70,
+        "workMode": 70
+      }
+    },
+    {
+      "title": "JavaScript Frontend Developer (Remote)",
+      "company": "Hire Feed",
+      "location": "Remote (Europe, Middle East & Africa)",
+      "contractType": "",
+      "workMode": "",
+      "technologies": [
+        "JavaScript",
+        "Java"
+      ],
+      "experience": "",
+      "description": "JavaScript Frontend Developer remote position.",
+      "requirements": "",
+      "source": "linkedin",
+      "sourceUrl": "https://www.linkedin.com/jobs/view/4456446989",
+      "applicationUrl": "",
+      "applicationType": "LINKEDIN",
+      "applicationEmail": "",
+      "dateFound": "2026-08-20T13:23:51.975Z",
+      "jobStatus": "UNKNOWN",
+      "salary": "",
+      "postedTime": "",
+      "companyUrl": "",
+      "rawData": {
+        "title": "JavaScript Frontend Developer (Remote)",
+        "company": "Hire Feed",
+        "location": "Remote (Europe, Middle East & Africa)",
+        "url": "https://www.linkedin.com/jobs/view/4456446989",
+        "source": "linkedin",
+        "datePosted": "2026-08-20",
+        "contract": "Remote",
+        "description": "JavaScript Frontend Developer remote position."
+      },
+      "matchScore": 39,
+      "matchLabel": "Faible",
+      "matchEmoji": "☆☆☆",
+      "matchReasons": [
+        "Peu de competences correspondantes",
+        "Localisation ideale",
+        "Technologies matching: JavaScript, Java"
+      ],
+      "missingSkills": [],
+      "matchDetails": {
+        "skills": 30,
+        "technologies": 0,
+        "experience": 80,
+        "location": 90,
+        "contract": 70,
+        "workMode": 70
+      }
+    },
+    {
+      "title": "ICD Fullstack ReactJs/NodeJs (Rabat/Casablanca)",
+      "company": "SQLI",
+      "location": "Rabat, Maroc (Sur site)",
+      "contractType": "",
+      "workMode": "",
+      "technologies": [
+        "React",
+        "NodeJs"
+      ],
+      "experience": "",
+      "description": "Développeur Fullstack ReactJs/NodeJs pour SQLI à Rabat/Casablanca.",
+      "requirements": "",
+      "source": "linkedin",
+      "sourceUrl": "https://www.linkedin.com/jobs/view/4314993223",
+      "applicationUrl": "",
+      "applicationType": "LINKEDIN",
+      "applicationEmail": "",
+      "dateFound": "2026-08-20T13:23:51.975Z",
+      "jobStatus": "UNKNOWN",
+      "salary": "",
+      "postedTime": "",
+      "companyUrl": "",
+      "rawData": {
+        "title": "ICD Fullstack ReactJs/NodeJs (Rabat/Casablanca)",
+        "company": "SQLI",
+        "location": "Rabat, Maroc (Sur site)",
+        "url": "https://www.linkedin.com/jobs/view/4314993223",
+        "source": "linkedin",
+        "datePosted": "2026-08-01",
+        "contract": "CDI",
+        "description": "Développeur Fullstack ReactJs/NodeJs pour SQLI à Rabat/Casablanca."
+      },
+      "matchScore": 36,
+      "matchLabel": "Faible",
+      "matchEmoji": "☆☆☆",
+      "matchReasons": [
+        "Peu de competences correspondantes",
+        "Localisation eloignee",
+        "Technologies matching: React",
+        "Localisation: Rabat, Maroc (Sur site) (vous cherchez: Casablanca)"
+      ],
+      "missingSkills": [
+        "NodeJs"
+      ],
+      "matchDetails": {
+        "skills": 40,
+        "technologies": 0,
+        "experience": 80,
+        "location": 30,
+        "contract": 70,
+        "workMode": 70
+      }
+    },
+    {
+      "title": "Fullstack Java/Angular - Sénior",
+      "company": "Inetum",
+      "location": "Casablanca, Maroc (Sur site)",
+      "contractType": "",
+      "workMode": "",
+      "technologies": [
+        "Angular",
+        "Java"
+      ],
+      "experience": "",
+      "description": "Fullstack Java/Angular Sénior chez Inetum à Casablanca.",
+      "requirements": "",
+      "source": "linkedin",
+      "sourceUrl": "https://www.linkedin.com/jobs/view/4399408720",
+      "applicationUrl": "",
+      "applicationType": "LINKEDIN",
+      "applicationEmail": "",
+      "dateFound": "2026-08-20T13:23:51.975Z",
+      "jobStatus": "UNKNOWN",
+      "salary": "",
+      "postedTime": "",
+      "companyUrl": "",
+      "rawData": {
+        "title": "Fullstack Java/Angular - Sénior",
+        "company": "Inetum",
+        "location": "Casablanca, Maroc (Sur site)",
+        "url": "https://www.linkedin.com/jobs/view/4399408720",
+        "source": "linkedin",
+        "datePosted": "2026-08-12",
+        "contract": "CDI",
+        "description": "Fullstack Java/Angular Sénior chez Inetum à Casablanca."
+      },
+      "matchScore": 36,
+      "matchLabel": "Faible",
+      "matchEmoji": "☆☆☆",
+      "matchReasons": [
+        "Peu de competences correspondantes",
+        "Localisation ideale",
+        "Technologies matching: Java"
+      ],
+      "missingSkills": [
+        "Angular"
       ],
       "matchDetails": {
         "skills": 20,
+        "technologies": 0,
+        "experience": 80,
+        "location": 100,
+        "contract": 70,
+        "workMode": 70
+      }
+    },
+    {
+      "title": "Développeur .Net/Angular Freelance H/F",
+      "company": "Viveris",
+      "location": "Casablanca, Maroc (Sur site)",
+      "contractType": "",
+      "workMode": "",
+      "technologies": [
+        "Angular"
+      ],
+      "experience": "",
+      "description": "Développeur .NET/Angular en freelance à Casablanca. Soyez l'un des premiers candidats.",
+      "requirements": "",
+      "source": "linkedin",
+      "sourceUrl": "https://www.linkedin.com/jobs/view/4455368503",
+      "applicationUrl": "",
+      "applicationType": "LINKEDIN",
+      "applicationEmail": "",
+      "dateFound": "2026-08-20T13:23:51.975Z",
+      "jobStatus": "UNKNOWN",
+      "salary": "",
+      "postedTime": "",
+      "companyUrl": "",
+      "rawData": {
+        "title": "Développeur .Net/Angular Freelance H/F",
+        "company": "Viveris",
+        "location": "Casablanca, Maroc (Sur site)",
+        "url": "https://www.linkedin.com/jobs/view/4455368503",
+        "source": "linkedin",
+        "datePosted": "2026-08-18",
+        "contract": "Freelance",
+        "description": "Développeur .NET/Angular en freelance à Casablanca. Soyez l'un des premiers candidats."
+      },
+      "matchScore": 33,
+      "matchLabel": "Faible",
+      "matchEmoji": "☆☆☆",
+      "matchReasons": [
+        "Peu de competences correspondantes",
+        "Localisation ideale"
+      ],
+      "missingSkills": [
+        "Angular"
+      ],
+      "matchDetails": {
+        "skills": 10,
+        "technologies": 0,
+        "experience": 80,
+        "location": 100,
+        "contract": 70,
+        "workMode": 70
+      }
+    },
+    {
+      "title": "Développeur Python",
+      "company": "Inetum",
+      "location": "Casablanca, Maroc (Sur site)",
+      "contractType": "",
+      "workMode": "",
+      "technologies": [
+        "Python"
+      ],
+      "experience": "",
+      "description": "Développeur Python chez Inetum à Casablanca.",
+      "requirements": "",
+      "source": "linkedin",
+      "sourceUrl": "https://www.linkedin.com/jobs/view/4437851188",
+      "applicationUrl": "",
+      "applicationType": "LINKEDIN",
+      "applicationEmail": "",
+      "dateFound": "2026-08-20T13:23:51.975Z",
+      "jobStatus": "UNKNOWN",
+      "salary": "",
+      "postedTime": "",
+      "companyUrl": "",
+      "rawData": {
+        "title": "Développeur Python",
+        "company": "Inetum",
+        "location": "Casablanca, Maroc (Sur site)",
+        "url": "https://www.linkedin.com/jobs/view/4437851188",
+        "source": "linkedin",
+        "datePosted": "2026-07-20",
+        "contract": "CDI",
+        "description": "Développeur Python chez Inetum à Casablanca."
+      },
+      "matchScore": 33,
+      "matchLabel": "Faible",
+      "matchEmoji": "☆☆☆",
+      "matchReasons": [
+        "Peu de competences correspondantes",
+        "Localisation ideale"
+      ],
+      "missingSkills": [
+        "Python"
+      ],
+      "matchDetails": {
+        "skills": 10,
+        "technologies": 0,
+        "experience": 80,
+        "location": 100,
+        "contract": 70,
+        "workMode": 70
+      }
+    },
+    {
+      "title": "Back End Developer",
+      "company": "Confidential",
+      "location": "Remote (Middle East & North Africa)",
+      "contractType": "",
+      "workMode": "",
+      "technologies": [
+        "go"
+      ],
+      "experience": "",
+      "description": "Backend Developer remote position. Posted 5 days ago.",
+      "requirements": "",
+      "source": "linkedin",
+      "sourceUrl": "https://www.linkedin.com/jobs/view/4453731079",
+      "applicationUrl": "",
+      "applicationType": "LINKEDIN",
+      "applicationEmail": "",
+      "dateFound": "2026-08-20T13:23:51.975Z",
+      "jobStatus": "UNKNOWN",
+      "salary": "",
+      "postedTime": "",
+      "companyUrl": "",
+      "rawData": {
+        "title": "Back End Developer",
+        "company": "Confidential",
+        "location": "Remote (Middle East & North Africa)",
+        "url": "https://www.linkedin.com/jobs/view/4453731079",
+        "source": "linkedin",
+        "datePosted": "2026-08-15",
+        "contract": "Remote",
+        "description": "Backend Developer remote position. Posted 5 days ago."
+      },
+      "matchScore": 32,
+      "matchLabel": "Faible",
+      "matchEmoji": "☆☆☆",
+      "matchReasons": [
+        "Peu de competences correspondantes",
+        "Localisation ideale"
+      ],
+      "missingSkills": [
+        "go"
+      ],
+      "matchDetails": {
+        "skills": 10,
+        "technologies": 0,
+        "experience": 80,
+        "location": 90,
+        "contract": 70,
+        "workMode": 70
+      }
+    },
+    {
+      "title": "Développeur Front End Angular (Rabat/Casablanca)",
+      "company": "SQLI",
+      "location": "Rabat, Maroc (Hybride)",
+      "contractType": "",
+      "workMode": "",
+      "technologies": [
+        "Angular"
+      ],
+      "experience": "",
+      "description": "Développeur Front End Angular pour SQLI à Rabat/Casablanca.",
+      "requirements": "",
+      "source": "linkedin",
+      "sourceUrl": "https://www.linkedin.com/jobs/view/4387864005",
+      "applicationUrl": "",
+      "applicationType": "LINKEDIN",
+      "applicationEmail": "",
+      "dateFound": "2026-08-20T13:23:51.975Z",
+      "jobStatus": "UNKNOWN",
+      "salary": "",
+      "postedTime": "",
+      "companyUrl": "",
+      "rawData": {
+        "title": "Développeur Front End Angular (Rabat/Casablanca)",
+        "company": "SQLI",
+        "location": "Rabat, Maroc (Hybride)",
+        "url": "https://www.linkedin.com/jobs/view/4387864005",
+        "source": "linkedin",
+        "datePosted": "2026-08-10",
+        "contract": "CDI",
+        "description": "Développeur Front End Angular pour SQLI à Rabat/Casablanca."
+      },
+      "matchScore": 29,
+      "matchLabel": "Faible",
+      "matchEmoji": "☆☆☆",
+      "matchReasons": [
+        "Peu de competences correspondantes",
+        "Localisation eloignee",
+        "Localisation: Rabat, Maroc (Hybride) (vous cherchez: Casablanca)"
+      ],
+      "missingSkills": [
+        "Angular"
+      ],
+      "matchDetails": {
+        "skills": 20,
+        "technologies": 0,
+        "experience": 80,
+        "location": 30,
+        "contract": 70,
+        "workMode": 70
+      }
+    },
+    {
+      "title": "Python Engineer (Remote)",
+      "company": "Hired",
+      "location": "Remote (Europe, Middle East & Africa)",
+      "contractType": "",
+      "workMode": "",
+      "technologies": [
+        "Python"
+      ],
+      "experience": "",
+      "description": "Python Engineer remote position.",
+      "requirements": "",
+      "source": "linkedin",
+      "sourceUrl": "https://www.linkedin.com/jobs/view/4456451813",
+      "applicationUrl": "",
+      "applicationType": "LINKEDIN",
+      "applicationEmail": "",
+      "dateFound": "2026-08-20T13:23:51.975Z",
+      "jobStatus": "UNKNOWN",
+      "salary": "",
+      "postedTime": "",
+      "companyUrl": "",
+      "rawData": {
+        "title": "Python Engineer (Remote)",
+        "company": "Hired",
+        "location": "Remote (Europe, Middle East & Africa)",
+        "url": "https://www.linkedin.com/jobs/view/4456451813",
+        "source": "linkedin",
+        "datePosted": "2026-08-20",
+        "contract": "Remote",
+        "description": "Python Engineer remote position."
+      },
+      "matchScore": 28,
+      "matchLabel": "Faible",
+      "matchEmoji": "☆☆☆",
+      "matchReasons": [
+        "Peu de competences correspondantes",
+        "Localisation ideale"
+      ],
+      "missingSkills": [
+        "Python"
+      ],
+      "matchDetails": {
+        "skills": 0,
         "technologies": 0,
         "experience": 80,
         "location": 90,
@@ -174,47 +1010,139 @@
     }
   ],
   "summary": {
-    "total": 3,
+    "total": 20,
     "excellent": 0,
-    "veryGood": 1,
+    "veryGood": 0,
     "good": 0,
-    "medium": 1,
-    "low": 1,
+    "medium": 3,
+    "low": 17,
     "topMatches": [
       {
-        "company": "TechCorp",
-        "title": "Backend PHP Developer",
-        "score": 80,
-        "label": "Tres bon",
-        "reasons": [
-          "Certaines competences correspondantes",
-          "Stack technique tres compatible",
-          "Localisation ideale",
-          "Technologies matching: PHP, Laravel, MySQL"
-        ]
-      },
-      {
-        "company": "WebInc",
-        "title": "Laravel Developer",
-        "score": 59,
+        "company": "Quik Hire Staffing",
+        "title": "Frontend Web Developer - HTML, CSS (Remote)",
+        "score": 54,
         "label": "Moyen",
         "reasons": [
           "Peu de competences correspondantes",
-          "Stack technique tres compatible",
+          "Stack technique partiellement compatible",
+          "Localisation ideale"
+        ],
+        "missingSkills": []
+      },
+      {
+        "company": "SQLI",
+        "title": "Développeur Full Stack Node JS/Vue JS",
+        "score": 51,
+        "label": "Moyen",
+        "reasons": [
+          "Peu de competences correspondantes",
+          "Stack technique partiellement compatible",
           "Localisation eloignee",
-          "Technologies matching: PHP, Laravel, Vue.js"
+          "Technologies matching: Vue.js",
+          "Localisation: Oujda, Maroc (À distance) (vous cherchez: Casablanca)"
+        ],
+        "missingSkills": [
+          "Node.js"
         ]
       },
       {
-        "company": "StartupX",
-        "title": "Frontend React Developer",
-        "score": 35,
+        "company": "Conquer AI",
+        "title": "Software Engineer",
+        "score": 50,
+        "label": "Moyen",
+        "reasons": [
+          "Peu de competences correspondantes",
+          "Stack technique partiellement compatible",
+          "Localisation ideale"
+        ],
+        "missingSkills": []
+      },
+      {
+        "company": "Kazacube",
+        "title": "Développeur senior",
+        "score": 48,
+        "label": "Faible",
+        "reasons": [
+          "Peu de competences correspondantes",
+          "Stack technique partiellement compatible",
+          "Localisation ideale"
+        ],
+        "missingSkills": []
+      },
+      {
+        "company": "Saham Bank",
+        "title": "Développeur (H/F)",
+        "score": 48,
+        "label": "Faible",
+        "reasons": [
+          "Peu de competences correspondantes",
+          "Stack technique partiellement compatible",
+          "Localisation ideale"
+        ],
+        "missingSkills": []
+      },
+      {
+        "company": "Sofrecom Maroc",
+        "title": "Data Engineer (F/H)",
+        "score": 48,
+        "label": "Faible",
+        "reasons": [
+          "Peu de competences correspondantes",
+          "Stack technique partiellement compatible",
+          "Localisation ideale"
+        ],
+        "missingSkills": []
+      },
+      {
+        "company": "micro1",
+        "title": "Full Stack Engineer",
+        "score": 47,
+        "label": "Faible",
+        "reasons": [
+          "Peu de competences correspondantes",
+          "Stack technique partiellement compatible",
+          "Localisation ideale"
+        ],
+        "missingSkills": []
+      },
+      {
+        "company": "Quik Hire Staffing",
+        "title": "Software Engineer - Backend (Remote)",
+        "score": 47,
+        "label": "Faible",
+        "reasons": [
+          "Peu de competences correspondantes",
+          "Stack technique partiellement compatible",
+          "Localisation ideale"
+        ],
+        "missingSkills": []
+      },
+      {
+        "company": "micro1",
+        "title": "Software Engineer, Internal Platforms",
+        "score": 42,
         "label": "Faible",
         "reasons": [
           "Peu de competences correspondantes",
           "Localisation ideale",
-          "Technologies matching: React, TypeScript"
+          "Technologies matching: TypeScript, React, PostgreSQL"
+        ],
+        "missingSkills": [
+          "Node.js"
         ]
+      },
+      {
+        "company": "TotalEnergies",
+        "title": "Développeur IT",
+        "score": 41,
+        "label": "Faible",
+        "reasons": [
+          "Peu de competences correspondantes",
+          "Stack technique partiellement compatible",
+          "Localisation eloignee",
+          "Localisation: Maroc (Sur site) (vous cherchez: Casablanca)"
+        ],
+        "missingSkills": []
       }
     ]
   }

@@ -14,6 +14,8 @@
     "research": "node scripts/research/research-orchestrator.js",
     "deep-research": "node scripts/deep-research/research-orchestrator.js",
     "deep-research:process": "node scripts/deep-research/research-orchestrator.js --process",
+    "tracking": "node scripts/tracking/tracker.js",
+    "tracking:stats": "node -e \"import('./scripts/tracking/tracker.js').then(m => m.getStats().then(s => console.log(JSON.stringify(s, null, 2))))\"",
     "test": "vitest run",
     "test:watch": "vitest",
     "check": "node scripts/diagnostic/check-all.js"

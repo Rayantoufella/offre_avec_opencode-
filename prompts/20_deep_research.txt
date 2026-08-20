@@ -186,11 +186,14 @@ Pour chaque email:
 3. Attache le CV via MCP File Upload Helper
 4. Envoie avec Ctrl+Enter (PAS en cliquant le bouton)
 5. Attends 2-3 secondes avant le suivant
-6. Met a jour le statut dans l'Excel
+6. Enregistre le suivi dans l'Excel de tracking :
+   Execute : node -e "import('./scripts/tracking/tracker.js').then(m => m.appendRow({entreprise: 'ENTREPRISE', poste: 'POSTE', url_offre: 'URL', email: 'EMAIL_RECRUTEUR'}))"
+   Le fichier data/suivi_candidatures.xlsx sera cree automatiquement.
 
 Resume final:
 "X candidatures envoyees avec succes!
- Statut mis a jour dans l'Excel."
+ Statut mis a jour dans l'Excel.
+ Suivi enregistre dans data/suivi_candidatures.xlsx"
 
 
 █████████████████████████████████████████████

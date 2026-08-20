@@ -14,14 +14,22 @@
     "Backend Developer",
     "Frontend Developer",
     "Mobile Developer",
+    "full",
+    "stack",
     "backend",
-    "laravel",
-    "php",
-    "maroc"
+    "junior",
+    "remote",
+    "maroc",
+    "cdi",
+    "tous",
+    "types",
+    "recentes",
+    "mois"
   ],
   "locations": [
     "Casablanca",
-    "Maroc"
+    "Maroc",
+    "Remote"
   ],
   "sources": [
     {
@@ -69,11 +77,21 @@
     "Spring Boot Developer Maroc",
     "Spring Boot Maroc",
     "Backend Developer Maroc",
-    "Frontend Developer Maroc"
+    "Frontend Developer Maroc",
+    "PHP Developer Remote",
+    "PHP Remote",
+    "Laravel Developer Remote",
+    "Laravel Remote",
+    "Spring Developer Remote",
+    "Spring Remote",
+    "Spring Boot Developer Remote",
+    "Spring Boot Remote",
+    "Backend Developer Remote",
+    "Frontend Developer Remote"
   ],
   "strategy": "tech_focused",
   "maxResults": 50,
   "searchGroups": true,
   "searchCompanyPages": true,
-  "timestamp": "2026-08-18T18:18:22.214Z"
+  "timestamp": "2026-08-20T13:18:34.391Z"
 }

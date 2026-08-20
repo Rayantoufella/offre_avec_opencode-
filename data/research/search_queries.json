@@ -100,6 +100,56 @@
     "priority": 1
   },
   {
+    "query": "PHP Developer Remote",
+    "source": "all",
+    "priority": 1
+  },
+  {
+    "query": "PHP Remote",
+    "source": "all",
+    "priority": 1
+  },
+  {
+    "query": "Laravel Developer Remote",
+    "source": "all",
+    "priority": 1
+  },
+  {
+    "query": "Laravel Remote",
+    "source": "all",
+    "priority": 1
+  },
+  {
+    "query": "Spring Developer Remote",
+    "source": "all",
+    "priority": 1
+  },
+  {
+    "query": "Spring Remote",
+    "source": "all",
+    "priority": 1
+  },
+  {
+    "query": "Spring Boot Developer Remote",
+    "source": "all",
+    "priority": 1
+  },
+  {
+    "query": "Spring Boot Remote",
+    "source": "all",
+    "priority": 1
+  },
+  {
+    "query": "Backend Developer Remote",
+    "source": "all",
+    "priority": 1
+  },
+  {
+    "query": "Frontend Developer Remote",
+    "source": "all",
+    "priority": 1
+  },
+  {
     "query": "PHP Casa",
     "source": "all",
     "priority": 3

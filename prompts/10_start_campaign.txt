@@ -37,6 +37,12 @@ Pour CHAQUE offre du fichier, fais ceci :
 9. Attends 3 secondes avant de passer a l'offre suivante :
    browsermcp_browser_wait time=3
 
+10. Enregistre le suivi dans l'Excel de tracking :
+    Execute la commande :
+    node -e "import('./scripts/tracking/tracker.js').then(m => m.appendRow({entreprise: 'ENTREPRISE', poste: 'POSTE', url_offre: 'URL_OFFRE', email: 'EMAIL_RECRUTEUR'}))"
+    Remplace ENTREPRISE, POSTE, URL_OFFRE, EMAIL_RECRUTEUR par les valeurs de l'offre en cours.
+    Le fichier data/suivi_candidatures.xlsx sera cree automatiquement s'il n'existe pas.
+
 IMPORTANT :
 - Si DRY_RUN=true (defaut), AUCUN email n'est envoye. Tu preparles juste.
 - Pour l'envoi reel, l'utilisateur doit definir DRY_RUN=false dans .env

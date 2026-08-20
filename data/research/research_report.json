@@ -26,14 +26,22 @@
       "Backend Developer",
       "Frontend Developer",
       "Mobile Developer",
+      "full",
+      "stack",
       "backend",
-      "laravel",
-      "php",
-      "maroc"
+      "junior",
+      "remote",
+      "maroc",
+      "cdi",
+      "tous",
+      "types",
+      "recentes",
+      "mois"
     ],
     "locations": [
       "Casablanca",
-      "Maroc"
+      "Maroc",
+      "Remote"
     ],
     "sources": [
       "LinkedIn",
@@ -42,6 +50,6 @@
       "Rekrute"
     ]
   },
-  "queriesCount": 38,
-  "timestamp": "2026-08-18T18:18:22.218Z"
+  "queriesCount": 48,
+  "timestamp": "2026-08-20T13:18:34.397Z"
 }
