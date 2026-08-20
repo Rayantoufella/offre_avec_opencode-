@@ -50,7 +50,7 @@ describe('column-detector', () => {
       expect(mapping.ENTREPRISE).toBeDefined();
       expect(mapping.EMAIL).toBeDefined();
       expect(mapping.POSTE).toBeDefined();
-      expect(mapping.URL).toBeDefined();
+      expect(mapping.URL_OFFRE).toBeDefined();
       expect(mapping.DESCRIPTION).toBeDefined();
     });
 
@@ -65,6 +65,72 @@ describe('column-detector', () => {
       const { unmapped } = detectColumns(headers);
       expect(unmapped.length).toBeGreaterThan(0);
       expect(unmapped.some(u => u.header === 'CustomField')).toBe(true);
+    });
+
+    it('should detect Deep Research columns: Technologies', () => {
+      const headers = ['Technologies', 'Match Score', 'Competences manquantes'];
+      const { mapping } = detectColumns(headers);
+      expect(mapping.TECHNOLOGIES).toBeDefined();
+      expect(mapping.MATCH_SCORE).toBeDefined();
+      expect(mapping.MISSING_SKILLS).toBeDefined();
+    });
+
+    it('should detect Deep Research columns: Localisation', () => {
+      const headers = ['Localisation', 'Mode travail', 'Experience demandee'];
+      const { mapping } = detectColumns(headers);
+      expect(mapping.LOCALISATION).toBeDefined();
+      expect(mapping.MODE_TRAVAIL).toBeDefined();
+      expect(mapping.EXPERIENCE_DEMANDEE).toBeDefined();
+    });
+
+    it('should detect URL_OFFRE and URL_CANDIDATURE separately', () => {
+      const headers = ['URL offre', 'URL candidature'];
+      const { mapping } = detectColumns(headers);
+      expect(mapping.URL_OFFRE).toBeDefined();
+      expect(mapping.URL_CANDIDATURE).toBeDefined();
+      expect(mapping.URL_OFFRE.index).not.toBe(mapping.URL_CANDIDATURE.index);
+    });
+
+    it('should detect STATUT_OFFRE and STATUT_CANDIDATURE separately', () => {
+      const headers = ['Statut offre', 'Statut candidature'];
+      const { mapping } = detectColumns(headers);
+      expect(mapping.STATUT_OFFRE).toBeDefined();
+      expect(mapping.STATUT_CANDIDATURE).toBeDefined();
+    });
+
+    it('should detect Raisons du match', () => {
+      const headers = ['Raisons du match'];
+      const { mapping } = detectColumns(headers);
+      expect(mapping.RAISONS_MATCH).toBeDefined();
+    });
+
+    it('should detect all 21 Deep Research columns', () => {
+      const drHeaders = [
+        'N°', 'Entreprise', 'Poste', 'Localisation', 'Type contrat',
+        'Mode travail', 'Technologies', 'Experience demandee', 'Email candidature',
+        'URL offre', 'URL candidature', 'Source', 'Type candidature',
+        'Date collecte', 'Statut offre', 'Match Score', 'Niveau pertinence',
+        'Raisons du match', 'Competences manquantes', 'Commentaires', 'Statut candidature'
+      ];
+      const { mapping } = detectColumns(drHeaders);
+      expect(mapping.ENTREPRISE).toBeDefined();
+      expect(mapping.POSTE).toBeDefined();
+      expect(mapping.LOCALISATION).toBeDefined();
+      expect(mapping.TYPE_OFFRE).toBeDefined();
+      expect(mapping.MODE_TRAVAIL).toBeDefined();
+      expect(mapping.TECHNOLOGIES).toBeDefined();
+      expect(mapping.EXPERIENCE_DEMANDEE).toBeDefined();
+      expect(mapping.EMAIL).toBeDefined();
+      expect(mapping.URL_OFFRE).toBeDefined();
+      expect(mapping.URL_CANDIDATURE).toBeDefined();
+      expect(mapping.PLATEFORME).toBeDefined();
+      expect(mapping.TYPE_CANDIDATURE).toBeDefined();
+      expect(mapping.DATE_COLLECTE).toBeDefined();
+      expect(mapping.STATUT_OFFRE).toBeDefined();
+      expect(mapping.MATCH_SCORE).toBeDefined();
+      expect(mapping.RAISONS_MATCH).toBeDefined();
+      expect(mapping.MISSING_SKILLS).toBeDefined();
+      expect(mapping.STATUT_CANDIDATURE).toBeDefined();
     });
   });
 });

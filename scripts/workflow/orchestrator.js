@@ -86,7 +86,14 @@ function writeEmailsFile(emails, excelFile) {
     email: e.email.to,
     subject: e.email.subject,
     body: e.email.body,
-    type: e.email.type
+    type: e.email.type,
+    technologies: e.data.TECHNOLOGIES || '',
+    match_score: e.data.MATCH_SCORE || '',
+    domain: e.email.domain || '',
+    localisation: e.data.LOCALISATION || '',
+    url_offre: e.data.URL_OFFRE || '',
+    mode_travail: e.data.MODE_TRAVAIL || '',
+    experience: e.data.EXPERIENCE_DEMANDEE || ''
   }));
 
   fs.writeFileSync(outputPath, JSON.stringify(output, null, 2), 'utf-8');
@@ -213,8 +220,28 @@ LOG_LEVEL=info
 
 if (process.argv[1] && process.argv[1].endsWith('orchestrator.js')) {
   const dryRun = process.env.DRY_RUN !== 'false';
-  const excelArg = process.argv[2];
-  const cvArg = process.argv[3];
+
+  function getArg(name) {
+    const idx = process.argv.indexOf('--' + name);
+    if (idx === -1) return null;
+    return process.argv[idx + 1] || null;
+  }
+
+  const excelArg = getArg('excel') || process.argv[2];
+  const cvArg = getArg('cv') || process.argv[3];
+
+  if (getArg('help')) {
+    console.log('Usage:');
+    console.log('  node orchestrator.js [excelPath] [cvPath]              (positional)');
+    console.log('  node orchestrator.js --excel <path> --cv <path>        (named flags)');
+    console.log('');
+    console.log('Options:');
+    console.log('  --excel <path>   Chemin vers le fichier Excel');
+    console.log('  --cv <path>      Chemin vers le CV (PDF)');
+    console.log('  --help           Afficher cette aide');
+    process.exit(0);
+  }
+
   runWorkflow({ dryRun, excelPath: excelArg, cvPath: cvArg }).catch(err => {
     console.error('Erreur:', err.message);
     process.exit(1);
