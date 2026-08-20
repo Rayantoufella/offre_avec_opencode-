@@ -74,6 +74,12 @@ Selon le numero choisi, continue avec la branche correspondante:
 
    Lance: npm run deep-research -- --cv "[CV_PATH]" --request "[requete]"
 
+5. Les recherches LinkedIn incluent automatiquement:
+   - Recherche par mots-cles (Jobs, Posts, Groupes)
+   - Recherche dans le feed LinkedIn pour les posts d'embauche
+   - Recherche de recruteurs pour trouver les emails
+   - Priorisation: offres avec email en premier
+
 --- BRANCHE B: ENVOI DE CANDIDATURES (numero 2) ---
 
 1. Verifie si l'Excel est configure:

@@ -72,16 +72,57 @@ Le script analyse le CV et genere un plan de recherche.
 ETAPE 2 — RECHERCHE SUR LINKEDIN
 ========================================
 
-- Ouvre LinkedIn via Browser MCP (le naviguateur est deja connecte)
-- Navigue vers: https://www.linkedin.com/jobs/search/?keywords=MOTS_CLES&location=LIEU
-- Pour chaque requete du plan:
-  * Navigue vers l'URL de recherche
+Utilise les scripts LinkedIn ameliores:
+
+  import { searchAll, searchJobs, scrollFeed, scrollGroupMessages, searchPeople, findRecruiterEmail, deduplicateJobs, prioritizeJobs } from './scripts/research/linkedin-search.js';
+  import { getQueriesForProfile, getRecruiterSearches, QUERIES, FEED_KEYWORDS } from './scripts/research/linkedin-queries.js';
+
+----------------------------------------------
+2A — RECHERCHE JOBS PAR REQUETES
+----------------------------------------------
+
+- Recupere les requetes generees dans data/research/search_queries.json
+- Pour chaque requete:
+  * Navigue vers: https://www.linkedin.com/jobs/search/?keywords=MOTS_CLES&location=LIEU
   * Prends un snapshot pour voir les resultats
   * Pour chaque offre visible:
     - Ouvre la page de l'offre
     - Prends un snapshot pour extraire les details
     - Note: entreprise, titre, localisation, type contrat, technologies, description
-  * Scroll pour charger plus de resultats si disponibles
+  * Scroll pour charger plus de resultats (max 5 pages)
+
+----------------------------------------------
+2B — SCROLL DU FEED POUR POSTS D'EMBAUCHE
+----------------------------------------------
+
+- Navigue vers: https://www.linkedin.com/feed/
+- Scroll le feed en cherchant les mots-cles: on recrute, nous recrutons, hiring, poste a pourvoir, offre d'emploi, job opening
+- Pour chaque post d'embauche trouve:
+  * Extrait: auteur, texte, lien
+  * Ouvre le lien si disponible pour avoir les details
+  * Ajoute dans raw_jobs.json avec source "LinkedIn Feed"
+
+----------------------------------------------
+2C — RECHERCHE DANS LES GROUPES
+----------------------------------------------
+
+- Cherche des groupes lies au domaine (ex: "Developpeurs PHP Maroc", "IT Morocco")
+- Pour chaque groupe actif:
+  * Scroll les messages du groupe
+  * Identifie les posts qui mentionnent des opportunites
+  * Extrait les offres potentielles
+
+----------------------------------------------
+2D — RECHERCHE RECRUTEURS ET EMAILS
+----------------------------------------------
+
+- Pour chaque offre SANS email d'application:
+  * Cherche: "Talent Acquisition + NOM_ENTREPRISE" ou "IT Recruiter + NOM_ENTREPRISE"
+  * Navigue vers les profils trouves
+  * Extrait l'email depuis le profil LinkedIn (section Contact Info)
+  * Si pas d'email visible, note "LinkedIn Only" dans applicationType
+- Priorise les offres avec emails en premier
+
 - Sauvegarde les resultats dans: data/research/raw_jobs.json
 
 
