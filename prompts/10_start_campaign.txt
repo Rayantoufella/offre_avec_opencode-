@@ -15,6 +15,7 @@ Pour CHAQUE offre du fichier, fais ceci :
    - Adapte le ton au secteur de l'entreprise
    - Vérifie la cohérence avec le poste exact
    - Ajoute un détail spécifique à l'offre si pertinent
+   - Si un lien portfolio est disponible (champ "portfolio" du JSON), ajoute-le avant la formule de politesse
    - Garde un ton professionnel mais humain
    - Ne copie JAMAIS le CV directement
 

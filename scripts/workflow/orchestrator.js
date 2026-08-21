@@ -92,7 +92,8 @@ function writeEmailsFile(emails, excelFile) {
     localisation: e.data.LOCALISATION || '',
     url_offre: e.data.URL_OFFRE || '',
     mode_travail: e.data.MODE_TRAVAIL || '',
-    experience: e.data.EXPERIENCE_DEMANDEE || ''
+    experience: e.data.EXPERIENCE_DEMANDEE || '',
+    portfolio: process.env.CANDIDAT_PORTFOLIO || ''
   }));
 
   fs.writeFileSync(outputPath, JSON.stringify(output, null, 2), 'utf-8');

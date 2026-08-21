@@ -205,6 +205,7 @@ ETAPE 7 — PREPARATION DES EMAILS
       - Adapte le ton au secteur de l'entreprise
       - Vérifie la cohérence avec le poste exact
       - Ajoute un détail spécifique à l'offre si pertinent
+      - Si un lien portfolio est disponible (champ "portfolio" du JSON), ajoute-le avant la formule de politesse
       - Supprime les répétitions
       - Garde un ton professionnel mais humain
 4. Presente la liste des emails personnalises:

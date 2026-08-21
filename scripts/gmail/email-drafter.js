@@ -8,6 +8,7 @@ const CANDIDAT = {
   titre: 'Développeur Backend — PHP / Laravel & IA',
   email: 'rayan.toufella.05@gmail.com',
   telephone: '+212 602 231 594',
+  portfolio: process.env.CANDIDAT_PORTFOLIO || '',
   competences: [
     'PHP', 'Laravel', 'JavaScript', 'Vue.js 3', 'React',
     'MySQL', 'API REST', 'Docker', 'Git', 'IA / LLM',
@@ -87,7 +88,7 @@ const CONTRACT_INTROS = {
   freelance: {
     prefix: 'Proposition —',
     opening: (poste, entreprise) => `En tant que développeur backend freelance, je vous propose mes services pour le poste de ${poste} au sein de ${entreprise}.`,
-    closing: 'Spécialisé en PHP / Laravel et en intégration d\'API LLM, je suis capable d\'intervenir rapidement sur des missions techniques complexes.\n\nMon portfolio et mon curriculum vitae sont joints à ce message.\n\nJe serais ravi d\'échanger avec vous sur cette opportunité.\n\nCordialement.'
+    closing: 'Spécialisé en PHP / Laravel et en intégration d\'API LLM, je suis capable d\'intervenir rapidement sur des missions techniques complexes.\n\nMon curriculum vitae est joint à ce message.\n\nJe serais ravi d\'échanger avec vous sur cette opportunité.\n\nCordialement.'
   }
 };
 
@@ -203,6 +204,10 @@ function buildDraft({ domain, contract, company, title, projects, skills }) {
   const projectsStr = formatProjects(projects);
   const skillsStr = skills.join(', ');
 
+  const portfolioLine = CANDIDAT.portfolio
+    ? `\nVous pouvez consulter mon portfolio : ${CANDIDAT.portfolio}\n`
+    : '';
+
   const body = `${opening}
 
 ${domainConfig.intro}
@@ -210,7 +215,7 @@ ${domainConfig.intro}
 Mes projets récents m'ont permis de développer une expertise concrète :
 
 ${projectsStr}
-
+${portfolioLine}
 ${contractConfig.closing}`;
 
   return body;
