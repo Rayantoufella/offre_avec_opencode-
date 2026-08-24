@@ -13,25 +13,59 @@
 
 ## Delegation Rules
 
-The **build** agent (lead) decides dynamically which specialists to use. Specialists are advisors only — they never edit project files.
+The **build** agent (lead) decides deterministically which specialists to use. Specialists are advisors only — they never edit project files.
+
+### 1. Small and obvious local changes
+- Build handles them directly.
+- No delegation is required.
+
+### 2. Large, architectural, ambiguous, cross-cutting, or multi-file tasks
+- Build MUST invoke `planner` before implementation.
+- Planner remains advisory/read-only.
+- Build performs the actual edits.
+
+### 3. Repository area is unknown or the relevant files/symbols are not already clear
+- Build MUST invoke `scout` before broad manual exploration.
+- Use the scout findings to minimize unnecessary file reads.
+
+### 4. Bugs, failing tests, runtime exceptions, regressions, or unclear root causes
+- Build MUST invoke `debugger` before applying speculative fixes.
+- Exception: trivial errors whose root cause is directly obvious from the failing line and surrounding code.
+
+### 5. Substantial or high-risk changes
+- Build MUST invoke `reviewer` after implementation and before declaring completion.
+- This includes: authentication, authorization, security-sensitive logic, database changes, Gmail/application sending logic, Browser MCP automation, personal-data handling, concurrency, public APIs, destructive operations, and broad multi-file changes.
+
+### 6. Combined cases
+- A task may require more than one specialist.
+- Example: planner → build implementation → debugger if tests fail → reviewer.
+- Do not invoke specialists that do not match the task.
+
+### 7. Build remains the only writer
+- Specialists must never edit project files.
+- Build must reconcile their findings and perform all final modifications.
+
+### 8. Avoid delegation abuse
+- Do not call all specialists for every task.
+- Do not delegate simple typo, formatting, rename, or obvious one-file changes.
+- Do not call the same specialist repeatedly unless new evidence justifies it.
+
+### 9. When finishing a task
+- Build should briefly report which specialists were used and why.
+- If none were used, state that the task was simple enough to handle directly.
+
+### Quick Reference
 
 | Situation | Delegation |
 |-----------|-----------|
 | Small, obvious change | Lead only |
 | Unknown repository area | Scout → Lead |
-| Large architectural feature | Planner → optional Scout → Lead |
+| Large architectural feature | Planner → Lead |
 | Failing tests or difficult bug | Debugger → Lead |
 | Substantial/high-risk implementation | Lead → Reviewer → Lead |
 | Simple local task | Lead only, no delegation |
 
 **Never** require all specialists for every task. **Never** recursively delegate between specialists.
-
-### When to Delegate
-
-- **Scout**: Use when the relevant code or repository structure is unclear. Returns file paths and findings.
-- **Planner**: Use for architecture, planning, complex multi-file changes, ambiguous requirements, data flow and dependency analysis, risks and edge cases. Read-only.
-- **Debugger**: Use only when there is actual evidence of a bug/failure, or after the lead has made a serious attempt and the root cause remains unclear. May run safe diagnostic commands (npm test, node, grep, git status/diff/log/show).
-- **Reviewer**: Use after substantial or high-risk changes (auth, security, database, payments, concurrency, public APIs, broad refactors). Not after trivial edits.
 
 ### Failure Handling
 
