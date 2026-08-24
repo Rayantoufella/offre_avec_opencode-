@@ -122,6 +122,78 @@ async function handleUploadFile(message) {
   }
 }
 
+async function handleInjectText(message) {
+  var selector = message.payload.selector || '[role="textbox"]';
+  var text = message.payload.text || '';
+  var requestId = message.requestId;
+
+  try {
+    var tabs = await chrome.tabs.query({ currentWindow: true });
+    var tab = null;
+    for (var i = 0; i < tabs.length; i++) {
+      if (tabs[i].url && tabs[i].url.includes("mail.google.com")) {
+        tab = tabs[i];
+        break;
+      }
+    }
+    if (!tab) {
+      var active = await chrome.tabs.query({ active: true, currentWindow: true });
+      tab = active[0];
+    }
+    if (!tab) throw new Error("No active tab");
+
+    if (!isInjectableUrl(tab.url)) {
+      throw new Error("Cannot inject on this page (" + (tab.url || "unknown") + "). Open Gmail compose first.");
+    }
+
+    var results = await chrome.scripting.executeScript({
+      target: { tabId: tab.id },
+      func: function(selector, text) {
+        var el = document.querySelector(selector);
+        if (!el) return { success: false, error: "Element not found: " + selector };
+
+        try {
+          el.focus();
+          el.innerText = text;
+
+          el.dispatchEvent(new Event('input', { bubbles: true }));
+          el.dispatchEvent(new Event('change', { bubbles: true }));
+          el.dispatchEvent(new Event('keyup', { bubbles: true }));
+
+          return { success: true, length: text.length };
+        } catch (e) {
+          return { success: false, error: e.message };
+        }
+      },
+      args: [selector, text]
+    });
+
+    if (results && results[0] && results[0].result) {
+      var res = results[0].result;
+      if (res.success) {
+        sendToServer({
+          type: "inject_text_result",
+          requestId: requestId,
+          success: true,
+          message: "Text injected (" + res.length + " chars) into " + selector
+        });
+      } else {
+        throw new Error(res.error || "Unknown error in injected script");
+      }
+    } else {
+      throw new Error("No result from injected script");
+    }
+
+  } catch (error) {
+    sendToServer({
+      type: "inject_text_result",
+      requestId: requestId,
+      success: false,
+      error: error.message
+    });
+  }
+}
+
 function sendToServer(message) {
   if (ws && ws.readyState === WebSocket.OPEN) {
     ws.send(JSON.stringify(message));
@@ -146,6 +218,8 @@ function connect() {
       var message = JSON.parse(event.data);
       if (message.type === "upload_file") {
         handleUploadFile(message);
+      } else if (message.type === "inject_text") {
+        handleInjectText(message);
       }
     } catch (error) {
       console.error("Message parse error:", error);

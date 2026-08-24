@@ -90,6 +90,17 @@ export async function testUpload(filePath, baseUrl) {
   }
 }
 
+export async function injectText(selector, text, baseUrl) {
+  try {
+    const result = await httpRequest('POST', '/inject-text', { selector, text }, baseUrl);
+    log.info({ result }, 'Texte injecte');
+    return result;
+  } catch (err) {
+    log.error({ err }, 'Erreur inject-text');
+    return { success: false, error: err.message };
+  }
+}
+
 export function createClient(serverUrl) {
   const baseUrl = serverUrl || getServerUrl();
 
@@ -97,6 +108,7 @@ export function createClient(serverUrl) {
     checkStatus: () => checkStatus(baseUrl),
     upload: (filePath) => upload(filePath, baseUrl),
     testUpload: (filePath) => testUpload(filePath, baseUrl),
+    injectText: (selector, text) => injectText(selector, text, baseUrl),
     destroy() {}
   };
 }
@@ -121,13 +133,24 @@ if (process.argv[1] && process.argv[1].endsWith('client.js')) {
         console.log(JSON.stringify(result, null, 2));
         break;
       }
+      case 'inject-text': {
+        const selector = process.argv[3] || '[role="textbox"]';
+        const text = process.argv[4];
+        if (!text) {
+          console.error('Usage: node scripts/upload/client.js inject-text <selector> <text>');
+          process.exit(1);
+        }
+        const result = await injectText(selector, text);
+        console.log(JSON.stringify(result, null, 2));
+        break;
+      }
       case 'test': {
         const result = await testUpload(arg || '');
         console.log(JSON.stringify(result, null, 2));
         break;
       }
       default:
-        console.error('Commandes: status, upload <fichier>, test');
+        console.error('Commandes: status, upload <fichier>, inject-text <selector> <text>, test');
         process.exit(1);
     }
   }

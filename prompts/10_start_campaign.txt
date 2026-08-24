@@ -20,8 +20,10 @@ Pour CHAQUE offre du fichier, fais ceci :
    - Ne copie JAMAIS le CV directement
 
 4. Remplir le corps du message :
-   - Cherche le champ texte (textbox) dans le snapshot
-   - Utilise browsermcp_browser_type avec le ref du champ et le corps personnalise
+   - Utilise l'injection JS via le serveur upload (plus fiable que browsermcp_browser_type) :
+     powershell -Command "Invoke-RestMethod -Uri 'http://localhost:9011/inject-text' -Method Post -ContentType 'application/json' -Body '{\"selector\":\"[role=\\\"textbox\\\"]\",\"text\":\"CORPS_EMAIL\"}'"
+   - Remplace CORPS_EMAIL par le corps personnalise (attention aux guillemets dans le JSON)
+   - Le texte sera injecté directement dans le DOM de Gmail sans timeout
 
 5. Attacher le CV :
    - Execute : powershell -Command "Invoke-RestMethod -Uri 'http://localhost:9011/upload' -Method Post -ContentType 'application/json' -Body '{\"filePath\":\"CHEMIN_CV\"}'"

@@ -74,6 +74,42 @@ function createHTTPServer() {
       return;
     }
 
+    if (req.method === 'POST' && req.url === '/inject-text') {
+      let body = '';
+      req.on('data', chunk => { body += chunk; });
+      req.on('end', async () => {
+        try {
+          const { selector, text } = JSON.parse(body);
+          if (!text && text !== '') {
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ success: false, error: 'text requis' }));
+            return;
+          }
+
+          if (connectedExtensions.length === 0) {
+            res.writeHead(503, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ success: false, error: 'Aucune extension Chrome connectee' }));
+            return;
+          }
+
+          const result = await sendToExtension({
+            type: 'inject_text',
+            payload: {
+              selector: selector || '[role="textbox"]',
+              text
+            }
+          });
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify(result));
+        } catch (err) {
+          log.error({ err }, 'Erreur inject-text');
+          res.writeHead(500, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ success: false, error: err.message }));
+        }
+      });
+      return;
+    }
+
     if (req.method === 'POST' && req.url === '/test') {
       let body = '';
       req.on('data', chunk => { body += chunk; });
@@ -135,7 +171,7 @@ function createWSServer() {
         const msg = JSON.parse(data.toString());
         log.debug({ msg }, 'Message recu de l\'extension');
 
-        if ((msg.type === 'result' || msg.type === 'upload_result') && msg.requestId) {
+        if ((msg.type === 'result' || msg.type === 'upload_result' || msg.type === 'inject_text_result') && msg.requestId) {
           const pending = pendingRequests.get(msg.requestId);
           if (pending) {
             pending.resolve(msg);

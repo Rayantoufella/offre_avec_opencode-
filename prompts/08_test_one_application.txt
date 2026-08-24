@@ -12,8 +12,9 @@ Pour cette offre, fais ceci :
    browsermcp_browser_snapshot
 
 3. Remplir le corps du message :
-   - Cherche le champ texte (textbox) dans le snapshot
-   - Utilise browsermcp_browser_type avec le ref du champ et le corps du message
+   - Utilise l'injection JS via le serveur upload :
+     powershell -Command "Invoke-RestMethod -Uri 'http://localhost:9011/inject-text' -Method Post -ContentType 'application/json' -Body '{\"selector\":\"[role=\\\"textbox\\\"]\",\"text\":\"CORPS_EMAIL\"}'"
+   - Remplace CORPS_EMAIL par le corps du message (attention aux guillemets dans le JSON)
 
 4. Attacher le CV :
    - Execute : powershell -Command "Invoke-RestMethod -Uri 'http://localhost:9011/upload' -Method Post -ContentType 'application/json' -Body '{\"filePath\":\"CHEMIN_CV\"}'"
