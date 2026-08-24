@@ -1,20 +1,205 @@
-﻿{
-    "plugin":  [
-                   "opencode-browser"
-               ],
-    "$schema":  "https://opencode.ai/config.json",
+{
+    "$schema": "https://opencode.ai/config.json",
+    "plugin": [
+        "opencode-browser"
+    ],
     "instructions": [
         "prompts/00_greeting.txt"
     ],
-    "mcp":  {
-                "browsermcp":  {
-                                   "command":  [
-                                                   "npx",
-                                                   "-y",
-                                                   "@browsermcp/mcp@latest"
-                                               ],
-                                   "type":  "local",
-                                   "enabled":  true
-                               }
+    "model": "opencode/mimo-v2.5-free",
+    "default_agent": "build",
+    "subagent_depth": 1,
+    "mcp": {
+        "browsermcp": {
+            "command": [
+                "npx",
+                "-y",
+                "@browsermcp/mcp@latest"
+            ],
+            "type": "local",
+            "enabled": true
+        }
+    },
+    "permission": {
+        "read": {
+            "*": "allow",
+            "*.env": "deny",
+            "*.env.*": "deny",
+            "*.env.example": "allow",
+            "data/cv/**": "ask",
+            "data/emails/**": "ask",
+            "data/offres*.xlsx": "ask",
+            "data/research/profile.json": "ask"
+        },
+        "edit": {
+            "*": "allow"
+        },
+        "bash": {
+            "*": "allow",
+            "git push*": "ask",
+            "git reset*": "ask",
+            "git clean*": "ask",
+            "git restore*": "ask",
+            "git checkout*": "ask",
+            "rm -rf*": "ask",
+            "rm -r*": "ask",
+            "Remove-Item*": "ask",
+            "del /s*": "ask",
+            "rmdir*": "ask"
+        }
+    },
+    "agent": {
+        "build": {
+            "mode": "primary",
+            "model": "opencode/mimo-v2.5-free",
+            "description": "Lead implementer and sole file editor. Routes to specialists when needed.",
+            "permission": {
+                "read": {
+                    "*": "allow",
+                    "*.env": "deny",
+                    "*.env.*": "deny",
+                    "*.env.example": "allow",
+                    "data/cv/**": "ask",
+                    "data/emails/**": "ask",
+                    "data/offres*.xlsx": "ask",
+                    "data/research/profile.json": "ask"
+                },
+                "edit": "allow",
+                "bash": {
+                    "*": "allow",
+                    "git push*": "ask",
+                    "git reset*": "ask",
+                    "git clean*": "ask",
+                    "git restore*": "ask",
+                    "git checkout*": "ask",
+                    "rm -rf*": "ask",
+                    "rm -r*": "ask",
+                    "Remove-Item*": "ask",
+                    "del /s*": "ask",
+                    "rmdir*": "ask"
+                },
+                "task": {
+                    "*": "deny",
+                    "planner": "allow",
+                    "scout": "allow",
+                    "debugger": "allow",
+                    "reviewer": "allow"
+                }
             }
+        },
+        "plan": {
+            "mode": "primary",
+            "model": "opencode/mimo-v2.5-free",
+            "description": "Read-only planning and analysis agent for manual use.",
+            "permission": {
+                "read": {
+                    "*": "allow",
+                    "*.env": "deny",
+                    "*.env.*": "deny",
+                    "*.env.example": "allow",
+                    "data/cv/**": "deny",
+                    "data/emails/**": "deny",
+                    "data/offres*.xlsx": "deny",
+                    "data/research/profile.json": "deny"
+                },
+                "edit": "deny",
+                "bash": "deny"
+            }
+        },
+        "planner": {
+            "mode": "subagent",
+            "hidden": true,
+            "model": "opencode/muse-spark-1.2-contributor-free",
+            "description": "Architecture, planning, complex multi-file changes, data flow analysis. Read-only.",
+            "permission": {
+                "read": {
+                    "*": "allow",
+                    "*.env": "deny",
+                    "*.env.*": "deny",
+                    "data/cv/**": "deny",
+                    "data/emails/**": "deny",
+                    "data/offres*.xlsx": "deny",
+                    "data/research/profile.json": "deny"
+                },
+                "edit": "deny",
+                "bash": "deny",
+                "task": "deny"
+            }
+        },
+        "scout": {
+            "mode": "subagent",
+            "hidden": true,
+            "model": "opencode/nemotron-3.5-lightning-free",
+            "description": "Quick file/symbol search, call paths, dependencies, patterns. Read-only.",
+            "permission": {
+                "read": {
+                    "*": "allow",
+                    "*.env": "deny",
+                    "*.env.*": "deny",
+                    "data/cv/**": "deny",
+                    "data/emails/**": "deny",
+                    "data/offres*.xlsx": "deny",
+                    "data/research/profile.json": "deny"
+                },
+                "edit": "deny",
+                "bash": "deny",
+                "task": "deny"
+            }
+        },
+        "debugger": {
+            "mode": "subagent",
+            "hidden": true,
+            "model": "opencode/hy3-free",
+            "description": "Failing tests, runtime errors, root-cause analysis. Read-only files, safe diagnostics allowed.",
+            "permission": {
+                "read": {
+                    "*": "allow",
+                    "*.env": "deny",
+                    "*.env.*": "deny",
+                    "data/cv/**": "deny",
+                    "data/emails/**": "deny",
+                    "data/offres*.xlsx": "deny",
+                    "data/research/profile.json": "deny"
+                },
+                "edit": "deny",
+                "bash": {
+                    "*": "deny",
+                    "npm test*": "allow",
+                    "npm run test*": "allow",
+                    "node *": "allow",
+                    "grep *": "allow",
+                    "git status*": "allow",
+                    "git diff*": "allow",
+                    "git log*": "allow",
+                    "git show*": "allow"
+                },
+                "task": "deny"
+            }
+        },
+        "reviewer": {
+            "mode": "subagent",
+            "hidden": true,
+            "model": "opencode/nemotron-3-ultra-free",
+            "description": "Independent code review for correctness, security, regressions. Read-only.",
+            "permission": {
+                "read": {
+                    "*": "allow",
+                    "*.env": "deny",
+                    "*.env.*": "deny",
+                    "data/cv/**": "deny",
+                    "data/emails/**": "deny",
+                    "data/offres*.xlsx": "deny",
+                    "data/research/profile.json": "deny"
+                },
+                "edit": "deny",
+                "bash": {
+                    "*": "deny",
+                    "git status*": "allow",
+                    "git diff*": "allow",
+                    "git log*": "allow"
+                },
+                "task": "deny"
+            }
+        }
+    }
 }
